@@ -11,7 +11,7 @@ editor_options:
 ##Git and Github
 
 #####Version control 
-*Keep and restoring past versions files
+*Keep and restoring past versions of files
 *Programmers collaborating
 
 #####Files 
