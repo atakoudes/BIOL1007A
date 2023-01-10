@@ -2,7 +2,10 @@
 title: "BIOL1007A Webpage"
 author: "Alex Takoudes"
 date: "2023-01-10"
-output: html_document
+output:
+  prettydoc::html_pretty:
+    theme: cayman
+    highlight: github
 ---
 
 [Assignment 1](Assignment1.html)

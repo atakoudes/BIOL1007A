@@ -1,0 +1,59 @@
+---
+title: "Assignment 2"
+author: "Alex Takoudes"
+date: "2023-01-10"
+output: html_document
+---
+
+Use the RMarkdown cheat sheet and create an .Rmd with the following:
+
+A picture
+A 3x5 table
+A few sentences that use bold and italic formatting
+A bulleted list
+A numbered list
+A link to a website
+Multiple sized headers.
+A superscript and subscript.
+An equation
+Plain text within fencing
+
+![Image of git config](/Users/alextakoudes/Desktop/Classes/BIOL1007/gitconfig.jpeg)
+
+ THIS  | IS A | TABLE | COLUMN 4 | COLUMNS 5
+-------------  | ------------- | ---------- | -------
+Table Cell     | Cell 2        | data | data | data
+Cell 3         | Cell 4        | data 2 | data | data
+more data | even more data | too much data | data | data
+
+I am learning to use **bold** writing and *italic* writing. These help me **emphasize** certain *words* which are important to the reader's understanding.
+
+This is my to-do list
+
+* clean room
+
+* do laundry
+  + make sure to separate delicates
+
+* make bed
+
+This is a numbered list:
+
+1. most important
+
+2. second most important
+  + make sure to do this too
+  
+3. least important
+
+[Middlebury, VT Weather](https://www.wunderground.com/weather/us/vt/middlebury/44.01,-73.17)
+
+##### Big Header
+#### Bigger header
+### Even bigger header
+## Huge header
+# Biggest header
+
+This is written in ^superscript!^ and ~subscript~
+
+`2+2`
