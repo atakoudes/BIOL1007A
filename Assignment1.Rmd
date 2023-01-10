@@ -1,0 +1,32 @@
+---
+title: "Assignment 1"
+author: "Alex Takoudes"
+date: "2023-01-10"
+output: html_document
+---
+
+Project
+New project
+Version control
+Put in GitHub repository link
+
+Make a new Rmarkdown file and name it “index”
+Knit it to HTML
+
+In terminal:
+$ git status
+$ git add -A
+$git status
+-everything should be green
+$git commit -am ‘create index file’
+Commit all changes here’s the message:
+Active verb first
+$git push
+Put in full username
+But put personal token as the password
+
+If that doesnt work:
+Install.packages(“credentials”)
+credentials::set_github_pat(“<token>”)
+
+$ git config --global user.email “atakoudes@middlebury.edu”
