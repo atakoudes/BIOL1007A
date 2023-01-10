@@ -1,0 +1,29 @@
+---
+title: "Day 2 Notes"
+author: "Alex Takoudes"
+date: "2023-01-10"
+output: html_document
+editor_options: 
+  markdown: 
+    wrap: 72
+---
+
+##Git and Github
+
+#####Version control 
+*Keep and restoring past versions of files
+*Programmers collaborating
+
+#####Files 
+*Good for Version Control
+*Plain text 
+*.R scripts
+*markdown (.md/.Rmd)
+*html
+
+*Bad for Version Control
+*PDFs 
+*Videos/pics
+*Word docs
+
+Changes to files
