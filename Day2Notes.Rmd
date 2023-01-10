@@ -8,22 +8,22 @@ editor_options:
     wrap: 72
 ---
 
-##Git and Github
+## Git and Github
 
-#####Version control 
-*Keep and restoring past versions of es
-*Programmers collaborating
+##### Version control 
+* Keep and restoring past versions of files
+* Programmers collaborating
 
-#####Files 
-*Good for Version Control
-*Plain text 
-*.R scripts
-*markdown (.md/.Rmd)
-*html
+##### Files 
+* Good for Version Control
+* Plain text 
+* .R scripts
+* markdown (.md/.Rmd)
+* html
 
-*Bad for Version Control
-*PDFs 
-*Videos/pics
-*Word docs
+* Bad for Version Control
+* PDFs 
+* Videos/pics
+* Word docs
 
 Changes to files
