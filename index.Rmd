@@ -4,8 +4,20 @@ author: "Alex Takoudes"
 date: "2023-01-10"
 output:
   prettydoc::html_pretty:
-    theme: cayman
+    theme: leonids
     highlight: github
 ---
 
+## Daily Assignments
+
 [Assignment 1](Assignment1.html)
+
+[Assignment 2](Assignment2.html)
+
+## Weekly Assignments
+
+## Class Notes
+
+[Day 1 Notes](Day1Notes.html)
+
+[Day 2 Notes](Day2Notes.html)
