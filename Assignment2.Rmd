@@ -10,7 +10,9 @@ output:
 
 ## 1. Experimenting with RMarkdown
 ***
+<center>
 ![Night-time Snowmaking at The Snowbowl](/Users/alextakoudes/Desktop/Classes/BIOL1007/Photos/IMG_2118.jpeg)
+</center>
 
 ***
 ### 2. Table
