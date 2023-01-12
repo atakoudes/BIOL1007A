@@ -1,0 +1,10 @@
+---
+title: "Weekly Assignmnet 1"
+author: "Alex Takoudes"
+date: "2023-01-12"
+output: html_document
+---
+weekly assignment
+
+pictures
+links

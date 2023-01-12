@@ -1,0 +1,150 @@
+---
+title: "Coding with R"
+author: "Alex Takoudes"
+date: "2023-01-12"
+output: html_document
+---
+***
+##### Markup Languages
+* Use instructions to explain how a document should appear
+* HTML
+  + Most webpages use HTML. Fundamental
+* LateX
+  + Best for really complicated projects
+  + Books/manuscripts
+* Markdown
+  + More friendly and easier to write
+
+***
+##### Coding with R
+* R is helpful because it is *reproducible*
+* Excel typically has more errors than R
+* **Advantages**
+  + Interactive use
+  + Used for graphics and statistics
+    + Creates better quality graphics
+  + Very active community
+  + Works on multiple platforms
+* **Disadvantages**
+  + Lazy evaluation
+  + Packages are poorly documented
+  + Functions are hard to learn
+  + Unreliable packages
+  + Problems with big data (multiple GBs)
+
+***
+##### Notes about coding
+* Use the `<-` instead of `=` for assignment
+* `Command + shift + c` hashtags out highlighted stuff
+* If console shows a `+` instead of `>` it is waiting for something
+  + Ex. did not finish parentheses
+* Clicking `Run` only runs one line
+  + You could highlight it all and click `Run`
+  + `Source` button runs it all
+  + `Source with echo` runs it all and shows you in console
+
+##### Variables
+* `camelCase` format starts with lower case and next word is uppercase
+* `snake_case` format is a preferred method
+* `avoid.periods` not used
+* `.` reserved for a temporary variable
+  + Not saved in the environment
+  
+##### Functions
+* Blocks of code that perform a task
+* You can use a short command over and over instead of writing code multiple times
+
+***
+##### R's Four Data Types
+
+Dimensions | Homogenous | Heterogeneous
+-----------|------------|--------------
+**1-Dimension** | Atomic Vector | List
+**2-Dimension** | Matric | Data Frame
+
+***
+##### Atomic Vectors
+* One dimensional (a single row)
+* Fundamental data structures in R programming
+* Can be different classes
+  + Character strings
+  + Integers
+  + Double (anything with a decimal)
+  + Logical (Boolean)
+  + Factor (categorizes, groups variable)
+
+***
+##### Adding names to vectors
+```{r}
+z <- runif(5) #randint
+names(z) <- c("chow", "pug", "beagle", "greyhound", "akita")
+print(z)
+names(z) <- NULL
+print(z)
+```
+***
+##### NA Values (missing data)
+```{r}
+
+z <- c(3.2, 3.5, NA)
+mean(z)
+
+#check for NAs
+anyNA(z)
+is.na(z)
+which(is.na(z))
+
+```
+***
+##### Subsetting Vectors
+* Filtering Vectors
+* Vectors are indexed which is helpful
+
+```{r}
+z <- c(3.1, 9.2, 1.3, 0.4, 7.5)
+z[1] #INDEX STARTS AT 1 NOT 0
+z[c(4, 5)]  #return index 4 and 5
+z[-c(2, 3)] #everything except 2 and 3
+z[z == 7.5] #use double equals for exact match
+z[z < 7.5]
+names(z) <- letters[1:5] # subsetting with characters
+z
+subset(x = z, subset = z>1.5) #subset function
+```
+
+##### Functions
+
+`sample`
+```{r}
+story_vec <- c("A", "Frog", "Jumped", "Here")
+story_vec
+sample(story_vec) #randomize
+sample(story_vec, size = 3) #random sample size 3
+
+story_vec <- c(story_vec[1], "Green", story_vec[2:4]) #adding to vector
+story_vec
+
+story_vec[2] <- "Blue" #replacing elements of vector
+story_vec
+```
+
+`vec`
+```{r}
+vec <- vector() #creates the empty vector
+vec <- vector(mode = "numeric", length = 5) #specific empty vector
+vec
+```
+
+`rep`
+```{r}
+z <- rep(x=1:4, each=3)
+z
+```
+
+`seq`
+```{r}
+z <- seq(from=2, to=4)
+z
+z <- seq(from=2, to=4, by=0.5)
+z
+```

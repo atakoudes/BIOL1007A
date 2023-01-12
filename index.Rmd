@@ -14,10 +14,16 @@ output:
 
 [Assignment 2](Assignment2.html)
 
+[Assignment 3](Assignment3.html)
+
 ## Weekly Assignments
+
+[Weekly Assignment 1](Weekly_assignment1.html)
 
 ## Class Notes
 
 [Day 1 Notes](Day1Notes.html)
 
 [Day 2 Notes](Day2Notes.html)
+
+[Coding With R (1-12-2023](Coding_with_R.html)

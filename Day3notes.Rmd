@@ -1,0 +1,32 @@
+---
+title: "Coding with R"
+author: "Alex Takoudes"
+date: "2023-01-12"
+output: html_document
+---
+***
+##### Markup Languages
+* Use instructions to explain how a document should appear
+* HTML
+  + Most webpages use HTML. Fundamental
+* LateX
+  + Best for really complicated projects
+  + Books/manuscripts
+* Markdown
+  + More friendly and easier to write
+
+##### Coding with R
+* R is helpful because it is *reproducible*
+* Excel typically has more errors than R
+* **Advantages**
+  + Interactive use
+  + Used for graphics and statistics
+    + Creates better quality graphics
+  + Very active community
+  + Works on multiple platforms
+* **Disadvantages**
+  + Lazy evaluation
+  + Packages are poorly documented
+  + Functions are hard to learn
+  + Unreliable packages
+  + Problems with big data (multiple GBs)
