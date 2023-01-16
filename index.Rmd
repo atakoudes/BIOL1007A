@@ -26,4 +26,4 @@ output:
 
 [Day 2 Notes](Day2Notes.html)
 
-[Coding With R (1-12-2023](Coding_with_R.html)
+[1-12-2023| Coding With R](Coding_with_R.html)
