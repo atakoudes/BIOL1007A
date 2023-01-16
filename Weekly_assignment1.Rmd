@@ -15,13 +15,14 @@ output: html_document
 
 ### 2. Downloading Homebrew
 1. Search for `Terminal` in your mac spotlight search and open it ![](/Users/alextakoudes/Desktop/Classes/BIOL1007/Photos/TerminalSearch.png)
-2. Go to [Homebrew](https://brew.sh) and copy the first line of code ![](/Users/alextakoudes/Desktop/Classes/BIOL1007/Photos/Homebrew.png)
+2. Go to [Homebrew](https://brew.sh), copy the first line of code, and paste it in Terminal ![](/Users/alextakoudes/Desktop/Classes/BIOL1007/Photos/Homebrew.png)
 3. You might need to type in your computer password to authorize the download
 4. If Terminal returns any authentication errors, type `git config --global http.sslVerify false` to temporarily disable any filters
   + **Make sure to type `git config --global http.sslVerify true` after Homebrew is finished installing**
 5. Homebrew might prompt you to copy three lines of code. Simply copy them and paste into terminal and hit enter
 6. Once the download is finished type `brew install git`
 7. Restart Rstudio if it was open
+8. Did you remember re-enable SSL verification? If not type `git config --global http.sslVerify true` into Terminal
 
 ### 3. Setting up Github Token
 1. Go to [Github](https://github.com) and sign in
@@ -57,7 +58,7 @@ output: html_document
 6. Name the project `BIOL1007A` or the exact name you gave it on Github
 7. Use the browse button to put it somewhere on your computer and click `Create Project`
 
-### Navigating your project
+### 6. Navigating your project
 1. On the right side, you should see your license and ReadMe files have populated the files tab.
   + You can open your existing documents from here
 2. You can create a new file by clicking the plus in the top left and selecting `RMarkdown`
@@ -66,7 +67,7 @@ output: html_document
 5. Type anything into the body of the document and click save
 6. Name the file `index` when you save it
 
-### Uploading to your Github Repository
+### 7. Uploading to your Github Repository
 1. Where your console is currently open, click on Terminal
 2. In Terminal type `git status`
   + This will show you what unsaved changes you have
@@ -82,7 +83,7 @@ output: html_document
   + In Console, run `credentials::set_github_pat("put PAT here")`
 6. This should push all your changes to Github and you should be able to see them on github.com
 
-### Creating a Webpage from Repository
+### 8. Creating a Webpage from Repository
 1. Go to your repository on Github
 2. Go to `Settings`
 3. On the left side, select `Pages`
