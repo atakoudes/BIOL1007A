@@ -49,7 +49,7 @@ set your code up so you can re-run it to create a matrix of a different size by 
 #done
 ```
 
-### 2. 
+### 2. List Fun
 
 Create a list with the following named elements:
 
@@ -58,12 +58,44 @@ my_logical which is a 100-element vector of TRUE or FALSE values. You can do thi
 my_letters, which is a 26-element vector of all the lower-case letters in random order.
 Then, complete the following steps:
 ```{r}
-#my_list <- list(my_matrix=matrix(data=runif(16), nrow=4, ncol=4), my_logical=(a>0.5(rep(runif(10)), 
+my_list <- list(my_matrix=matrix(data=runif(16), nrow=4, ncol=4), my_logical= (runif(100) > 0.5), my_letters=sample(letters))
+my_list
 ```
 
-
-
 create a new list, which has the element[2,2] from the matrix, the second element of the logical vector, and the second element of the letters vector.
+```{r}
+new_list <- list(my_list$my_matrix[2,2], my_list$my_logical[[2]], my_list$my_letters[[2]])
+new_list
+```
+
 use the typeof() function to confirm the underlying data types of each component in this list
+```{r}
+typeof(new_list[[1]])
+typeof(new_list[[2]])
+typeof(new_list[[3]])
+#or more efficiently...
+str(new_list)
+```
+
 combine the underlying elements from the new list into a single atomic vector with the c() function.
+```{r}
+combined_vec <- c(unlist(new_list))
+```
 what is the data type of this vector?
+```{r}
+typeof(combined_vec)
+```
+
+Create an empty data frame with two variables (= columns) and 26 observations (= rows) below:
+
+call the first column/variable my_unifs and fill it with 26 random uniform values from 0 to 10
+
+call the second variable my_letters and fill it with 26 capital letters in random order.
+
+for the first variable, use a single line of code in R to select 4 random rows and replace the numerical values in those rows with NA.
+
+for the first variable, write a single line of R code to identify which rows have the missing values.
+re-order the entire data frame to arrange the second variable in alphabetical order.
+
+calculate the column mean for the first variable.
+rename the second column ‘my_LETTERS’

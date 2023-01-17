@@ -401,8 +401,8 @@ sum(my_mat[n_dims,])</code></pre>
 different size by only changing the n_dims value</p>
 <pre class="r"><code>#done</code></pre>
 </div>
-<div id="section" class="section level3">
-<h3>2.</h3>
+<div id="list-fun" class="section level3">
+<h3>2. List Fun</h3>
 <p>Create a list with the following named elements:</p>
 <p>my_matrix, which is a 4 x 4 matrix filled with random uniform values
 my_logical which is a 100-element vector of TRUE or FALSE values. You
@@ -410,13 +410,75 @@ can do this efficiently by setting up a vector of random values and then
 applying an inequality to it. my_letters, which is a 26-element vector
 of all the lower-case letters in random order. Then, complete the
 following steps:</p>
-<pre class="r"><code>#my_list &lt;- list(my_matrix=matrix(data=runif(16), nrow=4, ncol=4), my_logical=(a&gt;0.5(rep(runif(10)), </code></pre>
+<pre class="r"><code>my_list &lt;- list(my_matrix=matrix(data=runif(16), nrow=4, ncol=4), my_logical= (runif(100) &gt; 0.5), my_letters=sample(letters))
+my_list</code></pre>
+<pre><code>## $my_matrix
+##           [,1]      [,2]      [,3]      [,4]
+## [1,] 0.7108038 0.1714202 0.2777238 0.9541577
+## [2,] 0.5383487 0.7703016 0.4883060 0.6952741
+## [3,] 0.7489722 0.8819536 0.9285051 0.8894535
+## [4,] 0.4201015 0.5490967 0.3486920 0.1804072
+## 
+## $my_logical
+##   [1]  TRUE  TRUE FALSE FALSE  TRUE  TRUE  TRUE  TRUE FALSE  TRUE  TRUE FALSE
+##  [13] FALSE FALSE FALSE FALSE FALSE  TRUE FALSE FALSE FALSE  TRUE FALSE FALSE
+##  [25]  TRUE  TRUE  TRUE FALSE FALSE FALSE FALSE FALSE  TRUE FALSE FALSE  TRUE
+##  [37]  TRUE  TRUE  TRUE  TRUE  TRUE  TRUE FALSE FALSE  TRUE  TRUE  TRUE FALSE
+##  [49]  TRUE  TRUE FALSE FALSE  TRUE  TRUE FALSE FALSE FALSE  TRUE FALSE  TRUE
+##  [61] FALSE FALSE  TRUE FALSE FALSE FALSE FALSE  TRUE  TRUE  TRUE  TRUE FALSE
+##  [73]  TRUE  TRUE  TRUE FALSE FALSE  TRUE FALSE  TRUE  TRUE FALSE  TRUE FALSE
+##  [85] FALSE FALSE  TRUE FALSE FALSE  TRUE  TRUE  TRUE FALSE FALSE  TRUE  TRUE
+##  [97] FALSE  TRUE FALSE FALSE
+## 
+## $my_letters
+##  [1] &quot;r&quot; &quot;h&quot; &quot;y&quot; &quot;b&quot; &quot;s&quot; &quot;l&quot; &quot;e&quot; &quot;n&quot; &quot;x&quot; &quot;o&quot; &quot;a&quot; &quot;u&quot; &quot;v&quot; &quot;z&quot; &quot;f&quot; &quot;j&quot; &quot;c&quot; &quot;q&quot; &quot;m&quot;
+## [20] &quot;w&quot; &quot;i&quot; &quot;k&quot; &quot;t&quot; &quot;p&quot; &quot;g&quot; &quot;d&quot;</code></pre>
 <p>create a new list, which has the element[2,2] from the matrix, the
 second element of the logical vector, and the second element of the
-letters vector. use the typeof() function to confirm the underlying data
-types of each component in this list combine the underlying elements
-from the new list into a single atomic vector with the c() function.
-what is the data type of this vector?</p>
+letters vector.</p>
+<pre class="r"><code>new_list &lt;- list(my_list$my_matrix[2,2], my_list$my_logical[[2]], my_list$my_letters[[2]])
+new_list</code></pre>
+<pre><code>## [[1]]
+## [1] 0.7703016
+## 
+## [[2]]
+## [1] TRUE
+## 
+## [[3]]
+## [1] &quot;h&quot;</code></pre>
+<p>use the typeof() function to confirm the underlying data types of
+each component in this list</p>
+<pre class="r"><code>typeof(new_list[[1]])</code></pre>
+<pre><code>## [1] &quot;double&quot;</code></pre>
+<pre class="r"><code>typeof(new_list[[2]])</code></pre>
+<pre><code>## [1] &quot;logical&quot;</code></pre>
+<pre class="r"><code>typeof(new_list[[3]])</code></pre>
+<pre><code>## [1] &quot;character&quot;</code></pre>
+<pre class="r"><code>#or more efficiently...
+str(new_list)</code></pre>
+<pre><code>## List of 3
+##  $ : num 0.77
+##  $ : logi TRUE
+##  $ : chr &quot;h&quot;</code></pre>
+<p>combine the underlying elements from the new list into a single
+atomic vector with the c() function.</p>
+<pre class="r"><code>combined_vec &lt;- c(unlist(new_list))</code></pre>
+<p>what is the data type of this vector?</p>
+<pre class="r"><code>typeof(combined_vec)</code></pre>
+<pre><code>## [1] &quot;character&quot;</code></pre>
+<p>Create an empty data frame with two variables (= columns) and 26
+observations (= rows) below:</p>
+<p>call the first column/variable my_unifs and fill it with 26 random
+uniform values from 0 to 10</p>
+<p>call the second variable my_letters and fill it with 26 capital
+letters in random order.</p>
+<p>for the first variable, use a single line of code in R to select 4
+random rows and replace the numerical values in those rows with NA.</p>
+<p>for the first variable, write a single line of R code to identify
+which rows have the missing values. re-order the entire data frame to
+arrange the second variable in alphabetical order.</p>
+<p>calculate the column mean for the first variable. rename the second
+column ‘my_LETTERS’</p>
 </div>
 
 
