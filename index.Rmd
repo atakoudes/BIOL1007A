@@ -22,7 +22,7 @@ output:
 
 ## Class Notes
 
-[Day 1 Notes](Class_Notes/Day1Notes.html)
+[Day 1 Notes](Assignments/Assignment1.html)
 
 [Day 2 Notes](Class_Notes/Day2Notes.html)
 
