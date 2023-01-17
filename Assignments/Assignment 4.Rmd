@@ -58,7 +58,7 @@ my_logical which is a 100-element vector of TRUE or FALSE values. You can do thi
 my_letters, which is a 26-element vector of all the lower-case letters in random order.
 Then, complete the following steps:
 ```{r}
-my_list <- list(my_matrix=matrix(data=runif(16), nrow=4, ncol=4), my_logical=(a>0.5(rep(runif(10)), 
+#my_list <- list(my_matrix=matrix(data=runif(16), nrow=4, ncol=4), my_logical=(a>0.5(rep(runif(10)), 
 ```
 
 
