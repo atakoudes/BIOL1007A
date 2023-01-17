@@ -1,0 +1,52 @@
+---
+title: "Data Structures"
+author: "Alex Takoudes"
+date: "2023-01-17"
+output: html_document
+---
+
+### Reviewing Assignment 3
+```{r}
+queue <- c("sheep", "fox", "owl", "ant")
+
+#you can modify a specific index in the vector using []
+queue[5] <- "serpent"
+queue
+
+#you can remove an index by using the "-"
+queue <- queue[-5]
+queue
+```
+
+***
+## Data Structures
+Dimensions | Homogeneous | Heterogeneous
+-----------|------------|--------------
+**1-Dimension** | Atomic Vector | List
+**2-Dimension** | Matrix | Data Frame
+
+### Vector Properties
+* All atomic vectors are the same data type
+* When you use `c()` to assemble different types, R **coerces** them
+* c prioritizes different data types
+  1. Logical (Boolean)
+  2. Integer
+  3. Double (floats)
+  4. Character (strings)
+```{r}
+#Doubles (floats)
+a <- c(2, 2.0)
+typeof(a)
+#
+b <- c("purple", "green")
+d <- c(a, b)
+typeof(d)
+```
+#### Comparison operators yield a logical result
+```{r}
+a <- runif(10)
+a > 0.5 #conditional statement
+
+# How many elements in the vector are > 0.5
+sum(a > 0.5)
+```

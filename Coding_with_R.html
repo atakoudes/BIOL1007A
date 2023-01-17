@@ -493,10 +493,10 @@ multiple times</li>
 names(z) &lt;- c(&quot;chow&quot;, &quot;pug&quot;, &quot;beagle&quot;, &quot;greyhound&quot;, &quot;akita&quot;)
 print(z)</code></pre>
 <pre><code>##      chow       pug    beagle greyhound     akita 
-## 0.6667653 0.6393974 0.7605208 0.2442420 0.6200970</code></pre>
+## 0.8574259 0.7420579 0.2374677 0.9392459 0.5862445</code></pre>
 <pre class="r"><code>names(z) &lt;- NULL
 print(z)</code></pre>
-<pre><code>## [1] 0.6667653 0.6393974 0.7605208 0.2442420 0.6200970</code></pre>
+<pre><code>## [1] 0.8574259 0.7420579 0.2374677 0.9392459 0.5862445</code></pre>
 <hr />
 </div>
 <div id="na-values-missing-data" class="section level5">
@@ -547,7 +547,7 @@ story_vec</code></pre>
 <pre class="r"><code>sample(story_vec) #randomize</code></pre>
 <pre><code>## [1] &quot;A&quot;      &quot;Frog&quot;   &quot;Jumped&quot; &quot;Here&quot;</code></pre>
 <pre class="r"><code>sample(story_vec, size = 3) #random sample size 3</code></pre>
-<pre><code>## [1] &quot;Frog&quot; &quot;Here&quot; &quot;A&quot;</code></pre>
+<pre><code>## [1] &quot;Frog&quot;   &quot;Here&quot;   &quot;Jumped&quot;</code></pre>
 <pre class="r"><code>story_vec &lt;- c(story_vec[1], &quot;Green&quot;, story_vec[2:4]) #adding to vector
 story_vec</code></pre>
 <pre><code>## [1] &quot;A&quot;      &quot;Green&quot;  &quot;Frog&quot;   &quot;Jumped&quot; &quot;Here&quot;</code></pre>

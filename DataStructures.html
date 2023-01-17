@@ -11,9 +11,9 @@
 
 <meta name="author" content="Alex Takoudes" />
 
-<meta name="date" content="2023-01-12" />
+<meta name="date" content="2023-01-17" />
 
-<title>Day 3 Notes</title>
+<title>Data Structures</title>
 
 <script>// Pandoc 2.9 adds attributes on both header and div. We remove the former (to
 // be compatible with the behavior of Pandoc < 2.8).
@@ -350,56 +350,83 @@ display: none;
 
 
 
-<h1 class="title toc-ignore">Day 3 Notes</h1>
+<h1 class="title toc-ignore">Data Structures</h1>
 <h4 class="author">Alex Takoudes</h4>
-<h4 class="date">2023-01-12</h4>
+<h4 class="date">2023-01-17</h4>
 
 </div>
 
 
+<div id="reviewing-assignment-3" class="section level3">
+<h3>Reviewing Assignment 3</h3>
+<pre class="r"><code>queue &lt;- c(&quot;sheep&quot;, &quot;fox&quot;, &quot;owl&quot;, &quot;ant&quot;)
+
+#you can modify a specific index in the vector using []
+queue[5] &lt;- &quot;serpent&quot;
+queue</code></pre>
+<pre><code>## [1] &quot;sheep&quot;   &quot;fox&quot;     &quot;owl&quot;     &quot;ant&quot;     &quot;serpent&quot;</code></pre>
+<pre class="r"><code>#you can remove an index by using the &quot;-&quot;
+queue &lt;- queue[-5]
+queue</code></pre>
+<pre><code>## [1] &quot;sheep&quot; &quot;fox&quot;   &quot;owl&quot;   &quot;ant&quot;</code></pre>
 <hr />
-<div id="markup-languages" class="section level5">
-<h5>Markup Languages</h5>
-<ul>
-<li>Use instructions to explain how a document should appear</li>
-<li>HTML
-<ul>
-<li>Most webpages use HTML. Fundamental</li>
-</ul></li>
-<li>LateX
-<ul>
-<li>Best for really complicated projects</li>
-<li>Books/manuscripts</li>
-</ul></li>
-<li>Markdown
-<ul>
-<li>More friendly and easier to write</li>
-</ul></li>
-</ul>
 </div>
-<div id="coding-with-r" class="section level5">
-<h5>Coding with R</h5>
+<div id="data-structures" class="section level2">
+<h2>Data Structures</h2>
+<table>
+<thead>
+<tr class="header">
+<th>Dimensions</th>
+<th>Homogeneous</th>
+<th>Heterogeneous</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><strong>1-Dimension</strong></td>
+<td>Atomic Vector</td>
+<td>List</td>
+</tr>
+<tr class="even">
+<td><strong>2-Dimension</strong></td>
+<td>Matrix</td>
+<td>Data Frame</td>
+</tr>
+</tbody>
+</table>
+<div id="vector-properties" class="section level3">
+<h3>Vector Properties</h3>
 <ul>
-<li>R is helpful because it is <em>reproducible</em></li>
-<li>Excel typically has more errors than R</li>
-<li><strong>Advantages</strong>
-<ul>
-<li>Interactive use</li>
-<li>Used for graphics and statistics
-<ul>
-<li>Creates better quality graphics</li>
-</ul></li>
-<li>Very active community</li>
-<li>Works on multiple platforms</li>
-</ul></li>
-<li><strong>Disadvantages</strong>
-<ul>
-<li>Lazy evaluation</li>
-<li>Packages are poorly documented</li>
-<li>Functions are hard to learn</li>
-<li>Unreliable packages</li>
-</ul></li>
+<li>All atomic vectors are the same data type</li>
+<li>When you use <code>c()</code> to assemble different types, R
+<strong>coerces</strong> them</li>
+<li>c prioritizes different data types
+<ol style="list-style-type: decimal">
+<li>Logical (Boolean)</li>
+<li>Integer</li>
+<li>Double (floats)</li>
+<li>Character (strings)</li>
+</ol></li>
 </ul>
+<pre class="r"><code>#Doubles (floats)
+a &lt;- c(2, 2.0)
+typeof(a)</code></pre>
+<pre><code>## [1] &quot;double&quot;</code></pre>
+<pre class="r"><code>#
+b &lt;- c(&quot;purple&quot;, &quot;green&quot;)
+d &lt;- c(a, b)
+typeof(d)</code></pre>
+<pre><code>## [1] &quot;character&quot;</code></pre>
+<div id="comparison-operators-yield-a-logical-result" class="section level4">
+<h4>Comparison operators yield a logical result</h4>
+<pre class="r"><code>a &lt;- runif(10)
+a &gt; 0.5 #conditional statement</code></pre>
+<pre><code>##  [1]  TRUE  TRUE FALSE  TRUE FALSE FALSE  TRUE  TRUE  TRUE FALSE</code></pre>
+<pre class="r"><code># How many elements in the vector are &gt; 0.5
+sum(a &gt; 0.5)</code></pre>
+<pre><code>## [1] 6</code></pre>
+</div>
+</div>
 </div>
 
 
