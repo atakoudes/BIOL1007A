@@ -81,7 +81,7 @@ hist(rNN)
 ```
 
 ***
-## Matrix Data Structur
+## Matrix
 * 2 dimensional (rows and columns)
 * Homogeneous data type
 * Is an atomic vector organized into rows and columns
@@ -92,3 +92,39 @@ m
 m <- matrix(data = my_vec, ncol = 3, byrow = T)
 m
 ```
+
+***
+## Lists
+* 1 dimensional (same as vectors)
+* Can hold different data types
+
+```{r}
+myList <- list(1:10, matrix(1:8, nrow=4, byrow=T), letters[1:3], pi)
+str(myList) #structure of list
+```
+
+#### Subsetting lists
+* Using `[]` gives you a single item BUT not the elements
+```{r}
+myList <- list(1:10, matrix(1:8, nrow=4, byrow=T), letters[1:3], pi)
+myList[4]
+#myList[4] - 3 returns an error because it's still compartamentalized
+typeof(myList[4])
+#to grab object, use [[]]
+myList[[4]] - 3
+myList[[2]][4,1] #access the matrix, get the 4th row, 1st column
+
+c(myList[[1]], myList[[2]]) #to obtain multiple elements within list
+```
+
+#### Name list items when they are created
+```{r}
+myList2 <- list(Tester = F, littleM = matrix(1:9, nrow=3))
+myList2$Tester #calls the element by it's name
+
+myList2$littleM[2,3] #access the matrix and pull the 2nd row, 3rd column
+myList2$littleM[2,]  #access the matrix and pull the entire 2nd row
+```
+
+
+
