@@ -421,10 +421,10 @@ typeof(d)</code></pre>
 <h4>Comparison operators yield a logical result</h4>
 <pre class="r"><code>a &lt;- runif(10)
 a &gt; 0.5 #conditional statement</code></pre>
-<pre><code>##  [1]  TRUE FALSE FALSE  TRUE FALSE  TRUE FALSE FALSE  TRUE  TRUE</code></pre>
+<pre><code>##  [1] FALSE FALSE  TRUE FALSE FALSE  TRUE FALSE FALSE  TRUE FALSE</code></pre>
 <pre class="r"><code># How many elements in the vector are &gt; 0.5
 sum(a &gt; 0.5)</code></pre>
-<pre><code>## [1] 5</code></pre>
+<pre><code>## [1] 3</code></pre>
 </div>
 <div id="vectorization" class="section level4">
 <h4>Vectorization</h4>
@@ -603,8 +603,60 @@ length</h5>
 <div id="data-frames" class="section level2">
 <h2>Data Frames</h2>
 <ul>
-<li>Equal-lenghted vectors, each which is a column</li>
+<li><strong>Equal-lenghted</strong> vectors, each which is a column</li>
+<li><code>rbind()</code> and <code>cbind()</code> allow you to add rows
+and columns</li>
 </ul>
+<pre class="r"><code>varA &lt;- 1:12
+varB &lt;- rep(c(&quot;Con&quot;, &quot;LowN&quot;, &quot;HighN&quot;), each=4)
+varC &lt;- runif(12)
+
+dFrame &lt;- data.frame(varA, varB, varC, stringsAsFactors=F)
+dFrame</code></pre>
+<pre><code>##    varA  varB        varC
+## 1     1   Con 0.784575267
+## 2     2   Con 0.009429905
+## 3     3   Con 0.779065883
+## 4     4   Con 0.729390652
+## 5     5  LowN 0.630131853
+## 6     6  LowN 0.480910830
+## 7     7  LowN 0.156636851
+## 8     8  LowN 0.008215520
+## 9     9 HighN 0.452458394
+## 10   10 HighN 0.492293329
+## 11   11 HighN 0.389587112
+## 12   12 HighN 0.464665942</code></pre>
+<pre class="r"><code># Adding a row
+new_data &lt;- list(varA=13, varB=&quot;HighN&quot;, varC=0.668)
+#rbind
+dFrame &lt;- rbind(dFrame, new_data)
+dFrame</code></pre>
+<pre><code>##    varA  varB        varC
+## 1     1   Con 0.784575267
+## 2     2   Con 0.009429905
+## 3     3   Con 0.779065883
+## 4     4   Con 0.729390652
+## 5     5  LowN 0.630131853
+## 6     6  LowN 0.480910830
+## 7     7  LowN 0.156636851
+## 8     8  LowN 0.008215520
+## 9     9 HighN 0.452458394
+## 10   10 HighN 0.492293329
+## 11   11 HighN 0.389587112
+## 12   12 HighN 0.464665942
+## 13   13 HighN 0.668000000</code></pre>
+<pre class="r"><code># Adding a column
+new_var &lt;- runif(13)
+#cbind
+dFrame &lt;- cbind(dFrame, new_var)
+head(dFrame)</code></pre>
+<pre><code>##   varA varB        varC    new_var
+## 1    1  Con 0.784575267 0.71327900
+## 2    2  Con 0.009429905 0.05530193
+## 3    3  Con 0.779065883 0.35478310
+## 4    4  Con 0.729390652 0.80281227
+## 5    5 LowN 0.630131853 0.83570884
+## 6    6 LowN 0.480910830 0.23774940</code></pre>
 </div>
 
 

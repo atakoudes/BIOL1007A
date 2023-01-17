@@ -151,4 +151,26 @@ unlist(results)$coefficients8 #pvalue in summary is always coefficients8
 * We care about the `Pr(>|t|)` value for `Petal.Length`
 
 ## Data Frames
-* Equal-lenghted vectors, each which is a column
+* **Equal-lenghted** vectors, each which is a column
+* `rbind()` and `cbind()` allow you to add rows and columns
+
+```{r}
+varA <- 1:12
+varB <- rep(c("Con", "LowN", "HighN"), each=4)
+varC <- runif(12)
+
+dFrame <- data.frame(varA, varB, varC, stringsAsFactors=F)
+dFrame
+
+# Adding a row
+new_data <- list(varA=13, varB="HighN", varC=0.668)
+#rbind
+dFrame <- rbind(dFrame, new_data)
+dFrame
+
+# Adding a column
+new_var <- runif(13)
+#cbind
+dFrame <- cbind(dFrame, new_var)
+head(dFrame)
+```
