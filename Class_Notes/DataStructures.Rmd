@@ -50,3 +50,27 @@ a > 0.5 #conditional statement
 # How many elements in the vector are > 0.5
 sum(a > 0.5)
 ```
+#### Vectorization
+* Add a constant to a vector
+```{r}
+z <- c(10, 20, 30)
+z
+z + 1 #performs element-wise addition of 1
+
+y <- c(1, 2, 3)
+z + y #results in an element by element operation on the vector
+```
+#### Recycling
+* If vector lengths aren't equal
+```{r}
+z <- c(10, 20, 30)
+x <- c(1, 2)
+z + x
+```
+#### Simulating Data
+* runif
+* rnorm
+```{r}
+set.seed(123) #first set will always be the same numbers with seed
+runif(n=5, min=5, max=10)
+```

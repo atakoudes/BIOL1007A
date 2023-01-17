@@ -10,20 +10,20 @@ output:
 
 ## Daily Assignments
 
-[Assignment 1](Assignment1.html)
+[Assignment 1](Assignments/Assignment1.html)
 
-[Assignment 2](Assignment2.html)
+[Assignment 2](Assignments/Assignment2.html)
 
-[Assignment 3](Assignment3.html)
+[Assignment 3](Assignments/Assignment3.html)
 
 ## Weekly Assignments
 
-[Weekly Assignment 1](Weekly_assignment1.html)
+[Weekly Assignment 1](WeeklyAssignments/Weekly_assignment1.html)
 
 ## Class Notes
 
-[Day 1 Notes](Day1Notes.html)
+[Day 1 Notes](Class_Notes/Day1Notes.html)
 
-[Day 2 Notes](Day2Notes.html)
+[Day 2 Notes](Class_Notes/Day2Notes.html)
 
-[1-12-2023| Coding With R](Coding_with_R.html)
+[1-12-2023| Coding With R](Class_Notes/Coding_with_R.html)

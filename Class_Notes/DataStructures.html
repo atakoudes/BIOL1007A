@@ -421,10 +421,46 @@ typeof(d)</code></pre>
 <h4>Comparison operators yield a logical result</h4>
 <pre class="r"><code>a &lt;- runif(10)
 a &gt; 0.5 #conditional statement</code></pre>
-<pre><code>##  [1]  TRUE  TRUE FALSE  TRUE FALSE FALSE  TRUE  TRUE  TRUE FALSE</code></pre>
+<pre><code>##  [1] FALSE FALSE  TRUE FALSE  TRUE  TRUE FALSE FALSE  TRUE FALSE</code></pre>
 <pre class="r"><code># How many elements in the vector are &gt; 0.5
 sum(a &gt; 0.5)</code></pre>
-<pre><code>## [1] 6</code></pre>
+<pre><code>## [1] 4</code></pre>
+</div>
+<div id="vectorization" class="section level4">
+<h4>Vectorization</h4>
+<ul>
+<li>Add a constant to a vector</li>
+</ul>
+<pre class="r"><code>z &lt;- c(10, 20, 30)
+z</code></pre>
+<pre><code>## [1] 10 20 30</code></pre>
+<pre class="r"><code>z + 1 #performs element-wise addition of 1</code></pre>
+<pre><code>## [1] 11 21 31</code></pre>
+<pre class="r"><code>y &lt;- c(1, 2, 3)
+z + y #results in an element by element operation on the vector</code></pre>
+<pre><code>## [1] 11 22 33</code></pre>
+</div>
+<div id="recycling" class="section level4">
+<h4>Recycling</h4>
+<ul>
+<li>If vector lengths aren’t equal</li>
+</ul>
+<pre class="r"><code>z &lt;- c(10, 20, 30)
+x &lt;- c(1, 2)
+z + x</code></pre>
+<pre><code>## Warning in z + x: longer object length is not a multiple of shorter object
+## length</code></pre>
+<pre><code>## [1] 11 22 31</code></pre>
+</div>
+<div id="simulating-data" class="section level4">
+<h4>Simulating Data</h4>
+<ul>
+<li>runif</li>
+<li>rnorm</li>
+</ul>
+<pre class="r"><code>set.seed(123) #first set will always be the same numbers with seed
+runif(n=5, min=5, max=10)</code></pre>
+<pre><code>## [1] 6.437888 8.941526 7.044885 9.415087 9.702336</code></pre>
 </div>
 </div>
 </div>
