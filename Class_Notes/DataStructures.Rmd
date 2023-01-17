@@ -174,3 +174,11 @@ new_var <- runif(13)
 dFrame <- cbind(dFrame, new_var)
 head(dFrame)
 ```
+
+## Data Frame vs. Matrices
+```{r}
+z_mat <- matrix(data=1:30, ncol=3, byrow=T)
+z_mat
+z_dframe <- as.data.frame(z_mat)
+z_dframe
+```
