@@ -181,4 +181,27 @@ z_mat <- matrix(data=1:30, ncol=3, byrow=T)
 z_mat
 z_dframe <- as.data.frame(z_mat)
 z_dframe
+
+z_mat[3]    #gives you 3rd element
+z_dframe[3] #gives you 3rd column
+```
+
+## Eliminating NAs
+* `complete.cases()` function
+```{r}
+zD <- c(NA, rnorm(10), NA, rnorm(3))
+complete.cases(zD) #gives logical output
+
+#clean out NAs
+zD[complete.cases(zD)] #automatically removes NAs
+```
+#### Use with matrix
+```{r}
+m <- matrix(1:20, nrow=5)
+m[1,1] <- NA
+m[5,4] <- NA
+m
+complete.cases(m) #gives T/F as to whether whole ROW is complete
+m[complete.cases(m),] # , makes it search by row
+m[complete.cases(m[,c(1:2)]),] #only look at the first two columns
 ```
