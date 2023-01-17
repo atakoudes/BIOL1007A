@@ -1,0 +1,543 @@
+% Options for packages loaded elsewhere
+\PassOptionsToPackage{unicode}{hyperref}
+\PassOptionsToPackage{hyphens}{url}
+%
+\documentclass[
+]{article}
+\usepackage{amsmath,amssymb}
+\usepackage{lmodern}
+\usepackage{iftex}
+\ifPDFTeX
+  \usepackage[T1]{fontenc}
+  \usepackage[utf8]{inputenc}
+  \usepackage{textcomp} % provide euro and other symbols
+\else % if luatex or xetex
+  \usepackage{unicode-math}
+  \defaultfontfeatures{Scale=MatchLowercase}
+  \defaultfontfeatures[\rmfamily]{Ligatures=TeX,Scale=1}
+\fi
+% Use upquote if available, for straight quotes in verbatim environments
+\IfFileExists{upquote.sty}{\usepackage{upquote}}{}
+\IfFileExists{microtype.sty}{% use microtype if available
+  \usepackage[]{microtype}
+  \UseMicrotypeSet[protrusion]{basicmath} % disable protrusion for tt fonts
+}{}
+\makeatletter
+\@ifundefined{KOMAClassName}{% if non-KOMA class
+  \IfFileExists{parskip.sty}{%
+    \usepackage{parskip}
+  }{% else
+    \setlength{\parindent}{0pt}
+    \setlength{\parskip}{6pt plus 2pt minus 1pt}}
+}{% if KOMA class
+  \KOMAoptions{parskip=half}}
+\makeatother
+\usepackage{xcolor}
+\usepackage[margin=1in]{geometry}
+\usepackage{color}
+\usepackage{fancyvrb}
+\newcommand{\VerbBar}{|}
+\newcommand{\VERB}{\Verb[commandchars=\\\{\}]}
+\DefineVerbatimEnvironment{Highlighting}{Verbatim}{commandchars=\\\{\}}
+% Add ',fontsize=\small' for more characters per line
+\usepackage{framed}
+\definecolor{shadecolor}{RGB}{248,248,248}
+\newenvironment{Shaded}{\begin{snugshade}}{\end{snugshade}}
+\newcommand{\AlertTok}[1]{\textcolor[rgb]{0.94,0.16,0.16}{#1}}
+\newcommand{\AnnotationTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\newcommand{\AttributeTok}[1]{\textcolor[rgb]{0.77,0.63,0.00}{#1}}
+\newcommand{\BaseNTok}[1]{\textcolor[rgb]{0.00,0.00,0.81}{#1}}
+\newcommand{\BuiltInTok}[1]{#1}
+\newcommand{\CharTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
+\newcommand{\CommentTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textit{#1}}}
+\newcommand{\CommentVarTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\newcommand{\ConstantTok}[1]{\textcolor[rgb]{0.00,0.00,0.00}{#1}}
+\newcommand{\ControlFlowTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{\textbf{#1}}}
+\newcommand{\DataTypeTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{#1}}
+\newcommand{\DecValTok}[1]{\textcolor[rgb]{0.00,0.00,0.81}{#1}}
+\newcommand{\DocumentationTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\newcommand{\ErrorTok}[1]{\textcolor[rgb]{0.64,0.00,0.00}{\textbf{#1}}}
+\newcommand{\ExtensionTok}[1]{#1}
+\newcommand{\FloatTok}[1]{\textcolor[rgb]{0.00,0.00,0.81}{#1}}
+\newcommand{\FunctionTok}[1]{\textcolor[rgb]{0.00,0.00,0.00}{#1}}
+\newcommand{\ImportTok}[1]{#1}
+\newcommand{\InformationTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\newcommand{\KeywordTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{\textbf{#1}}}
+\newcommand{\NormalTok}[1]{#1}
+\newcommand{\OperatorTok}[1]{\textcolor[rgb]{0.81,0.36,0.00}{\textbf{#1}}}
+\newcommand{\OtherTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{#1}}
+\newcommand{\PreprocessorTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textit{#1}}}
+\newcommand{\RegionMarkerTok}[1]{#1}
+\newcommand{\SpecialCharTok}[1]{\textcolor[rgb]{0.00,0.00,0.00}{#1}}
+\newcommand{\SpecialStringTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
+\newcommand{\StringTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
+\newcommand{\VariableTok}[1]{\textcolor[rgb]{0.00,0.00,0.00}{#1}}
+\newcommand{\VerbatimStringTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
+\newcommand{\WarningTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\usepackage{longtable,booktabs,array}
+\usepackage{calc} % for calculating minipage widths
+% Correct order of tables after \paragraph or \subparagraph
+\usepackage{etoolbox}
+\makeatletter
+\patchcmd\longtable{\par}{\if@noskipsec\mbox{}\fi\par}{}{}
+\makeatother
+% Allow footnotes in longtable head/foot
+\IfFileExists{footnotehyper.sty}{\usepackage{footnotehyper}}{\usepackage{footnote}}
+\makesavenoteenv{longtable}
+\usepackage{graphicx}
+\makeatletter
+\def\maxwidth{\ifdim\Gin@nat@width>\linewidth\linewidth\else\Gin@nat@width\fi}
+\def\maxheight{\ifdim\Gin@nat@height>\textheight\textheight\else\Gin@nat@height\fi}
+\makeatother
+% Scale images if necessary, so that they will not overflow the page
+% margins by default, and it is still possible to overwrite the defaults
+% using explicit options in \includegraphics[width, height, ...]{}
+\setkeys{Gin}{width=\maxwidth,height=\maxheight,keepaspectratio}
+% Set default figure placement to htbp
+\makeatletter
+\def\fps@figure{htbp}
+\makeatother
+\setlength{\emergencystretch}{3em} % prevent overfull lines
+\providecommand{\tightlist}{%
+  \setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
+\setcounter{secnumdepth}{-\maxdimen} % remove section numbering
+\ifLuaTeX
+  \usepackage{selnolig}  % disable illegal ligatures
+\fi
+\IfFileExists{bookmark.sty}{\usepackage{bookmark}}{\usepackage{hyperref}}
+\IfFileExists{xurl.sty}{\usepackage{xurl}}{} % add URL line breaks if available
+\urlstyle{same} % disable monospaced font for URLs
+\hypersetup{
+  pdftitle={Data Structures},
+  pdfauthor={Alex Takoudes},
+  hidelinks,
+  pdfcreator={LaTeX via pandoc}}
+
+\title{Data Structures}
+\author{Alex Takoudes}
+\date{2023-01-17}
+
+\begin{document}
+\maketitle
+
+\hypertarget{reviewing-assignment-3}{%
+\subsubsection{Reviewing Assignment 3}\label{reviewing-assignment-3}}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{queue }\OtherTok{\textless{}{-}} \FunctionTok{c}\NormalTok{(}\StringTok{"sheep"}\NormalTok{, }\StringTok{"fox"}\NormalTok{, }\StringTok{"owl"}\NormalTok{, }\StringTok{"ant"}\NormalTok{)}
+
+\CommentTok{\#you can modify a specific index in the vector using []}
+\NormalTok{queue[}\DecValTok{5}\NormalTok{] }\OtherTok{\textless{}{-}} \StringTok{"serpent"}
+\NormalTok{queue}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] "sheep"   "fox"     "owl"     "ant"     "serpent"
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\#you can remove an index by using the "{-}"}
+\NormalTok{queue }\OtherTok{\textless{}{-}}\NormalTok{ queue[}\SpecialCharTok{{-}}\DecValTok{5}\NormalTok{]}
+\NormalTok{queue}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] "sheep" "fox"   "owl"   "ant"
+\end{verbatim}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\hypertarget{data-structures}{%
+\subsection{Data Structures}\label{data-structures}}
+
+\begin{longtable}[]{@{}lll@{}}
+\toprule()
+Dimensions & Homogeneous & Heterogeneous \\
+\midrule()
+\endhead
+\textbf{1-Dimension} & Atomic Vector & List \\
+\textbf{2-Dimension} & Matrix & Data Frame \\
+\bottomrule()
+\end{longtable}
+
+\hypertarget{vector-properties}{%
+\subsubsection{Vector Properties}\label{vector-properties}}
+
+\begin{itemize}
+\tightlist
+\item
+  All atomic vectors are the same data type
+\item
+  When you use \texttt{c()} to assemble different types, R
+  \textbf{coerces} them
+\item
+  c prioritizes different data types
+
+  \begin{enumerate}
+  \def\labelenumi{\arabic{enumi}.}
+  \tightlist
+  \item
+    Logical (Boolean)
+  \item
+    Integer
+  \item
+    Double (floats)
+  \item
+    Character (strings)
+  \end{enumerate}
+\end{itemize}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\#Doubles (floats)}
+\NormalTok{a }\OtherTok{\textless{}{-}} \FunctionTok{c}\NormalTok{(}\DecValTok{2}\NormalTok{, }\FloatTok{2.0}\NormalTok{)}
+\FunctionTok{typeof}\NormalTok{(a)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] "double"
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\#}
+\NormalTok{b }\OtherTok{\textless{}{-}} \FunctionTok{c}\NormalTok{(}\StringTok{"purple"}\NormalTok{, }\StringTok{"green"}\NormalTok{)}
+\NormalTok{d }\OtherTok{\textless{}{-}} \FunctionTok{c}\NormalTok{(a, b)}
+\FunctionTok{typeof}\NormalTok{(d)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] "character"
+\end{verbatim}
+
+\hypertarget{comparison-operators-yield-a-logical-result}{%
+\paragraph{Comparison operators yield a logical
+result}\label{comparison-operators-yield-a-logical-result}}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{a }\OtherTok{\textless{}{-}} \FunctionTok{runif}\NormalTok{(}\DecValTok{10}\NormalTok{)}
+\NormalTok{a }\SpecialCharTok{\textgreater{}} \FloatTok{0.5} \CommentTok{\#conditional statement}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##  [1]  TRUE  TRUE  TRUE FALSE FALSE FALSE  TRUE  TRUE FALSE FALSE
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# How many elements in the vector are \textgreater{} 0.5}
+\FunctionTok{sum}\NormalTok{(a }\SpecialCharTok{\textgreater{}} \FloatTok{0.5}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 5
+\end{verbatim}
+
+\hypertarget{vectorization}{%
+\paragraph{Vectorization}\label{vectorization}}
+
+\begin{itemize}
+\tightlist
+\item
+  Add a constant to a vector
+\end{itemize}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{z }\OtherTok{\textless{}{-}} \FunctionTok{c}\NormalTok{(}\DecValTok{10}\NormalTok{, }\DecValTok{20}\NormalTok{, }\DecValTok{30}\NormalTok{)}
+\NormalTok{z}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 10 20 30
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{z }\SpecialCharTok{+} \DecValTok{1} \CommentTok{\#performs element{-}wise addition of 1}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 11 21 31
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{y }\OtherTok{\textless{}{-}} \FunctionTok{c}\NormalTok{(}\DecValTok{1}\NormalTok{, }\DecValTok{2}\NormalTok{, }\DecValTok{3}\NormalTok{)}
+\NormalTok{z }\SpecialCharTok{+}\NormalTok{ y }\CommentTok{\#results in an element by element operation on the vector}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 11 22 33
+\end{verbatim}
+
+\hypertarget{recycling}{%
+\paragraph{Recycling}\label{recycling}}
+
+\begin{itemize}
+\tightlist
+\item
+  If vector lengths aren't equal
+\end{itemize}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{z }\OtherTok{\textless{}{-}} \FunctionTok{c}\NormalTok{(}\DecValTok{10}\NormalTok{, }\DecValTok{20}\NormalTok{, }\DecValTok{30}\NormalTok{)}
+\NormalTok{x }\OtherTok{\textless{}{-}} \FunctionTok{c}\NormalTok{(}\DecValTok{1}\NormalTok{, }\DecValTok{2}\NormalTok{)}
+\NormalTok{z }\SpecialCharTok{+}\NormalTok{ x}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## Warning in z + x: longer object length is not a multiple of shorter object
+## length
+\end{verbatim}
+
+\begin{verbatim}
+## [1] 11 22 31
+\end{verbatim}
+
+\hypertarget{simulating-data}{%
+\paragraph{Simulating Data}\label{simulating-data}}
+
+\begin{itemize}
+\tightlist
+\item
+  runif (Flat distribution)
+\item
+  rnorm (Curved distribution)
+\end{itemize}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{set.seed}\NormalTok{(}\DecValTok{123}\NormalTok{) }\CommentTok{\#first set will always be the same numbers with seed}
+\NormalTok{unif }\OtherTok{\textless{}{-}} \FunctionTok{runif}\NormalTok{(}\AttributeTok{n=}\DecValTok{100}\NormalTok{, }\AttributeTok{min=}\DecValTok{5}\NormalTok{, }\AttributeTok{max=}\DecValTok{10}\NormalTok{)}
+\FunctionTok{hist}\NormalTok{(unif)}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{DataStructures_files/figure-latex/unnamed-chunk-6-1.pdf}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{rNN }\OtherTok{\textless{}{-}} \FunctionTok{rnorm}\NormalTok{(}\DecValTok{100}\NormalTok{) }\CommentTok{\#mean = 0, st.dev = 1}
+\FunctionTok{mean}\NormalTok{(rNN) }\CommentTok{\#should be close to 0}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] -0.05374608
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{hist}\NormalTok{(rNN)}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{DataStructures_files/figure-latex/unnamed-chunk-6-2.pdf}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\hypertarget{matrix}{%
+\subsection{Matrix}\label{matrix}}
+
+\begin{itemize}
+\tightlist
+\item
+  2 dimensional (rows and columns)
+\item
+  Homogeneous data type
+\item
+  Is an atomic vector organized into rows and columns
+\end{itemize}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{my\_vec }\OtherTok{\textless{}{-}} \DecValTok{1}\SpecialCharTok{:}\DecValTok{12}
+\NormalTok{m }\OtherTok{\textless{}{-}} \FunctionTok{matrix}\NormalTok{(}\AttributeTok{data =}\NormalTok{ my\_vec, }\AttributeTok{nrow =} \DecValTok{4}\NormalTok{) }\CommentTok{\#builds it by columns by default}
+\NormalTok{m}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##      [,1] [,2] [,3]
+## [1,]    1    5    9
+## [2,]    2    6   10
+## [3,]    3    7   11
+## [4,]    4    8   12
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{m }\OtherTok{\textless{}{-}} \FunctionTok{matrix}\NormalTok{(}\AttributeTok{data =}\NormalTok{ my\_vec, }\AttributeTok{ncol =} \DecValTok{3}\NormalTok{, }\AttributeTok{byrow =}\NormalTok{ T)}
+\NormalTok{m}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##      [,1] [,2] [,3]
+## [1,]    1    2    3
+## [2,]    4    5    6
+## [3,]    7    8    9
+## [4,]   10   11   12
+\end{verbatim}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\hypertarget{lists}{%
+\subsection{Lists}\label{lists}}
+
+\begin{itemize}
+\tightlist
+\item
+  1 dimensional (same as vectors)
+\item
+  Can hold different data types
+\end{itemize}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{myList }\OtherTok{\textless{}{-}} \FunctionTok{list}\NormalTok{(}\DecValTok{1}\SpecialCharTok{:}\DecValTok{10}\NormalTok{, }\FunctionTok{matrix}\NormalTok{(}\DecValTok{1}\SpecialCharTok{:}\DecValTok{8}\NormalTok{, }\AttributeTok{nrow=}\DecValTok{4}\NormalTok{, }\AttributeTok{byrow=}\NormalTok{T), letters[}\DecValTok{1}\SpecialCharTok{:}\DecValTok{3}\NormalTok{], pi)}
+\FunctionTok{str}\NormalTok{(myList) }\CommentTok{\#structure of list}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## List of 4
+##  $ : int [1:10] 1 2 3 4 5 6 7 8 9 10
+##  $ : int [1:4, 1:2] 1 3 5 7 2 4 6 8
+##  $ : chr [1:3] "a" "b" "c"
+##  $ : num 3.14
+\end{verbatim}
+
+\hypertarget{subsetting-lists}{%
+\paragraph{Subsetting lists}\label{subsetting-lists}}
+
+\begin{itemize}
+\tightlist
+\item
+  Using \texttt{{[}{]}} gives you a single item BUT not the elements
+\end{itemize}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{myList }\OtherTok{\textless{}{-}} \FunctionTok{list}\NormalTok{(}\DecValTok{1}\SpecialCharTok{:}\DecValTok{10}\NormalTok{, }\FunctionTok{matrix}\NormalTok{(}\DecValTok{1}\SpecialCharTok{:}\DecValTok{8}\NormalTok{, }\AttributeTok{nrow=}\DecValTok{4}\NormalTok{, }\AttributeTok{byrow=}\NormalTok{T), letters[}\DecValTok{1}\SpecialCharTok{:}\DecValTok{3}\NormalTok{], pi)}
+\NormalTok{myList[}\DecValTok{4}\NormalTok{]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [[1]]
+## [1] 3.141593
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\#myList[4] {-} 3 returns an error because it\textquotesingle{}s still compartamentalized}
+\FunctionTok{typeof}\NormalTok{(myList[}\DecValTok{4}\NormalTok{])}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] "list"
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\#to grab object, use [[]]}
+\NormalTok{myList[[}\DecValTok{4}\NormalTok{]] }\SpecialCharTok{{-}} \DecValTok{3}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 0.1415927
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{myList[[}\DecValTok{2}\NormalTok{]][}\DecValTok{4}\NormalTok{,}\DecValTok{1}\NormalTok{] }\CommentTok{\#access the matrix, get the 4th row, 1st column}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 7
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{c}\NormalTok{(myList[[}\DecValTok{1}\NormalTok{]], myList[[}\DecValTok{2}\NormalTok{]]) }\CommentTok{\#to obtain multiple elements within list}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##  [1]  1  2  3  4  5  6  7  8  9 10  1  3  5  7  2  4  6  8
+\end{verbatim}
+
+\hypertarget{name-list-items-when-they-are-created}{%
+\paragraph{Name list items when they are
+created}\label{name-list-items-when-they-are-created}}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{myList2 }\OtherTok{\textless{}{-}} \FunctionTok{list}\NormalTok{(}\AttributeTok{Tester =}\NormalTok{ F, }\AttributeTok{littleM =} \FunctionTok{matrix}\NormalTok{(}\DecValTok{1}\SpecialCharTok{:}\DecValTok{9}\NormalTok{, }\AttributeTok{nrow=}\DecValTok{3}\NormalTok{))}
+\NormalTok{myList2}\SpecialCharTok{$}\NormalTok{Tester }\CommentTok{\#calls the element by it\textquotesingle{}s name}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] FALSE
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{myList2}\SpecialCharTok{$}\NormalTok{littleM[}\DecValTok{2}\NormalTok{,}\DecValTok{3}\NormalTok{] }\CommentTok{\#access the matrix and pull the 2nd row, 3rd column}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 8
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{myList2}\SpecialCharTok{$}\NormalTok{littleM[}\DecValTok{2}\NormalTok{,]  }\CommentTok{\#access the matrix and pull the entire 2nd row}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 2 5 8
+\end{verbatim}
+
+\hypertarget{unlist-to-string-everything-back-to-vector}{%
+\paragraph{Unlist to string everything back to
+vector}\label{unlist-to-string-everything-back-to-vector}}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{myList2 }\OtherTok{\textless{}{-}} \FunctionTok{list}\NormalTok{(}\AttributeTok{Tester =}\NormalTok{ F, }\AttributeTok{littleM =} \FunctionTok{matrix}\NormalTok{(}\DecValTok{1}\SpecialCharTok{:}\DecValTok{9}\NormalTok{, }\AttributeTok{nrow=}\DecValTok{3}\NormalTok{))}
+\NormalTok{unrolled }\OtherTok{\textless{}{-}} \FunctionTok{unlist}\NormalTok{(myList2)}
+\NormalTok{unrolled}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##   Tester littleM1 littleM2 littleM3 littleM4 littleM5 littleM6 littleM7 
+##        0        1        2        3        4        5        6        7 
+## littleM8 littleM9 
+##        8        9
+\end{verbatim}
+
+\end{document}

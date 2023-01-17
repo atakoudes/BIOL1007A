@@ -2,7 +2,9 @@
 title: "Data Structures"
 author: "Alex Takoudes"
 date: "2023-01-17"
-output: html_document
+output:
+  pdf_document: default
+  html_document: default
 ---
 
 ### Reviewing Assignment 3
@@ -126,5 +128,10 @@ myList2$littleM[2,3] #access the matrix and pull the 2nd row, 3rd column
 myList2$littleM[2,]  #access the matrix and pull the entire 2nd row
 ```
 
-
+#### Unlist to string everything back to vector
+```{r}
+myList2 <- list(Tester = F, littleM = matrix(1:9, nrow=3))
+unrolled <- unlist(myList2)
+unrolled
+```
 
