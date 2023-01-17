@@ -3,7 +3,6 @@ title: "Data Structures"
 author: "Alex Takoudes"
 date: "2023-01-17"
 output:
-  pdf_document: default
   html_document: default
 ---
 
@@ -135,3 +134,21 @@ unrolled <- unlist(myList2)
 unrolled
 ```
 
+### Data Analysis
+* Practicing with plant data
+```{r}
+data(iris)
+head(iris)
+plot(Sepal.Length ~ Petal.Length, data = iris)
+model <- lm(Sepal.Length ~ Petal.Length, data = iris)
+results <- summary(model)
+results
+
+results$coefficients["Petal.Length", "Pr(>|t|)"]
+unlist(results)$coefficients8 #pvalue in summary is always coefficients8
+```
+##### For linear regression we are interested in petal length to sepal length
+* We care about the `Pr(>|t|)` value for `Petal.Length`
+
+## Data Frames
+* Equal-lenghted vectors, each which is a column
