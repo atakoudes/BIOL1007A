@@ -27,3 +27,5 @@ output:
 [Day 2 Notes](Class_Notes/Day2Notes.html)
 
 [1-12-2023| Coding With R](Class_Notes/Coding_with_R.html)
+
+[1-17-2023| Data Structures](Class_Notes/DataStructures.html)

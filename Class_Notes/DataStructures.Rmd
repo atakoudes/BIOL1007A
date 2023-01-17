@@ -68,9 +68,27 @@ x <- c(1, 2)
 z + x
 ```
 #### Simulating Data
-* runif
-* rnorm
+* runif (Flat distribution)
+* rnorm (Curved distribution)
 ```{r}
 set.seed(123) #first set will always be the same numbers with seed
-runif(n=5, min=5, max=10)
+unif <- runif(n=100, min=5, max=10)
+hist(unif)
+
+rNN <- rnorm(100) #mean = 0, st.dev = 1
+mean(rNN) #should be close to 0
+hist(rNN)
+```
+
+***
+## Matrix Data Structur
+* 2 dimensional (rows and columns)
+* Homogeneous data type
+* Is an atomic vector organized into rows and columns
+```{r}
+my_vec <- 1:12
+m <- matrix(data = my_vec, nrow = 4) #builds it by columns by default
+m
+m <- matrix(data = my_vec, ncol = 3, byrow = T)
+m
 ```
