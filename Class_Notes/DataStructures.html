@@ -421,10 +421,10 @@ typeof(d)</code></pre>
 <h4>Comparison operators yield a logical result</h4>
 <pre class="r"><code>a &lt;- runif(10)
 a &gt; 0.5 #conditional statement</code></pre>
-<pre><code>##  [1]  TRUE  TRUE  TRUE FALSE  TRUE FALSE  TRUE  TRUE FALSE FALSE</code></pre>
+<pre><code>##  [1]  TRUE FALSE FALSE  TRUE  TRUE  TRUE  TRUE FALSE FALSE FALSE</code></pre>
 <pre class="r"><code># How many elements in the vector are &gt; 0.5
 sum(a &gt; 0.5)</code></pre>
-<pre><code>## [1] 6</code></pre>
+<pre><code>## [1] 5</code></pre>
 </div>
 <div id="vectorization" class="section level4">
 <h4>Vectorization</h4>
