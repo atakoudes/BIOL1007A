@@ -379,46 +379,40 @@ and 10.</h5>
 <div id="e.-print-out-the-matrix." class="section level5">
 <h5>e. Print out the matrix.</h5>
 <pre class="r"><code>my_mat</code></pre>
-<pre><code>##       [,1] [,2] [,3] [,4] [,5] [,6] [,7] [,8] [,9]
-##  [1,]   37   12   66   30   34   65   33    8   74
-##  [2,]   16    2   57   38   17   73   59   60   71
-##  [3,]   53    1   15   67   22   81    7   72   75
-##  [4,]   79   11   25   61   42   56   78   70   39
-##  [5,]    3   21   32   18   77   19   54   24   50
-##  [6,]   35    5   29   45   49   43   14   58   62
-##  [7,]   10   55    6   48   76   68   63   31   36
-##  [8,]   41    9   26   23   46   51   47   20   64
-##  [9,]   27   44   13   28   52   40   69   80    4</code></pre>
+<pre><code>##      [,1] [,2] [,3] [,4] [,5] [,6]
+## [1,]    3   10   31    8   32    7
+## [2,]   20    6   11   34   16   33
+## [3,]   29   28   36   27   18   24
+## [4,]   26    4   17   22   13   12
+## [5,]   21   15   30   19    1   23
+## [6,]   35   25    5    9   14    2</code></pre>
 </div>
 <div id="f.-find-a-function-in-r-to-transpose-the-matrix.-print-it-out-again-and-note-how-it-has-changed" class="section level5">
 <h5>f. Find a function in r to transpose the matrix. Print it out again
 and note how it has changed</h5>
 <pre class="r"><code>my_mat &lt;- t(my_mat) 
 my_mat #matrix was flipped along the diagonal axis from top left to bottom right</code></pre>
-<pre><code>##       [,1] [,2] [,3] [,4] [,5] [,6] [,7] [,8] [,9]
-##  [1,]   37   16   53   79    3   35   10   41   27
-##  [2,]   12    2    1   11   21    5   55    9   44
-##  [3,]   66   57   15   25   32   29    6   26   13
-##  [4,]   30   38   67   61   18   45   48   23   28
-##  [5,]   34   17   22   42   77   49   76   46   52
-##  [6,]   65   73   81   56   19   43   68   51   40
-##  [7,]   33   59    7   78   54   14   63   47   69
-##  [8,]    8   60   72   70   24   58   31   20   80
-##  [9,]   74   71   75   39   50   62   36   64    4</code></pre>
+<pre><code>##      [,1] [,2] [,3] [,4] [,5] [,6]
+## [1,]    3   20   29   26   21   35
+## [2,]   10    6   28    4   15   25
+## [3,]   31   11   36   17   30    5
+## [4,]    8   34   27   22   19    9
+## [5,]   32   16   18   13    1   14
+## [6,]    7   33   24   12   23    2</code></pre>
 </div>
 <div id="h.-calculate-the-sum-and-the-mean-of-the-elements-in-the-first-row-and-then-the-last-row." class="section level5">
 <h5>h. Calculate the sum and the mean of the elements in the first row
 and then the last row.</h5>
 <pre class="r"><code>#first row
 sum(my_mat[1,])</code></pre>
-<pre><code>## [1] 301</code></pre>
+<pre><code>## [1] 134</code></pre>
 <pre class="r"><code>mean(my_mat[1,])</code></pre>
-<pre><code>## [1] 33.44444</code></pre>
+<pre><code>## [1] 22.33333</code></pre>
 <pre class="r"><code>#last row
 sum(my_mat[n_dims,])</code></pre>
-<pre><code>## [1] 475</code></pre>
+<pre><code>## [1] 101</code></pre>
 <pre class="r"><code>mean(my_mat[n_dims,])</code></pre>
-<pre><code>## [1] 52.77778</code></pre>
+<pre><code>## [1] 16.83333</code></pre>
 </div>
 <div id="i.-set-your-code-up-so-you-can-re-run-it-to-create-a-matrix-of-a-different-size-by-only-changing-the-n_dims-value" class="section level5">
 <h5>i. set your code up so you can re-run it to create a matrix of a
@@ -442,26 +436,26 @@ letters in random order.</li>
 <pre class="r"><code>my_list &lt;- list(my_matrix=matrix(data=runif(16), nrow=4, ncol=4), my_logical= (runif(100) &gt; 0.5), my_letters=sample(letters))
 my_list</code></pre>
 <pre><code>## $my_matrix
-##           [,1]      [,2]      [,3]      [,4]
-## [1,] 0.5592571 0.1787034 0.7813027 0.2400642
-## [2,] 0.9758449 0.8520956 0.6448062 0.1481651
-## [3,] 0.3595922 0.6364522 0.4615798 0.3997091
-## [4,] 0.9711831 0.6594306 0.1947275 0.2269556
+##            [,1]       [,2]      [,3]      [,4]
+## [1,] 0.61461697 0.41157127 0.5172246 0.8649042
+## [2,] 0.02577282 0.09932814 0.4057344 0.8183607
+## [3,] 0.51349154 0.90609080 0.6121010 0.9897421
+## [4,] 0.94614018 0.78067007 0.6218880 0.1948295
 ## 
 ## $my_logical
-##   [1] FALSE  TRUE  TRUE FALSE  TRUE FALSE  TRUE  TRUE FALSE FALSE  TRUE FALSE
-##  [13] FALSE FALSE  TRUE FALSE  TRUE FALSE FALSE  TRUE FALSE  TRUE FALSE FALSE
-##  [25]  TRUE FALSE  TRUE FALSE FALSE FALSE FALSE  TRUE  TRUE  TRUE  TRUE  TRUE
-##  [37] FALSE  TRUE FALSE FALSE FALSE  TRUE  TRUE FALSE FALSE  TRUE FALSE FALSE
-##  [49]  TRUE FALSE  TRUE  TRUE FALSE FALSE  TRUE  TRUE  TRUE FALSE  TRUE  TRUE
-##  [61] FALSE  TRUE FALSE FALSE FALSE  TRUE FALSE FALSE  TRUE  TRUE FALSE  TRUE
-##  [73] FALSE FALSE FALSE  TRUE FALSE FALSE  TRUE  TRUE FALSE FALSE FALSE  TRUE
-##  [85]  TRUE FALSE FALSE  TRUE  TRUE  TRUE FALSE FALSE FALSE  TRUE FALSE FALSE
-##  [97] FALSE  TRUE  TRUE  TRUE
+##   [1] FALSE  TRUE  TRUE  TRUE  TRUE  TRUE FALSE  TRUE  TRUE FALSE FALSE  TRUE
+##  [13]  TRUE FALSE  TRUE FALSE FALSE  TRUE  TRUE  TRUE FALSE  TRUE FALSE FALSE
+##  [25] FALSE FALSE FALSE FALSE  TRUE  TRUE  TRUE  TRUE  TRUE  TRUE FALSE FALSE
+##  [37] FALSE FALSE FALSE  TRUE FALSE  TRUE  TRUE FALSE  TRUE FALSE FALSE FALSE
+##  [49]  TRUE  TRUE FALSE  TRUE  TRUE FALSE FALSE FALSE FALSE  TRUE  TRUE FALSE
+##  [61] FALSE FALSE  TRUE  TRUE FALSE FALSE FALSE FALSE  TRUE  TRUE  TRUE FALSE
+##  [73] FALSE FALSE  TRUE  TRUE FALSE FALSE FALSE FALSE FALSE  TRUE FALSE  TRUE
+##  [85] FALSE FALSE FALSE FALSE  TRUE  TRUE  TRUE FALSE FALSE FALSE FALSE FALSE
+##  [97]  TRUE FALSE FALSE FALSE
 ## 
 ## $my_letters
-##  [1] &quot;s&quot; &quot;t&quot; &quot;c&quot; &quot;o&quot; &quot;f&quot; &quot;b&quot; &quot;y&quot; &quot;v&quot; &quot;w&quot; &quot;p&quot; &quot;n&quot; &quot;r&quot; &quot;z&quot; &quot;k&quot; &quot;j&quot; &quot;l&quot; &quot;a&quot; &quot;g&quot; &quot;u&quot;
-## [20] &quot;m&quot; &quot;h&quot; &quot;d&quot; &quot;x&quot; &quot;i&quot; &quot;q&quot; &quot;e&quot;</code></pre>
+##  [1] &quot;x&quot; &quot;s&quot; &quot;u&quot; &quot;z&quot; &quot;k&quot; &quot;e&quot; &quot;t&quot; &quot;g&quot; &quot;r&quot; &quot;f&quot; &quot;m&quot; &quot;b&quot; &quot;i&quot; &quot;l&quot; &quot;w&quot; &quot;c&quot; &quot;o&quot; &quot;a&quot; &quot;y&quot;
+## [20] &quot;q&quot; &quot;v&quot; &quot;h&quot; &quot;n&quot; &quot;p&quot; &quot;d&quot; &quot;j&quot;</code></pre>
 </div>
 <div id="b.-create-a-new-list-which-has-the-element22-from-the-matrix-the-second-element-of-the-logical-vector-and-the-second-element-of-the-letters-vector." class="section level5">
 <h5>b. Create a new list, which has the element[2,2] from the matrix,
@@ -470,13 +464,13 @@ letters vector.</h5>
 <pre class="r"><code>new_list &lt;- list(my_list$my_matrix[2,2], my_list$my_logical[[2]], my_list$my_letters[[2]])
 new_list</code></pre>
 <pre><code>## [[1]]
-## [1] 0.8520956
+## [1] 0.09932814
 ## 
 ## [[2]]
 ## [1] TRUE
 ## 
 ## [[3]]
-## [1] &quot;t&quot;</code></pre>
+## [1] &quot;s&quot;</code></pre>
 </div>
 <div id="c.-use-the-typeof-function-to-confirm-the-underlying-data-types-of-each-component-in-this-list" class="section level5">
 <h5>c. Use the typeof() function to confirm the underlying data types of
@@ -490,9 +484,9 @@ each component in this list</h5>
 <pre class="r"><code>#or more efficiently...
 str(new_list)</code></pre>
 <pre><code>## List of 3
-##  $ : num 0.852
+##  $ : num 0.0993
 ##  $ : logi TRUE
-##  $ : chr &quot;t&quot;</code></pre>
+##  $ : chr &quot;s&quot;</code></pre>
 </div>
 <div id="d.-combine-the-underlying-elements-from-the-new-list-into-a-single-atomic-vector-with-the-c-function." class="section level5">
 <h5>d. Combine the underlying elements from the new list into a single
@@ -526,13 +520,13 @@ random uniform values from 0 to 10</h5>
 <pre class="r"><code>my_unifs &lt;- runif(26, min=0, max=10)
 dFrame &lt;- data.frame(my_unifs, NA)
 head(dFrame)</code></pre>
-<pre><code>##   my_unifs NA.
-## 1 2.543696  NA
-## 2 9.457844  NA
-## 3 6.019581  NA
-## 4 7.453235  NA
-## 5 2.259221  NA
-## 6 8.883310  NA</code></pre>
+<pre><code>##     my_unifs NA.
+## 1 0.03948495  NA
+## 2 7.36386968  NA
+## 3 0.95523115  NA
+## 4 2.80102432  NA
+## 5 0.37756044  NA
+## 6 0.32460760  NA</code></pre>
 </div>
 <div id="c.-call-the-second-variable-my_letters-and-fill-it-with-26-capital-letters-in-random-order." class="section level5">
 <h5>c. Call the second variable my_letters and fill it with 26 capital
@@ -540,13 +534,13 @@ letters in random order.</h5>
 <pre class="r"><code>my_letters &lt;- sample(LETTERS)
 dFrame &lt;- data.frame(my_unifs, my_letters)
 head(dFrame)</code></pre>
-<pre><code>##   my_unifs my_letters
-## 1 2.543696          K
-## 2 9.457844          G
-## 3 6.019581          T
-## 4 7.453235          L
-## 5 2.259221          D
-## 6 8.883310          H</code></pre>
+<pre><code>##     my_unifs my_letters
+## 1 0.03948495          V
+## 2 7.36386968          W
+## 3 0.95523115          Z
+## 4 2.80102432          L
+## 5 0.37756044          D
+## 6 0.32460760          N</code></pre>
 </div>
 <div id="d.-for-the-first-variable-use-a-single-line-of-code-in-r-to-select-4-random-rows-and-replace-the-numerical-values-in-those-rows-with-na." class="section level5">
 <h5>d. For the first variable, use a single line of code in R to select
