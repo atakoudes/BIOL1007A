@@ -9,7 +9,7 @@ output: html_document
 
 ##### a. Assign to the variable n_dims a single random integer between 3 and 10.
 ```{r}
-n_dims <- sample(3:10, 1)
+n_dims <- sample(3:10, size=1)
 ```
 ##### b. Create a vector of consecutive integers from 1 to n_dims2
 ```{r}
@@ -136,7 +136,7 @@ mean(dFrame$my_unifs, na.rm=TRUE)
 
 ##### h. Rename the second column ‘my_LETTERS’
 ```{r}
-my_letters <- "my_LETTERS"
-dFrame
+colnames(dFrame)[2] <- "my_LETTERS"
+tail(dFrame)
 ```
 

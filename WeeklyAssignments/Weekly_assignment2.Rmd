@@ -1,0 +1,53 @@
+---
+title: "Weekly Assignment 2"
+author: "Alex Takoudes"
+date: "2023-01-19"
+output: html_document
+---
+
+##### 1. Create a function that returns a data frame with 2 columns (named “Type” and “Value”) and 50 rows/observations.
+* The first column should have “Control” as the first 25 observations and “Treatment” as the second half of observations.
+* The second column should have the first 25 values as random and normally distributed with a mean of 10 and standard deviation of 1.5. 
+* The next 25 values of the second column should be random and normally distributed with a mean of 45 and standard deviation of 2.
+* You can do this all as a single line of code in the function or by breaking it up into multiple code blocks.
+
+```{r}
+datagen <- function(c_mean=10, c_sd=1.5, t_mean=45, t_sd=2){
+  dFrame <- data.frame(
+    Type = rep(c("Control", "Treatment"),each=25), 
+    Value =  c(control = rnorm(25, mean=c_mean, sd=c_sd),
+               treatment = rnorm(25, mean=t_mean, sd=t_sd)
+               )
+    )
+  return(dFrame)
+}
+data <- datagen()
+```
+
+##### 2. Save your new function’s output as a variable, and use a function to view the first 6 rows of the data frame.
+```{r}
+
+myhead <- function(data){
+  print(data[1:6,])
+}
+
+myhead(data)
+```
+
+##### 3. Let’s say you would like to know whether there is a statistically significant difference in “Value” (response variable y) depending on “Type” (explanatory variable x). Type ?aov in the console to determine how to run an analysis of variance (ANOVA) on your simulated data. Write a line of code that displays a summary of your ANOVA.
+
+```{r}
+summary(aov(Value ~ Type, data=data))
+```
+
+##### 4. Finally create a function that uses a data frame as its input and returns only the p-value of an ANOVA summary table (feel free to use Google/Stack Overflow). Write your code in such a way that you can use any simulated data set with two columns as the function’s argument.
+
+```{r}
+psearch <- function(df=data){
+  summary <- summary(aov(data[[2]]~data[[1]], data=df))
+  pvalue <- summary[[1]][["Pr(>F)"]][[1]]
+  return(pvalue)
+}
+
+psearch()
+```

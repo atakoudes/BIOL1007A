@@ -57,3 +57,75 @@ tail(dataSub)
 ```{r}
 ordered_iris <- iris[order(iris$Petal.Length),] #order function goes before comma so it sorts the rows
 ```
+
+***
+## Functions in R
+```{r}
+functionName <- function(argx=1, argy=2){
+  localVariable <- sample(1:10)
+  return(localVariable)
+}
+```
+
+#### Local Variables
+* When you create variables in a function, they can only be accesed in that function
+* We need a function to return a variable to be used in the environment
+```{r}
+myFunc <- function(a=3, b=4){
+  z <- a + b
+  return(z)
+}
+myFunc() #runs defaults
+myFunc(b=3.4) #changes b value 
+```
+
+## Annotating Functions
+```{r}
+##################################
+# Function: HardyWeinberg
+# input: all allele frequency p (0,1)
+# output: p and the frequencies of 3 genotypes AA AB BB
+#-------------------------------------------------
+HardyWeinberg <- function(p=runif(1)){
+  if(p > 1.0 | p < 0.0){
+    return("Function failure: p must be between 0 and 1")
+  }
+  q <- 1-p
+  fAA <- p^2
+  fAB <- 2*p*q
+  fBB <- q^2
+  vec_out <- signif(c(p=p, AA=fAA, AB=fAB, BB=fBB), digits=3)
+  return(vec_out)
+}
+##################################
+
+HardyWeinberg()
+```
+#### IF statements
+* `|` represents 'or'
+* Also needs the `{}` just like a function
+
+#### Create a complex default value
+```{r}
+##################################################
+# FUNCTION: fitLinear2       
+# fits simple regression line
+# inputs: list of predictor (x) and response (y)
+# outputs: slope and p-value
+#------------------------------------------------- 
+fitLinear2 <- function(p=NULL){
+  if(is.null(p)){ #no p value was inputted. Let's make one
+    p <- list(x=runif(20), y=runif(20))
+  }
+  my_mod <- lm(p$x~p$y)
+  my_out <- c(slope=summary(my_mod)$coefficients[2,1], 
+              pValue=summary(my_mod)$coefficients[2,4]
+              )
+  plot(x=p$x, y=p$y)
+  return(my_out)
+}
+
+fitLinear2()
+my_pars <- list(x=1:10, y=runif(10))
+fitLinear2(p=my_pars)
+```
