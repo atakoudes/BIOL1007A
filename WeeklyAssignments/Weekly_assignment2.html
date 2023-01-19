@@ -357,16 +357,20 @@ display: none;
 </div>
 
 
-<p>TEST ##### 1. Create a function that returns a data frame with 2
-columns (named “Type” and “Value”) and 50 rows/observations. * The first
-column should have “Control” as the first 25 observations and
-“Treatment” as the second half of observations. * The second column
-should have the first 25 values as random and normally distributed with
-a mean of 10 and standard deviation of 1.5. * The next 25 values of the
-second column should be random and normally distributed with a mean of
-45 and standard deviation of 2. * You can do this all as a single line
-of code in the function or by breaking it up into multiple code
-blocks.</p>
+<div id="create-a-function-that-returns-a-data-frame-with-2-columns-named-type-and-value-and-50-rowsobservations." class="section level5">
+<h5>1. Create a function that returns a data frame with 2 columns (named
+“Type” and “Value”) and 50 rows/observations.</h5>
+<ul>
+<li>The first column should have “Control” as the first 25 observations
+and “Treatment” as the second half of observations.</li>
+<li>The second column should have the first 25 values as random and
+normally distributed with a mean of 10 and standard deviation of
+1.5.</li>
+<li>The next 25 values of the second column should be random and
+normally distributed with a mean of 45 and standard deviation of 2.</li>
+<li>You can do this all as a single line of code in the function or by
+breaking it up into multiple code blocks.</li>
+</ul>
 <pre class="r"><code>datagen &lt;- function(c_mean=10, c_sd=1.5, t_mean=45, t_sd=2){
   dFrame &lt;- data.frame(
     Type = rep(c(&quot;Control&quot;, &quot;Treatment&quot;),each=25), 
@@ -377,6 +381,7 @@ blocks.</p>
   return(dFrame)
 }
 data &lt;- datagen()</code></pre>
+</div>
 <div id="save-your-new-functions-output-as-a-variable-and-use-a-function-to-view-the-first-6-rows-of-the-data-frame." class="section level5">
 <h5>2. Save your new function’s output as a variable, and use a function
 to view the first 6 rows of the data frame.</h5>
@@ -386,12 +391,12 @@ to view the first 6 rows of the data frame.</h5>
 
 myhead(data)</code></pre>
 <pre><code>##             Type     Value
-## control1 Control 10.632747
-## control2 Control  8.544602
-## control3 Control 11.810681
-## control4 Control 12.470745
-## control5 Control  8.714264
-## control6 Control 11.259047</code></pre>
+## control1 Control 11.348001
+## control2 Control 10.837016
+## control3 Control  9.339501
+## control4 Control  8.822450
+## control5 Control 13.045515
+## control6 Control  9.276959</code></pre>
 </div>
 <div id="lets-say-you-would-like-to-know-whether-there-is-a-statistically-significant-difference-in-value-response-variable-y-depending-on-type-explanatory-variable-x.-type-aov-in-the-console-to-determine-how-to-run-an-analysis-of-variance-anova-on-your-simulated-data.-write-a-line-of-code-that-displays-a-summary-of-your-anova." class="section level5">
 <h5>3. Let’s say you would like to know whether there is a statistically
@@ -401,8 +406,8 @@ how to run an analysis of variance (ANOVA) on your simulated data. Write
 a line of code that displays a summary of your ANOVA.</h5>
 <pre class="r"><code>summary(aov(Value ~ Type, data=data))</code></pre>
 <pre><code>##             Df Sum Sq Mean Sq F value Pr(&gt;F)    
-## Type         1  15565   15565    3953 &lt;2e-16 ***
-## Residuals   48    189       4                   
+## Type         1  14867   14867    5825 &lt;2e-16 ***
+## Residuals   48    123       3                   
 ## ---
 ## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1</code></pre>
 </div>
@@ -418,7 +423,7 @@ any simulated data set with two columns as the function’s argument.</h5>
 }
 
 psearch()</code></pre>
-<pre><code>## [1] 9.123047e-48</code></pre>
+<pre><code>## [1] 9.065534e-52</code></pre>
 </div>
 
 
