@@ -371,11 +371,11 @@ normally distributed with a mean of 45 and standard deviation of 2.</li>
 <li>You can do this all as a single line of code in the function or by
 breaking it up into multiple code blocks.</li>
 </ul>
-<pre class="r"><code>datagen &lt;- function(c_mean=10, c_sd=1.5, t_mean=45, t_sd=2){
+<pre class="r"><code>datagen &lt;- function(c_mean=10, c_sd=1.5, t_mean=45, t_sd=2, nrows=50){
   dFrame &lt;- data.frame(
-    Type = rep(c(&quot;Control&quot;, &quot;Treatment&quot;),each=25), 
-    Value =  c(control = rnorm(25, mean=c_mean, sd=c_sd),
-               treatment = rnorm(25, mean=t_mean, sd=t_sd)
+    Type = rep(c(&quot;Control&quot;, &quot;Treatment&quot;),each=nrows/2), 
+    Value =  c(control = rnorm(nrows/2, mean=c_mean, sd=c_sd),
+               treatment = rnorm(nrows/2, mean=t_mean, sd=t_sd)
                )
     )
   return(dFrame)
@@ -391,12 +391,12 @@ to view the first 6 rows of the data frame.</h5>
 
 myhead(data)</code></pre>
 <pre><code>##             Type     Value
-## control1 Control 11.348001
-## control2 Control 10.837016
-## control3 Control  9.339501
-## control4 Control  8.822450
-## control5 Control 13.045515
-## control6 Control  9.276959</code></pre>
+## control1 Control 10.388949
+## control2 Control 11.375650
+## control3 Control  9.396139
+## control4 Control 11.976576
+## control5 Control  7.948842
+## control6 Control  9.965510</code></pre>
 </div>
 <div id="lets-say-you-would-like-to-know-whether-there-is-a-statistically-significant-difference-in-value-response-variable-y-depending-on-type-explanatory-variable-x.-type-aov-in-the-console-to-determine-how-to-run-an-analysis-of-variance-anova-on-your-simulated-data.-write-a-line-of-code-that-displays-a-summary-of-your-anova." class="section level5">
 <h5>3. Let’s say you would like to know whether there is a statistically
@@ -406,8 +406,8 @@ how to run an analysis of variance (ANOVA) on your simulated data. Write
 a line of code that displays a summary of your ANOVA.</h5>
 <pre class="r"><code>summary(aov(Value ~ Type, data=data))</code></pre>
 <pre><code>##             Df Sum Sq Mean Sq F value Pr(&gt;F)    
-## Type         1  14867   14867    5825 &lt;2e-16 ***
-## Residuals   48    123       3                   
+## Type         1  15755   15755    4402 &lt;2e-16 ***
+## Residuals   48    172       4                   
 ## ---
 ## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1</code></pre>
 </div>
@@ -418,12 +418,12 @@ Google/Stack Overflow). Write your code in such a way that you can use
 any simulated data set with two columns as the function’s argument.</h5>
 <pre class="r"><code>psearch &lt;- function(df=data){
   summary &lt;- summary(aov(data[[2]]~data[[1]], data=df))
-  pvalue &lt;- summary[[1]][[&quot;Pr(&gt;F)&quot;]][[1]]
+  pvalue &lt;- summary[[1]][[&quot;Pr(&gt;F)&quot;]][[1]] #go into the summary list and find the P value. Only take the first value out of P because P[[2]] is NA 
   return(pvalue)
 }
 
 psearch()</code></pre>
-<pre><code>## [1] 9.065534e-52</code></pre>
+<pre><code>## [1] 7.094258e-49</code></pre>
 </div>
 
 

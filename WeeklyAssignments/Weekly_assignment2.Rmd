@@ -12,11 +12,11 @@ output: html_document
 * You can do this all as a single line of code in the function or by breaking it up into multiple code blocks.
 
 ```{r}
-datagen <- function(c_mean=10, c_sd=1.5, t_mean=45, t_sd=2){
+datagen <- function(c_mean=10, c_sd=1.5, t_mean=45, t_sd=2, nrows=50){
   dFrame <- data.frame(
-    Type = rep(c("Control", "Treatment"),each=25), 
-    Value =  c(control = rnorm(25, mean=c_mean, sd=c_sd),
-               treatment = rnorm(25, mean=t_mean, sd=t_sd)
+    Type = rep(c("Control", "Treatment"),each=nrows/2), 
+    Value =  c(control = rnorm(nrows/2, mean=c_mean, sd=c_sd),
+               treatment = rnorm(nrows/2, mean=t_mean, sd=t_sd)
                )
     )
   return(dFrame)
@@ -45,7 +45,7 @@ summary(aov(Value ~ Type, data=data))
 ```{r}
 psearch <- function(df=data){
   summary <- summary(aov(data[[2]]~data[[1]], data=df))
-  pvalue <- summary[[1]][["Pr(>F)"]][[1]]
+  pvalue <- summary[[1]][["Pr(>F)"]][[1]] #go into the summary list and find the P value. Only take the first value out of P because P[[2]] is NA 
   return(pvalue)
 }
 
