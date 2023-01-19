@@ -357,8 +357,88 @@ display: none;
 </div>
 
 
-<div id="section" class="section level3">
-<h3></h3>
+<div id="finishing-matrices" class="section level2">
+<h2>Finishing Matrices</h2>
+<div id="subsetting-by-elements" class="section level4">
+<h4>Subsetting by Elements</h4>
+<pre class="r"><code>m &lt;- matrix(data = 1:12, nrow=3)
+m[1:2,] #just the first two rows</code></pre>
+<pre><code>##      [,1] [,2] [,3] [,4]
+## [1,]    1    4    7   10
+## [2,]    2    5    8   11</code></pre>
+<pre class="r"><code>m[,2:4] #just 2-4 columns</code></pre>
+<pre><code>##      [,1] [,2] [,3]
+## [1,]    4    7   10
+## [2,]    5    8   11
+## [3,]    6    9   12</code></pre>
+</div>
+<div id="subset-with-logical-conditional-statements" class="section level4">
+<h4>Subset with logical (conditional statements)</h4>
+<ul>
+<li>Select all columns for which totals are &gt; 15</li>
+</ul>
+<pre class="r"><code>colSums(m) #column sums</code></pre>
+<pre><code>## [1]  6 15 24 33</code></pre>
+<pre class="r"><code>colSums(m) &gt; 15 #logical true if greater than 15</code></pre>
+<pre><code>## [1] FALSE FALSE  TRUE  TRUE</code></pre>
+<pre class="r"><code>m[,colSums(m) &gt; 15] #indexes just the columns greater than 15</code></pre>
+<pre><code>##      [,1] [,2]
+## [1,]    7   10
+## [2,]    8   11
+## [3,]    9   12</code></pre>
+<pre class="r"><code>#rows sums
+m[rowSums(m) == 22,]</code></pre>
+<pre><code>## [1]  1  4  7 10</code></pre>
+</div>
+<div id="logical-operators" class="section level4">
+<h4>Logical operators</h4>
+<ul>
+<li><code>==</code> <code>!=</code> <code>&gt;</code>
+<code>&lt;</code></li>
+</ul>
+</div>
+<div id="subsetting-to-a-vector-changes-the-data-type" class="section level4">
+<h4>Subsetting to a vector changes the data type</h4>
+<pre class="r"><code>z &lt;- m[1,] #subsets it to a vector
+print(z)</code></pre>
+<pre><code>## [1]  1  4  7 10</code></pre>
+<pre class="r"><code>z2 &lt;- m[1, , drop=FALSE] #keeps it as a matrix
+print(z2)</code></pre>
+<pre><code>##      [,1] [,2] [,3] [,4]
+## [1,]    1    4    7   10</code></pre>
+<pre class="r"><code>m2 &lt;- matrix(data = runif(9), nrow=3)
+m2[3,2]</code></pre>
+<pre><code>## [1] 0.1999869</code></pre>
+</div>
+<div id="use-the-assignment-operator-to-substitute-values" class="section level4">
+<h4>Use the assignment operator to substitute values</h4>
+<pre class="r"><code>m2[m2&lt;0.6]</code></pre>
+<pre><code>## [1] 0.5843521 0.3887260 0.1999869 0.4774630</code></pre>
+<pre class="r"><code>data &lt;- iris
+tail(data)</code></pre>
+<pre><code>##     Sepal.Length Sepal.Width Petal.Length Petal.Width   Species
+## 145          6.7         3.3          5.7         2.5 virginica
+## 146          6.7         3.0          5.2         2.3 virginica
+## 147          6.3         2.5          5.0         1.9 virginica
+## 148          6.5         3.0          5.2         2.0 virginica
+## 149          6.2         3.4          5.4         2.3 virginica
+## 150          5.9         3.0          5.1         1.8 virginica</code></pre>
+<pre class="r"><code>data[3,2] #numbered indices</code></pre>
+<pre><code>## [1] 3.2</code></pre>
+<pre class="r"><code>dataSub &lt;- data[,c(&quot;Species&quot;, &quot;Petal.Length&quot;)]
+tail(dataSub)</code></pre>
+<pre><code>##       Species Petal.Length
+## 145 virginica          5.7
+## 146 virginica          5.2
+## 147 virginica          5.0
+## 148 virginica          5.2
+## 149 virginica          5.4
+## 150 virginica          5.1</code></pre>
+</div>
+<div id="sort-a-data-frame-by-values" class="section level4">
+<h4>Sort a data frame by values</h4>
+<pre class="r"><code>ordered_iris &lt;- iris[order(iris$Petal.Length),] #order function goes before comma so it sorts the rows</code></pre>
+</div>
 </div>
 
 

@@ -5,4 +5,55 @@ date: "2023-01-19"
 output: html_document
 ---
 
-### 
+## Finishing Matrices
+
+#### Subsetting by Elements
+
+```{r}
+m <- matrix(data = 1:12, nrow=3)
+m[1:2,] #just the first two rows
+m[,2:4] #just 2-4 columns
+
+```
+
+#### Subset with logical (conditional statements)
+* Select all columns for which totals are > 15
+```{r}
+colSums(m) #column sums
+colSums(m) > 15 #logical true if greater than 15
+m[,colSums(m) > 15] #indexes just the columns greater than 15
+
+#rows sums
+m[rowSums(m) == 22,]
+```
+
+#### Logical operators
+* `==` `!=` `>` `<`
+
+#### Subsetting to a vector changes the data type
+```{r}
+z <- m[1,] #subsets it to a vector
+print(z)
+
+z2 <- m[1, , drop=FALSE] #keeps it as a matrix
+print(z2)
+
+m2 <- matrix(data = runif(9), nrow=3)
+m2[3,2]
+```
+
+#### Use the assignment operator to substitute values
+```{r}
+m2[m2<0.6]
+
+data <- iris
+tail(data)
+data[3,2] #numbered indices
+dataSub <- data[,c("Species", "Petal.Length")]
+tail(dataSub)
+```
+
+#### Sort a data frame by values
+```{r}
+ordered_iris <- iris[order(iris$Petal.Length),] #order function goes before comma so it sorts the rows
+```
