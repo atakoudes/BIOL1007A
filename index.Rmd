@@ -16,11 +16,13 @@ output:
 
 [Assignment 3](Assignments/Assignment3.html)
 
-[Assignment 4](Assignments/Assignment4)
+[Assignment 4](Assignments/Assignment4.html)
 
 ## Weekly Assignments
 
 [Weekly Assignment 1](WeeklyAssignments/Weekly_assignment1.html)
+
+[Weekly Assignment 2](WeeklyAssignments/Weekly_assignment2.html)
 
 ## Class Notes
 

@@ -391,12 +391,12 @@ to view the first 6 rows of the data frame.</h5>
 
 myhead(data)</code></pre>
 <pre><code>##             Type     Value
-## control1 Control 11.348001
-## control2 Control 10.837016
-## control3 Control  9.339501
-## control4 Control  8.822450
-## control5 Control 13.045515
-## control6 Control  9.276959</code></pre>
+## control1 Control 11.018381
+## control2 Control 11.525102
+## control3 Control  8.052012
+## control4 Control 10.556617
+## control5 Control  8.442040
+## control6 Control 11.035005</code></pre>
 </div>
 <div id="lets-say-you-would-like-to-know-whether-there-is-a-statistically-significant-difference-in-value-response-variable-y-depending-on-type-explanatory-variable-x.-type-aov-in-the-console-to-determine-how-to-run-an-analysis-of-variance-anova-on-your-simulated-data.-write-a-line-of-code-that-displays-a-summary-of-your-anova." class="section level5">
 <h5>3. Let’s say you would like to know whether there is a statistically
@@ -406,8 +406,8 @@ how to run an analysis of variance (ANOVA) on your simulated data. Write
 a line of code that displays a summary of your ANOVA.</h5>
 <pre class="r"><code>summary(aov(Value ~ Type, data=data))</code></pre>
 <pre><code>##             Df Sum Sq Mean Sq F value Pr(&gt;F)    
-## Type         1  14867   14867    5825 &lt;2e-16 ***
-## Residuals   48    123       3                   
+## Type         1  14815   14815    7115 &lt;2e-16 ***
+## Residuals   48    100       2                   
 ## ---
 ## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1</code></pre>
 </div>
@@ -423,7 +423,7 @@ any simulated data set with two columns as the function’s argument.</h5>
 }
 
 psearch()</code></pre>
-<pre><code>## [1] 9.065534e-52</code></pre>
+<pre><code>## [1] 7.73541e-54</code></pre>
 </div>
 
 
