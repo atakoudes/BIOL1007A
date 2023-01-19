@@ -5,6 +5,7 @@ date: "2023-01-19"
 output: html_document
 ---
 
+TEST
 ##### 1. Create a function that returns a data frame with 2 columns (named “Type” and “Value”) and 50 rows/observations.
 * The first column should have “Control” as the first 25 observations and “Treatment” as the second half of observations.
 * The second column should have the first 25 values as random and normally distributed with a mean of 10 and standard deviation of 1.5. 
