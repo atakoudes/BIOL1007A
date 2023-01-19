@@ -18,7 +18,7 @@ output:
 
 [Assignment 4](Assignments/Assignment4)
 
-## Weekly Assignment
+## Weekly Assignments
 
 [Weekly Assignment 1](WeeklyAssignments/Weekly_assignment1.html)
 
