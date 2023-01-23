@@ -371,7 +371,18 @@ normally distributed with a mean of 45 and standard deviation of 2.</li>
 <li>You can do this all as a single line of code in the function or by
 breaking it up into multiple code blocks.</li>
 </ul>
-<pre class="r"><code>datagen &lt;- function(c_mean=10, c_sd=1.5, t_mean=45, t_sd=2, nrows=50){
+<pre class="r"><code>##################################################
+# FUNCTION: datagen 
+# generates a two column data frame of data.
+# inputs:
+#   c_mean: mean value for normal distribution of control data
+#   c_sd: standard deviation value for normal distribution of control data
+#   t_mean: mean value for normal distribution of treatment data
+#   t_sd: standard deviation value for normal distribution of treatment data
+#   nrows: number of rows of data
+# outputs: 2 column matrix nrows long with half control data and half treatment data
+#------------------------------------------------- 
+datagen &lt;- function(c_mean=10, c_sd=1.5, t_mean=45, t_sd=2, nrows=50){
   dFrame &lt;- data.frame(
     Type = rep(c(&quot;Control&quot;, &quot;Treatment&quot;),each=nrows/2), 
     Value =  c(control = rnorm(nrows/2, mean=c_mean, sd=c_sd),
@@ -380,7 +391,9 @@ breaking it up into multiple code blocks.</li>
     )
   return(dFrame)
 }
-data &lt;- datagen()</code></pre>
+##################################################
+
+data &lt;- datagen() #default values</code></pre>
 </div>
 <div id="save-your-new-functions-output-as-a-variable-and-use-a-function-to-view-the-first-6-rows-of-the-data-frame." class="section level5">
 <h5>2. Save your new function’s output as a variable, and use a function
@@ -391,12 +404,12 @@ to view the first 6 rows of the data frame.</h5>
 
 myhead(data)</code></pre>
 <pre><code>##             Type     Value
-## control1 Control 11.402753
-## control2 Control  9.876199
-## control3 Control 10.453061
-## control4 Control  8.394955
-## control5 Control  8.582650
-## control6 Control  9.270165</code></pre>
+## control1 Control 12.645379
+## control2 Control  9.908727
+## control3 Control  8.064714
+## control4 Control 11.608886
+## control5 Control 10.500386
+## control6 Control 11.205105</code></pre>
 </div>
 <div id="lets-say-you-would-like-to-know-whether-there-is-a-statistically-significant-difference-in-value-response-variable-y-depending-on-type-explanatory-variable-x.-type-aov-in-the-console-to-determine-how-to-run-an-analysis-of-variance-anova-on-your-simulated-data.-write-a-line-of-code-that-displays-a-summary-of-your-anova." class="section level5">
 <h5>3. Let’s say you would like to know whether there is a statistically
@@ -406,8 +419,8 @@ how to run an analysis of variance (ANOVA) on your simulated data. Write
 a line of code that displays a summary of your ANOVA.</h5>
 <pre class="r"><code>summary(aov(Value ~ Type, data=data))</code></pre>
 <pre><code>##             Df Sum Sq Mean Sq F value Pr(&gt;F)    
-## Type         1  16424   16424    5889 &lt;2e-16 ***
-## Residuals   48    134       3                   
+## Type         1  14908   14908    5956 &lt;2e-16 ***
+## Residuals   48    120       3                   
 ## ---
 ## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1</code></pre>
 </div>
@@ -416,14 +429,17 @@ a line of code that displays a summary of your ANOVA.</h5>
 returns only the p-value of an ANOVA summary table (feel free to use
 Google/Stack Overflow). Write your code in such a way that you can use
 any simulated data set with two columns as the function’s argument.</h5>
-<pre class="r"><code>psearch &lt;- function(df=data){
+<pre class="r"><code>psearch &lt;- function(df=NULL){
+  if(is.null(df)){
+    df &lt;- datagen()
+  }
   summary &lt;- summary(aov(data[[2]]~data[[1]], data=df))
   pvalue &lt;- summary[[1]][[&quot;Pr(&gt;F)&quot;]][[1]] #go into the summary list and find the P value. Only take the first value out of P because P[[2]] is NA 
   return(pvalue)
 }
 
-psearch()</code></pre>
-<pre><code>## [1] 6.996357e-52</code></pre>
+psearch(data)</code></pre>
+<pre><code>## [1] 5.346538e-52</code></pre>
 </div>
 
 

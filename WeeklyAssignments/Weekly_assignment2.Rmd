@@ -12,6 +12,17 @@ output: html_document
 * You can do this all as a single line of code in the function or by breaking it up into multiple code blocks.
 
 ```{r}
+##################################################
+# FUNCTION: datagen 
+# generates a two column data frame of data.
+# inputs:
+#   c_mean: mean value for normal distribution of control data
+#   c_sd: standard deviation value for normal distribution of control data
+#   t_mean: mean value for normal distribution of treatment data
+#   t_sd: standard deviation value for normal distribution of treatment data
+#   nrows: number of rows of data
+# outputs: 2 column matrix nrows long with half control data and half treatment data
+#------------------------------------------------- 
 datagen <- function(c_mean=10, c_sd=1.5, t_mean=45, t_sd=2, nrows=50){
   dFrame <- data.frame(
     Type = rep(c("Control", "Treatment"),each=nrows/2), 
@@ -21,7 +32,9 @@ datagen <- function(c_mean=10, c_sd=1.5, t_mean=45, t_sd=2, nrows=50){
     )
   return(dFrame)
 }
-data <- datagen()
+##################################################
+
+data <- datagen() #default values
 ```
 
 ##### 2. Save your new function’s output as a variable, and use a function to view the first 6 rows of the data frame.
@@ -43,11 +56,14 @@ summary(aov(Value ~ Type, data=data))
 ##### 4. Finally create a function that uses a data frame as its input and returns only the p-value of an ANOVA summary table (feel free to use Google/Stack Overflow). Write your code in such a way that you can use any simulated data set with two columns as the function’s argument.
 
 ```{r}
-psearch <- function(df=data){
+psearch <- function(df=NULL){
+  if(is.null(df)){
+    df <- datagen()
+  }
   summary <- summary(aov(data[[2]]~data[[1]], data=df))
   pvalue <- summary[[1]][["Pr(>F)"]][[1]] #go into the summary list and find the P value. Only take the first value out of P because P[[2]] is NA 
   return(pvalue)
 }
 
-psearch()
+psearch(data)
 ```
