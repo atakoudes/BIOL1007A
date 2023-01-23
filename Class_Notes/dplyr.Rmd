@@ -131,3 +131,25 @@ starwars_genders <- group_by(starwars, gender)
 head(starwars_genders)
 summarize(starwars_genders, mean_height=mean(height, na.rm=T), total_number=n()) #summarizes the groups
 ```
+
+## `%>%` **Piping**
+* Used to emphasize a sequence of actions
+* Allows you to pass an intermediate result onto the next function
+  + Uses output of one function as input for next
+* Avoid if you need to manipulate more than one variable at a time
+* Avoid if you have meaningful intermediate variables
+* Formatting
+  + always put a space before the `%>%`
+  + followed by a new line
+  
+```{r}
+starwars_clean %>% 
+  group_by(gender) %>% #doesn't need the name of the dataset
+    summarize(mean_height=mean(height, na.rm=T), total_number=n())
+```
+
+#### `case_when()` is useful for multiple for multiple if statements
+```{r}
+#starwars_clean %>%
+  #mutate(sp = case_when(species=="Human", ~ "Human", TRUE ~ "Non-Human"))
+```
