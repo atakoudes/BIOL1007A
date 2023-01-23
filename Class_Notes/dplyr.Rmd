@@ -1,0 +1,20 @@
+---
+title: "dplyr Lecture"
+author: "Alex Takoudes"
+date: "2023-01-23"
+output: html_document
+---
+
+## Tidyverse
+* Collection of packages
+* Shares philosophy, grammar (how code is structured), and data structures
+
+## Operators
+* Symbols that tell R to perform different operations b/w variables
+* Assignment Operator: `<-`
+* Arithmetic operators: `+` `-` `*` `/` `^` etc.
+* Logical operators: `!` & `|`
+* Relational operators: `==` `!=` `>` `<` `<=` `>=`
+* Miscellaneous operators: `%>%` `%in%`
+
+#### 

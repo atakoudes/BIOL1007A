@@ -31,17 +31,15 @@ my_mat
 ##### f. Find a function in r to transpose the matrix. Print it out again and note how it has changed
 ```{r}
 my_mat <- t(my_mat) 
-my_mat #matrix was flipped along the diagonal axis from top left to bottom right
+my_mat #rows become columns
 ```
 ##### h. Calculate the sum and the mean of the elements in the first row and then the last row.
 ```{r}
 #first row
-sum(my_mat[1,])
-mean(my_mat[1,])
+sum(my_mat[1,]); mean(my_mat[1,])
 
 #last row
-sum(my_mat[n_dims,])
-mean(my_mat[n_dims,])
+sum(my_mat[n_dims,]); mean(my_mat[n_dims,])
 ```
 ##### i. set your code up so you can re-run it to create a matrix of a different size by only changing the n_dims value
 ```{r}
@@ -114,7 +112,7 @@ tail(dFrame)
 
 ##### d. For the first variable, use a single line of code in R to select 4 random rows and replace the numerical values in those rows with NA.
 ```{r}
-dFrame$my_unifs[sample(1:26, 4)] <- NA
+dFrame$my_unifs[sample(1:nrow(dFrame), 4)] <- NA
 dFrame
 ```
 
