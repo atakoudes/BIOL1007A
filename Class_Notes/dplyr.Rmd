@@ -59,9 +59,75 @@ glimpse(starwars_clean)
 anyNA(starwars_clean)
 ```
 
-#### `Filter()`
-* Picks/subsets observations(*rows*) by their values
+#### `Filter()` Picks/subsets observations(*rows*) by their values
 
 ```{r}
-filter(starwars_clean, gender=="masculine" & height<180) #can filter by two conditions
+filter(starwars_clean, gender=="masculine" & height<180 & height>100) #can filter by several conditions
+```
+
+#### `%in%` operator (matching)
+* Similar to `==` but you can compare different length vectors
+* Output depends on whatever the first vector is
+```{r}
+a <- LETTERS[1:10]
+length(a)
+
+b <- LETTERS[4:10]
+length(b)
+
+a %in% b #output depends on whatever the first vector is
+b %in% a
+```
+
+#### Subsetting with `%in%`
+```{r}
+eyes <- filter(starwars, eye_color %in% c("blue", "brown"))
+```
+
+#### `arrange()` Re-orders rows
+```{r}
+arrange(starwars_clean, by=height) #defaults to lowest to highest
+arrange(starwars_clean, by=desc(height)) #helper function desc() reverses order
+arrange(starwars_clean, height, desc(mass)) #second variable "mass" used to break ties of height
+sw <- arrange(starwars, by=height)
+tail(sw) #puts all the NAs at the bottom
+```
+
+#### `select()` Chooses variables(columns) by their names
+```{r}
+select(starwars_clean, 1:10) #only certain number columns
+select(starwars_clean, name:species) #up until a certain column
+select(starwars_clean, -(height:sex)) #minus ignores certain columns
+#everything() helper function is useful if you want to move some variables to the beginning
+select(starwars_clean, name, gender, species, everything()) #rearrange columns
+#contains() helper function picks the columns only with the condition
+select(starwars_clean, contains("color"))
+#ends_with()
+#starts_with()
+#num_range()
+#select also renames columns
+select(starwars_clean, haircolor=hair_color) #returns just the column with a new name
+rename(starwars_clean, haircolor=hair_color) #returns all columns with renaming
+```
+
+***
+#### `mutate()` creates new variables using functions of existing variables
+```{r}
+#height divided by mass column
+mutate(starwars_clean, ratio=height/mass, .before=1) #puts it at the front
+transmute(starwars_clean, mass, mass_lbs=mass*2.2, height) #only returns mutated columns
+```
+
+#### `summarize()`
+```{r}
+summarize(starwars_clean, mean_height=mean(height))
+#n() helper function gives the number of observations
+summarize(starwars_clean, mean_height=mean(height), total_number=n())
+```
+
+#### `group_by()`
+```{r}
+starwars_genders <- group_by(starwars, gender)
+head(starwars_genders)
+summarize(starwars_genders, mean_height=mean(height, na.rm=T), total_number=n()) #summarizes the groups
 ```
