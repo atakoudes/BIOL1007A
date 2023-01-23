@@ -35,3 +35,5 @@ output:
 [1-17-2023| Data Structures](Class_Notes/DataStructures.html)
 
 [1-19-2023| Data Frames and Functions](Class_Notes/dataframesandfunctions.html)
+
+[1-23-2023| Tidyverse and dplyr](Class_Notes/dplyr.html)

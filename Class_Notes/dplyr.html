@@ -373,14 +373,124 @@ variables</li>
 <li>Assignment Operator: <code>&lt;-</code></li>
 <li>Arithmetic operators: <code>+</code> <code>-</code> <code>*</code>
 <code>/</code> <code>^</code> etc.</li>
-<li>Logical operators: <code>!</code> &amp; <code>|</code></li>
+<li>Logical operators: <code>!</code> <code>&amp;</code> <code>|</code>
+“not, and, or”</li>
 <li>Relational operators: <code>==</code> <code>!=</code>
 <code>&gt;</code> <code>&lt;</code> <code>&lt;=</code>
 <code>&gt;=</code></li>
-<li>Miscellaneous operators: <code>%&gt;%</code> <code>%in%</code></li>
+<li>Miscellaneous operators:
+<ul>
+<li><code>%&gt;%</code>: forward pipe</li>
+<li><code>%in%</code> : matching operator</li>
+</ul></li>
 </ul>
-<div id="section" class="section level4">
-<h4></h4>
+</div>
+<div id="dplyr" class="section level2">
+<h2>Dplyr</h2>
+<ul>
+<li>New(er) package which provides a set of tools for manipulating
+datasets</li>
+<li>Specifically written to be fast</li>
+<li>Individual functions that correspond to common operations</li>
+<li>Conflicts with certain functions can be resolved
+<ul>
+<li><code>dplyr::filter()</code></li>
+</ul></li>
+</ul>
+<pre class="r"><code>library(tidyverse) #library function to load in packages</code></pre>
+<pre><code>## ── Attaching packages ─────────────────────────────────────── tidyverse 1.3.2 ──
+## ✔ ggplot2 3.4.0      ✔ purrr   1.0.1 
+## ✔ tibble  3.1.8      ✔ dplyr   1.0.10
+## ✔ tidyr   1.2.1      ✔ stringr 1.5.0 
+## ✔ readr   2.1.3      ✔ forcats 0.5.2 
+## ── Conflicts ────────────────────────────────────────── tidyverse_conflicts() ──
+## ✖ dplyr::filter() masks stats::filter()
+## ✖ dplyr::lag()    masks stats::lag()</code></pre>
+<div id="core-verbs" class="section level4">
+<h4>Core verbs</h4>
+<ol style="list-style-type: decimal">
+<li><code>filter()</code></li>
+<li><code>arrange()</code></li>
+<li><code>select()</code></li>
+<li><code>group_by()</code> <code>summarize()</code></li>
+<li><code>mutate()</code></li>
+</ol>
+</div>
+<div id="star-wars-dataset-practice" class="section level4">
+<h4>Star wars dataset practice</h4>
+<pre class="r"><code>data(starwars)
+class(starwars)</code></pre>
+<pre><code>## [1] &quot;tbl_df&quot;     &quot;tbl&quot;        &quot;data.frame&quot;</code></pre>
+</div>
+<div id="tibble-tbl" class="section level4">
+<h4>Tibble (<code>tbl</code>)</h4>
+<ul>
+<li>Modern take on data frame</li>
+<li>Optimized dataframe</li>
+</ul>
+<pre class="r"><code>glimpse(starwars) #clean way to look at a dataset</code></pre>
+<pre><code>## Rows: 87
+## Columns: 14
+## $ name       &lt;chr&gt; &quot;Luke Skywalker&quot;, &quot;C-3PO&quot;, &quot;R2-D2&quot;, &quot;Darth Vader&quot;, &quot;Leia Or…
+## $ height     &lt;int&gt; 172, 167, 96, 202, 150, 178, 165, 97, 183, 182, 188, 180, 2…
+## $ mass       &lt;dbl&gt; 77.0, 75.0, 32.0, 136.0, 49.0, 120.0, 75.0, 32.0, 84.0, 77.…
+## $ hair_color &lt;chr&gt; &quot;blond&quot;, NA, NA, &quot;none&quot;, &quot;brown&quot;, &quot;brown, grey&quot;, &quot;brown&quot;, N…
+## $ skin_color &lt;chr&gt; &quot;fair&quot;, &quot;gold&quot;, &quot;white, blue&quot;, &quot;white&quot;, &quot;light&quot;, &quot;light&quot;, &quot;…
+## $ eye_color  &lt;chr&gt; &quot;blue&quot;, &quot;yellow&quot;, &quot;red&quot;, &quot;yellow&quot;, &quot;brown&quot;, &quot;blue&quot;, &quot;blue&quot;,…
+## $ birth_year &lt;dbl&gt; 19.0, 112.0, 33.0, 41.9, 19.0, 52.0, 47.0, NA, 24.0, 57.0, …
+## $ sex        &lt;chr&gt; &quot;male&quot;, &quot;none&quot;, &quot;none&quot;, &quot;male&quot;, &quot;female&quot;, &quot;male&quot;, &quot;female&quot;,…
+## $ gender     &lt;chr&gt; &quot;masculine&quot;, &quot;masculine&quot;, &quot;masculine&quot;, &quot;masculine&quot;, &quot;femini…
+## $ homeworld  &lt;chr&gt; &quot;Tatooine&quot;, &quot;Tatooine&quot;, &quot;Naboo&quot;, &quot;Tatooine&quot;, &quot;Alderaan&quot;, &quot;T…
+## $ species    &lt;chr&gt; &quot;Human&quot;, &quot;Droid&quot;, &quot;Droid&quot;, &quot;Human&quot;, &quot;Human&quot;, &quot;Human&quot;, &quot;Huma…
+## $ films      &lt;list&gt; &lt;&quot;The Empire Strikes Back&quot;, &quot;Revenge of the Sith&quot;, &quot;Return…
+## $ vehicles   &lt;list&gt; &lt;&quot;Snowspeeder&quot;, &quot;Imperial Speeder Bike&quot;&gt;, &lt;&gt;, &lt;&gt;, &lt;&gt;, &quot;Imp…
+## $ starships  &lt;list&gt; &lt;&quot;X-wing&quot;, &quot;Imperial shuttle&quot;&gt;, &lt;&gt;, &lt;&gt;, &quot;TIE Advanced x1&quot;,…</code></pre>
+</div>
+<div id="nas" class="section level4">
+<h4>NAs</h4>
+<pre class="r"><code>anyNA(starwars)</code></pre>
+<pre><code>## [1] TRUE</code></pre>
+<pre class="r"><code>starwars_clean &lt;- starwars[complete.cases(starwars[,1:10]),]
+glimpse(starwars_clean)</code></pre>
+<pre><code>## Rows: 29
+## Columns: 14
+## $ name       &lt;chr&gt; &quot;Luke Skywalker&quot;, &quot;Darth Vader&quot;, &quot;Leia Organa&quot;, &quot;Owen Lars&quot;…
+## $ height     &lt;int&gt; 172, 202, 150, 178, 165, 183, 182, 188, 228, 180, 170, 170,…
+## $ mass       &lt;dbl&gt; 77.0, 136.0, 49.0, 120.0, 75.0, 84.0, 77.0, 84.0, 112.0, 80…
+## $ hair_color &lt;chr&gt; &quot;blond&quot;, &quot;none&quot;, &quot;brown&quot;, &quot;brown, grey&quot;, &quot;brown&quot;, &quot;black&quot;, …
+## $ skin_color &lt;chr&gt; &quot;fair&quot;, &quot;white&quot;, &quot;light&quot;, &quot;light&quot;, &quot;light&quot;, &quot;light&quot;, &quot;fair&quot;…
+## $ eye_color  &lt;chr&gt; &quot;blue&quot;, &quot;yellow&quot;, &quot;brown&quot;, &quot;blue&quot;, &quot;blue&quot;, &quot;brown&quot;, &quot;blue-g…
+## $ birth_year &lt;dbl&gt; 19.0, 41.9, 19.0, 52.0, 47.0, 24.0, 57.0, 41.9, 200.0, 29.0…
+## $ sex        &lt;chr&gt; &quot;male&quot;, &quot;male&quot;, &quot;female&quot;, &quot;male&quot;, &quot;female&quot;, &quot;male&quot;, &quot;male&quot;,…
+## $ gender     &lt;chr&gt; &quot;masculine&quot;, &quot;masculine&quot;, &quot;feminine&quot;, &quot;masculine&quot;, &quot;feminin…
+## $ homeworld  &lt;chr&gt; &quot;Tatooine&quot;, &quot;Tatooine&quot;, &quot;Alderaan&quot;, &quot;Tatooine&quot;, &quot;Tatooine&quot;,…
+## $ species    &lt;chr&gt; &quot;Human&quot;, &quot;Human&quot;, &quot;Human&quot;, &quot;Human&quot;, &quot;Human&quot;, &quot;Human&quot;, &quot;Huma…
+## $ films      &lt;list&gt; &lt;&quot;The Empire Strikes Back&quot;, &quot;Revenge of the Sith&quot;, &quot;Return…
+## $ vehicles   &lt;list&gt; &lt;&quot;Snowspeeder&quot;, &quot;Imperial Speeder Bike&quot;&gt;, &lt;&gt;, &quot;Imperial Sp…
+## $ starships  &lt;list&gt; &lt;&quot;X-wing&quot;, &quot;Imperial shuttle&quot;&gt;, &quot;TIE Advanced x1&quot;, &lt;&gt;, &lt;&gt;,…</code></pre>
+<pre class="r"><code>anyNA(starwars_clean)</code></pre>
+<pre><code>## [1] FALSE</code></pre>
+</div>
+<div id="filter" class="section level4">
+<h4><code>Filter()</code></h4>
+<ul>
+<li>Picks/subsets observations(<em>rows</em>) by their values</li>
+</ul>
+<pre class="r"><code>filter(starwars_clean, gender==&quot;masculine&quot; &amp; height&lt;180) #can filter by two conditions</code></pre>
+<pre><code>## # A tibble: 8 × 14
+##   name         height  mass hair_…¹ skin_…² eye_c…³ birth…⁴ sex   gender homew…⁵
+##   &lt;chr&gt;         &lt;int&gt; &lt;dbl&gt; &lt;chr&gt;   &lt;chr&gt;   &lt;chr&gt;     &lt;dbl&gt; &lt;chr&gt; &lt;chr&gt;  &lt;chr&gt;  
+## 1 Luke Skywal…    172    77 blond   fair    blue         19 male  mascu… Tatooi…
+## 2 Owen Lars       178   120 brown,… light   blue         52 male  mascu… Tatooi…
+## 3 Wedge Antil…    170    77 brown   fair    hazel        21 male  mascu… Corell…
+## 4 Palpatine       170    75 grey    pale    yellow       82 male  mascu… Naboo  
+## 5 Lando Calri…    177    79 black   dark    brown        31 male  mascu… Socorro
+## 6 Lobot           175    79 none    light   blue         37 male  mascu… Bespin 
+## 7 Wicket Syst…     88    20 brown   brown   brown         8 male  mascu… Endor  
+## 8 Darth Maul      175    80 none    red     yellow       54 male  mascu… Dathom…
+## # … with 4 more variables: species &lt;chr&gt;, films &lt;list&gt;, vehicles &lt;list&gt;,
+## #   starships &lt;list&gt;, and abbreviated variable names ¹​hair_color, ²​skin_color,
+## #   ³​eye_color, ⁴​birth_year, ⁵​homeworld</code></pre>
 </div>
 </div>
 

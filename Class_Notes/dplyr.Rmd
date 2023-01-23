@@ -13,8 +13,55 @@ output: html_document
 * Symbols that tell R to perform different operations b/w variables
 * Assignment Operator: `<-`
 * Arithmetic operators: `+` `-` `*` `/` `^` etc.
-* Logical operators: `!` & `|`
+* Logical operators: `!` `&` `|` "not, and, or"
 * Relational operators: `==` `!=` `>` `<` `<=` `>=`
-* Miscellaneous operators: `%>%` `%in%`
+* Miscellaneous operators:  
+  + `%>%`: forward pipe
+  + `%in%` : matching operator
 
-#### 
+## Dplyr
+* New(er) package which provides a set of tools for manipulating datasets
+* Specifically written to be fast
+* Individual functions that correspond to common operations
+* Conflicts with certain functions can be resolved
+  + `dplyr::filter()`
+```{r}
+library(tidyverse) #library function to load in packages
+```
+
+#### Core verbs
+1. `filter()`
+2. `arrange()`
+3. `select()`
+4. `group_by()` `summarize()`
+5. `mutate()`
+
+#### Star wars dataset practice
+
+```{r}
+data(starwars)
+class(starwars)
+```
+
+#### Tibble (`tbl`)
+* Modern take on data frame
+* Optimized dataframe
+
+```{r}
+glimpse(starwars) #clean way to look at a dataset
+```
+
+#### NAs
+```{r}
+anyNA(starwars)
+starwars_clean <- starwars[complete.cases(starwars[,1:10]),]
+glimpse(starwars_clean)
+anyNA(starwars_clean)
+```
+
+#### `Filter()`
+* Picks/subsets observations(*rows*) by their values
+
+```{r}
+filter(starwars_clean, gender=="masculine" & height<180) #can filter by two conditions
+```
