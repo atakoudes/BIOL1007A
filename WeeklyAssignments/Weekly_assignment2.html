@@ -403,13 +403,13 @@ to view the first 6 rows of the data frame.</h5>
 }
 
 myhead(data)</code></pre>
-<pre><code>##             Type     Value
-## control1 Control 12.645379
-## control2 Control  9.908727
-## control3 Control  8.064714
-## control4 Control 11.608886
-## control5 Control 10.500386
-## control6 Control 11.205105</code></pre>
+<pre><code>##             Type    Value
+## control1 Control 10.66989
+## control2 Control 12.22780
+## control3 Control 10.77996
+## control4 Control 11.78099
+## control5 Control 10.09193
+## control6 Control 10.44950</code></pre>
 </div>
 <div id="lets-say-you-would-like-to-know-whether-there-is-a-statistically-significant-difference-in-value-response-variable-y-depending-on-type-explanatory-variable-x.-type-aov-in-the-console-to-determine-how-to-run-an-analysis-of-variance-anova-on-your-simulated-data.-write-a-line-of-code-that-displays-a-summary-of-your-anova." class="section level5">
 <h5>3. Let’s say you would like to know whether there is a statistically
@@ -419,8 +419,8 @@ how to run an analysis of variance (ANOVA) on your simulated data. Write
 a line of code that displays a summary of your ANOVA.</h5>
 <pre class="r"><code>summary(aov(Value ~ Type, data=data))</code></pre>
 <pre><code>##             Df Sum Sq Mean Sq F value Pr(&gt;F)    
-## Type         1  14908   14908    5956 &lt;2e-16 ***
-## Residuals   48    120       3                   
+## Type         1  15255   15255    5381 &lt;2e-16 ***
+## Residuals   48    136       3                   
 ## ---
 ## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1</code></pre>
 </div>
@@ -429,7 +429,14 @@ a line of code that displays a summary of your ANOVA.</h5>
 returns only the p-value of an ANOVA summary table (feel free to use
 Google/Stack Overflow). Write your code in such a way that you can use
 any simulated data set with two columns as the function’s argument.</h5>
-<pre class="r"><code>psearch &lt;- function(df=NULL){
+<pre class="r"><code>##################################################
+# FUNCTION: psearch
+# returns the pvalue of a given two column dataframe
+# inputs:
+#   df: dataframe to be analyzed
+# outputs: pvalue of two column data frame
+#------------------------------------------------- 
+psearch &lt;- function(df=NULL){
   if(is.null(df)){
     df &lt;- datagen()
   }
@@ -437,9 +444,10 @@ any simulated data set with two columns as the function’s argument.</h5>
   pvalue &lt;- summary[[1]][[&quot;Pr(&gt;F)&quot;]][[1]] #go into the summary list and find the P value. Only take the first value out of P because P[[2]] is NA 
   return(pvalue)
 }
+##################################################
 
 psearch(data)</code></pre>
-<pre><code>## [1] 5.346538e-52</code></pre>
+<pre><code>## [1] 5.993861e-51</code></pre>
 </div>
 
 

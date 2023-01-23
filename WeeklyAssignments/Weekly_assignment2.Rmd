@@ -56,6 +56,14 @@ summary(aov(Value ~ Type, data=data))
 ##### 4. Finally create a function that uses a data frame as its input and returns only the p-value of an ANOVA summary table (feel free to use Google/Stack Overflow). Write your code in such a way that you can use any simulated data set with two columns as the function’s argument.
 
 ```{r}
+
+##################################################
+# FUNCTION: psearch
+# returns the pvalue of a given two column dataframe
+# inputs:
+#   df: dataframe to be analyzed
+# outputs: pvalue of two column data frame
+#------------------------------------------------- 
 psearch <- function(df=NULL){
   if(is.null(df)){
     df <- datagen()
@@ -64,6 +72,7 @@ psearch <- function(df=NULL){
   pvalue <- summary[[1]][["Pr(>F)"]][[1]] #go into the summary list and find the P value. Only take the first value out of P because P[[2]] is NA 
   return(pvalue)
 }
+##################################################
 
 psearch(data)
 ```
