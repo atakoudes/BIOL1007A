@@ -1,19 +1,64 @@
 ---
-title: "Assignment 7"
+title: "Assignment 7: Data wrangling and plotting"
 author: "Alex Takoudes"
 date: "2023-01-24"
 output: html_document
 ---
 
-Data wrangling and plotting
-
 ##### 1. Using the built-in starwars data set in the dplyr package, create a new tibble with the following modifications:
   + It only includes the species that have more than 1 individual represented in the data set. (hint: first use dplyr to summarize the number of individuals per species in the data frame; then create a vector/tibble of those names; subset the species that are included in that vector)
   + It only includes the columns that are not of type list (hint: use glimpse to check)
+```{r}
+library(ggplot2)
+library(ggthemes)
+library(patchwork)
+library(dplyr)
+library(viridis)
+
+
+data(starwars)
+glimpse(starwars)
+
+stw_grouped <- starwars %>%
+  group_by(species) %>%      #group all the species
+  summarize(number= n()) %>% #find how many things are in each
+  filter(number>1)           #pick only the species with more than one individual
+
+big_species <- starwars %>%  #we're filtering the big starwars dataset, but lets save a new one
+  filter(species %in% stw_grouped$species) %>%  #only pick the species >1
+  select(-(films:starships)) #get rid of the last three columns which are lists
+
+glimpse(big_species)
+```
 
 ##### 2. Clean your data set: only include observations/rows that do not have an NA in the height column. Then, use dplyr to print a summary table showing the mean, median, and standard deviation of height for each species.
+```{r}
+big_clean_species <- big_species[complete.cases(big_species$height),]
+anyNA(big_clean_species$height)
+
+big_clean_species %>%
+  group_by(species) %>%
+  summarize(mean=mean(height), median=median(height), stdev=sd(height)) %>%
+  print()
+```
+
 
 ##### 3. Create a box plot figure that shows the variation in heights among Star Wars species. Do the values in your summary table line up with the plot? Code so that each box plot (Species) is be filled with a different color. Change your axes labels so that species is capitalized and height is capitalized and shows units (cm). Use the theme_minimal option. Then look into the annotate or geom_text functions and add the text “p=1.2E-0.5” to the top right corner.
+
+```{r}
+cols <- viridis(count(stw_grouped), option="turbo")
+plot_h <- ggplot(big_clean_species, aes(x=species, y=height, fill=species)) +
+  geom_boxplot() +
+  scale_fill_manual(values=cols)
+
+plot_h <- plot_h + 
+  xlab("Species") +
+  ylab("Height (cm)") +
+  theme_minimal() +
+  geom_text(x=8.5, y=230, label="p=1.2E-0.5", size=6, color="darkred")
+
+plot_h
+```
 
 #### For an extra (optional) challenge: overlay the data points onto the box plots (hint: look into geom_jitter or geom_point). See if you can change the color of the points, depending on the gender or sex variables.
 
