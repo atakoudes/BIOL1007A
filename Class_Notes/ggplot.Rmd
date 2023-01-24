@@ -89,3 +89,10 @@ ggplot(d, aes(x=class, y=hwy, fill=class)) +  #fill=class gives color
   scale_fill_manual(values=cols)
 
 ```
+
+## Multi Panel Plot (`patchwork`)
+```{r}
+p1+p2+p3
+p1/p2/p3
+(p1+p2)/p3
+```
