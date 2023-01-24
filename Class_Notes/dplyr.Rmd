@@ -1,5 +1,5 @@
 ---
-title: "dplyr Lecture"
+title: "`dplyr` Lecture"
 author: "Alex Takoudes"
 date: "2023-01-23"
 output: html_document
