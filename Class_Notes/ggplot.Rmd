@@ -5,3 +5,87 @@ date: "2023-01-24"
 output: html_document
 ---
 
+## Indtroduction to ggplot
+
+#### Setup
+```{r}
+library(ggplot2)
+library(ggthemes)
+library(patchwork)
+library(dplyr)
+library(viridis)
+```
+
+#### Template for ggplot code
+`p1 <- ggplot(data = <DATA>, mapping = aes(x = xVar, y = yVar)) + <GEOM FUNCTION>`
+
+`print(p1`
+
+* `aes` is aesthetics
+* `<GEOM FUNCTION>`
+  + `geom_boxplot`
+
+## Qplot: Quick Plotting
+* `I()` is important for making the colors actually work
+* Quick method
+* Uses vectors
+```{r}
+d <- mpg
+glimpse(d)
+
+#histogram
+qplot(x=d$hwy, fill=I("green"), color=I("black"))
+
+#scatter plot
+qplot(x=d$displ, y=d$hwy, geom=c("smooth", "point"), method="lm") #geom adds the line
+
+#box plot
+qplot(x=d$fl, y=d$cty, geom="boxplot", fill=I("forestgreen"))
+
+#bar plot
+qplot(x=d$fl,geom="bar",fill=I("green"))
+```
+
+#### Creating Data
+```{r}
+x_trt <- c("Control","Low","High")
+y_resp <- c(12,2.5,22.9)
+qplot(x=x_trt, y=y_resp, geom="col", fill=I(c("khaki", "slategray", "goldenrod")))
+```
+
+## `ggplot` uses data frames instead of vectors
+* [Themes:](https://ggplot2.tidyverse.org/reference/ggtheme.html)
+  + base
+  + bw
+  + classic
+  + linedraw
+  + dark
+  + minimal
+```{r}
+p1 <- ggplot(data=d, mapping=aes(x=displ, y=cty, color=cyl)) +  #good style to indent after the plus
+  geom_point()
+p1
+
+p1 + theme_bw(base_size=20, base_family="serif") #you can keep adding to the plot
+
+p2 <- ggplot(data=d, aes(x=fl, fill=fl)) +
+  geom_bar()
+p2 + coord_flip() + theme_bw(base_size=15, base_family="sans")
+```
+
+#### More theme modifications
+```{r}
+p3 <- ggplot(d, aes(x=displ, y=cty)) +
+  geom_point(size=5, shape=21, color="magenta", fill="black") +
+  xlab("count") +
+  ylab("Fuel") +
+  labs(title="Fuel vs. Count", subtitle="subtitle")
+
+p3 + xlim(1,10) + ylim(0, 35)
+
+cols <- viridis(7, option="magma") #specify you want 7 colors for 7 groups
+ggplot(d, aes(x=class, y=hwy, fill=class)) +  #fill=class gives color
+  geom_boxplot() +
+  scale_fill_manual(values=cols)
+
+```
