@@ -53,4 +53,6 @@ These notes will be a great reference point for me when working with R in future
 
 [1-19-2023| Data Frames and Functions](Class_Notes/dataframesandfunctions.html)
 
-[1-23-2023| Tidyverse and dplyr](Class_Notes/dplyr.html)
+[1-23-2023| Tidyverse and `dplyr`](Class_Notes/dplyr.html)
+
+[1-24-2023| `ggplot`](Class_Notes/ggplot.html)
