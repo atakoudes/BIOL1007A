@@ -8,7 +8,20 @@ output:
     highlight: github
 ---
 
-## Daily Assignments
+
+<center>
+# <span style="color:#F75D59">BIOL1007A: Reproducible Biology in R</span>
+![](/Users/alextakoudes/Desktop/Classes/BIOL1007/Photos/2048x1365-Iris-SEO-LI2611127-1ed4b5d.jpg)
+</center>
+
+***
+<span style="color:#609f60">
+My name is Alex Takoudes and this is my collection of notes and assignments from my J-Term class
+for Winter of 2023. This is my first time coding with R but I have prior experience with Python.
+These notes will be a great reference point for me when working with R in future classes.
+</span>
+
+## <span style="color:#F75D59">Daily Assignments</span>
 
 [Assignment 1](Assignments/Assignment1.html)
 
@@ -22,13 +35,13 @@ output:
 
 [Assignment 6](Assignments/Assignment6.html)
 
-## Weekly Assignments
+## <span style="color:#F75D59">Weekly Assignments</span>
 
 [Weekly Assignment 1](WeeklyAssignments/Weekly_assignment1.html)
 
 [Weekly Assignment 2](WeeklyAssignments/Weekly_assignment2.html)
 
-## Class Notes
+## <span style="color:#F75D59">Class Notes</span>
 
 [Day 1 Notes](Assignments/Assignment1.html)
 

@@ -471,8 +471,7 @@ input and generates irisFinal as the output.</h5>
   mutate(Sepal.Area = Sepal.Length*Sepal.Width) %&gt;%
   group_by(Species) %&gt;%
   summarize(mean_sl=mean(Sepal.Length), mean_sw=mean(Sepal.Width), Totaln=n())
-
-print(iris_final)</code></pre>
+  print(iris_final)</code></pre>
 <pre><code>## # A tibble: 2 × 4
 ##   Species    mean_sl mean_sw Totaln
 ##   &lt;fct&gt;        &lt;dbl&gt;   &lt;dbl&gt;  &lt;int&gt;
