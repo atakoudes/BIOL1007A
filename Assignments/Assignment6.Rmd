@@ -56,6 +56,6 @@ iris_final <- iris %>%
   arrange(by=desc(Sepal.Length)) %>%
   mutate(Sepal.Area = Sepal.Length*Sepal.Width) %>%
   group_by(Species) %>%
-  summarize(mean_sl=mean(Sepal.Length), mean_sw=mean(Sepal.Width), Totaln=n())
-  print(iris_final)
+  summarize(mean_sl=mean(Sepal.Length), mean_sw=mean(Sepal.Width), Totaln=n()) %>%
+  print()
 ```
