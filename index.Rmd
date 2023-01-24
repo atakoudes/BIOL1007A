@@ -35,6 +35,8 @@ These notes will be a great reference point for me when working with R in future
 
 [Assignment 6](Assignments/Assignment6.html)
 
+[Assignment 7](Assignments/Assignment7.html)
+
 ## <span style="color:#F75D59">Weekly Assignments</span>
 
 [Weekly Assignment 1](WeeklyAssignments/Weekly_assignment1.html)
