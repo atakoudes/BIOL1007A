@@ -47,21 +47,66 @@ big_clean_species %>%
 
 ```{r}
 cols <- viridis(count(stw_grouped), option="turbo")
-plot_h <- ggplot(big_clean_species, aes(x=species, y=height, fill=species)) +
-  geom_boxplot() +
-  scale_fill_manual(values=cols)
 
-plot_h <- plot_h + 
+annotation <- data.frame(
+   x = 8,
+   y = 200,
+   label = "label"
+)
+
+
+plot_h <- ggplot(big_clean_species, aes(x=species, y=height, fill=species)) +
+  geom_boxplot(show.legend=F) +
+  geom_label(label="p=1.2E-0.5", x=8.5, y=230, size=5.5, fill="white", show.legend=F) +
+  scale_fill_manual(values=cols) +
   xlab("Species") +
   ylab("Height (cm)") +
-  theme_minimal() +
-  geom_text(x=8.5, y=230, label="p=1.2E-0.5", size=6, color="darkred")
+  theme_minimal()
 
 plot_h
 ```
 
 #### For an extra (optional) challenge: overlay the data points onto the box plots (hint: look into geom_jitter or geom_point). See if you can change the color of the points, depending on the gender or sex variables.
 
+```{r}
+plot_h <- plot_h +
+    geom_point(shape=21, color="white") #add points to the graph. after boxplot so no overlap
+  
+plot_h
+```
+
 ##### 4. Using the same or a different built-in data set, create at least one additional (and different kind of) plot. Experiment with different arguments, features, and colors.
 
+```{r}
+data(mpg)
+
+hwy_mpg <- mpg %>%
+  group_by(class) %>%           #group by vehicle type
+  summarize(mpg=mean(hwy)) %>%  #calculate average mpg for vehicle type
+  mutate(Roads="Highway")            #add "type" column to help with bar chart
+
+cty_mpg <- mpg %>%              #repeat for city mpg
+  group_by(class) %>%
+  summarize(mpg=mean(cty)) %>%
+  mutate(Roads="City")
+
+combined_mpg <- rbind(hwy_mpg, cty_mpg) %>%  #use rbind (combine by rows). Adds two 3x7 tibbles into one 3x14
+  arrange(by=class) %>% #for neatness, put the same vehicle types next to each other
+  print()
+
+colors <- viridis(2, option="turbo")
+
+mpg_plot <- ggplot(combined_mpg, aes(x=reorder(class, mpg), y=mpg, fill=Roads, levels=mpg, decreasing=T)) + #reorder x axis by the mpg values
+  geom_bar(position="dodge", stat="identity") + #position= "dodge" makes the bars side by side
+  coord_flip() +
+  theme_minimal() +
+  ylab("Miles per Gallon (mpg)") +
+  xlab("Vehicle Class") +
+  scale_fill_manual(values=(c("#E69F00", "#56B4E9")))
+mpg_plot
+```
+
 ##### 5. Finally, create a multi-panel figure with the graphs you created.
+```{r}
+plot_h/mpg_plot
+```
