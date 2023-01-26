@@ -11,9 +11,9 @@
 
 <meta name="author" content="Alex Takoudes" />
 
-<meta name="date" content="2023-01-23" />
+<meta name="date" content="2023-01-26" />
 
-<title>Assignment 6</title>
+<title>Assignment 8</title>
 
 <script>// Pandoc 2.9 adds attributes on both header and div. We remove the former (to
 // be compatible with the behavior of Pandoc < 2.8).
@@ -350,138 +350,92 @@ display: none;
 
 
 
-<h1 class="title toc-ignore">Assignment 6</h1>
+<h1 class="title toc-ignore">Assignment 8</h1>
 <h4 class="author">Alex Takoudes</h4>
-<h4 class="date">2023-01-23</h4>
+<h4 class="date">2023-01-26</h4>
 
 </div>
 
 
-<div id="examine-the-structure-of-the-iris-data-set.-how-many-observations-and-variables-are-in-the-data-set" class="section level5">
-<h5>1. Examine the structure of the iris data set. How many observations
-and variables are in the data set?</h5>
-<pre class="r"><code>library(dplyr)
-## 
-## Attaching package: &#39;dplyr&#39;
-## The following objects are masked from &#39;package:stats&#39;:
-## 
-##     filter, lag
-## The following objects are masked from &#39;package:base&#39;:
-## 
-##     intersect, setdiff, setequal, union</code></pre>
-<pre class="r"><code>data(iris)
-#iris has 5 variables with 150 observations each.
-glimpse(iris)</code></pre>
-<pre><code>## Rows: 150
-## Columns: 5
-## $ Sepal.Length &lt;dbl&gt; 5.1, 4.9, 4.7, 4.6, 5.0, 5.4, 4.6, 5.0, 4.4, 4.9, 5.4, 4.…
-## $ Sepal.Width  &lt;dbl&gt; 3.5, 3.0, 3.2, 3.1, 3.6, 3.9, 3.4, 3.4, 2.9, 3.1, 3.7, 3.…
-## $ Petal.Length &lt;dbl&gt; 1.4, 1.4, 1.3, 1.5, 1.4, 1.7, 1.4, 1.5, 1.4, 1.5, 1.5, 1.…
-## $ Petal.Width  &lt;dbl&gt; 0.2, 0.2, 0.2, 0.2, 0.2, 0.4, 0.3, 0.2, 0.2, 0.1, 0.2, 0.…
-## $ Species      &lt;fct&gt; setosa, setosa, setosa, setosa, setosa, setosa, setosa, s…</code></pre>
-</div>
-<div id="create-a-new-data-frame-iris1-that-contains-only-the-species-virginica-and-versicolor-with-sepal-lengths-longer-than-6-cm-and-sepal-widths-longer-than-2.5-cm.-how-many-observations-and-variables-are-in-the-data-set" class="section level5">
-<h5>2. Create a new data frame iris1 that contains only the species
-virginica and versicolor with sepal lengths longer than 6 cm and sepal
-widths longer than 2.5 cm. How many observations and variables are in
-the data set?</h5>
-<pre class="r"><code>iris1 &lt;- filter(iris, Species==&quot;virginica&quot; | Species==&quot;versicolor&quot; , Sepal.Length&gt;6 , Sepal.Width&gt;2.5) 
-#could have used the %in% function for species filtering.
+<div id="code-reflection-weekly-assignment-2" class="section level2">
+<h2>Code Reflection: <a href="WeeklyAssignments/Weekly_assignment2.html">Weekly Assignment
+2</a></h2>
+<pre class="r"><code>set.seed(123)
 
-glimpse(iris1) #iris1 now has only 56 observations but still 5 variables</code></pre>
-<pre><code>## Rows: 56
-## Columns: 5
-## $ Sepal.Length &lt;dbl&gt; 7.0, 6.4, 6.9, 6.5, 6.3, 6.6, 6.1, 6.7, 6.1, 6.1, 6.4, 6.…
-## $ Sepal.Width  &lt;dbl&gt; 3.2, 3.2, 3.1, 2.8, 3.3, 2.9, 2.9, 3.1, 2.8, 2.8, 2.9, 3.…
-## $ Petal.Length &lt;dbl&gt; 4.7, 4.5, 4.9, 4.6, 4.7, 4.6, 4.7, 4.4, 4.0, 4.7, 4.3, 4.…
-## $ Petal.Width  &lt;dbl&gt; 1.4, 1.5, 1.5, 1.5, 1.6, 1.3, 1.4, 1.4, 1.3, 1.2, 1.3, 1.…
-## $ Species      &lt;fct&gt; versicolor, versicolor, versicolor, versicolor, versicolo…</code></pre>
-</div>
-<div id="now-create-a-iris2-data-frame-from-iris1-that-contains-only-the-columns-for-species-sepal.length-and-sepal.width.-how-many-observations-and-variables-are-in-the-data-set" class="section level5">
-<h5>3. Now, create a iris2 data frame from iris1 that contains only the
-columns for Species, Sepal.Length, and Sepal.Width. How many
-observations and variables are in the data set?</h5>
-<pre class="r"><code>iris2 &lt;- select(iris1, Sepal.Length, Sepal.Width, Species)
-glimpse(iris2) #iris2 still has 56 observations but only 3 variables</code></pre>
-<pre><code>## Rows: 56
-## Columns: 3
-## $ Sepal.Length &lt;dbl&gt; 7.0, 6.4, 6.9, 6.5, 6.3, 6.6, 6.1, 6.7, 6.1, 6.1, 6.4, 6.…
-## $ Sepal.Width  &lt;dbl&gt; 3.2, 3.2, 3.1, 2.8, 3.3, 2.9, 2.9, 3.1, 2.8, 2.8, 2.9, 3.…
-## $ Species      &lt;fct&gt; versicolor, versicolor, versicolor, versicolor, versicolo…</code></pre>
-</div>
-<div id="create-an-iris3-data-frame-from-iris2-that-orders-the-observations-from-largest-to-smallest-sepal-length.-show-the-first-6-rows-of-this-data-set." class="section level5">
-<h5>4. Create an iris3 data frame from iris2 that orders the
-observations from largest to smallest sepal length. Show the first 6
-rows of this data set.</h5>
-<pre class="r"><code>iris3 &lt;- arrange(iris2, by=desc(Sepal.Length))
-head(iris3)</code></pre>
-<pre><code>##   Sepal.Length Sepal.Width   Species
-## 1          7.9         3.8 virginica
-## 2          7.7         3.8 virginica
-## 3          7.7         2.6 virginica
-## 4          7.7         2.8 virginica
-## 5          7.7         3.0 virginica
-## 6          7.6         3.0 virginica</code></pre>
-</div>
-<div id="create-an-iris4-data-frame-from-iris3-that-creates-a-column-with-a-sepal-area-length-width-value-for-each-observation.-how-many-observations-and-variables-are-in-the-data-set" class="section level5">
-<h5>5. Create an iris4 data frame from iris3 that creates a column with
-a sepal area (length * width) value for each observation. How many
-observations and variables are in the data set?</h5>
-<pre class="r"><code>iris4 &lt;- mutate(iris3, Sepal.Area = Sepal.Length*Sepal.Width)
-glimpse(iris4) #iris4 still has 56 observations but now has a 4th variable</code></pre>
-<pre><code>## Rows: 56
-## Columns: 4
-## $ Sepal.Length &lt;dbl&gt; 7.9, 7.7, 7.7, 7.7, 7.7, 7.6, 7.4, 7.3, 7.2, 7.2, 7.2, 7.…
-## $ Sepal.Width  &lt;dbl&gt; 3.8, 3.8, 2.6, 2.8, 3.0, 3.0, 2.8, 2.9, 3.6, 3.2, 3.0, 3.…
-## $ Species      &lt;fct&gt; virginica, virginica, virginica, virginica, virginica, vi…
-## $ Sepal.Area   &lt;dbl&gt; 30.02, 29.26, 20.02, 21.56, 23.10, 22.80, 20.72, 21.17, 2…</code></pre>
-</div>
-<div id="create-the-variable-iristab-that-shows-the-average-sepal-length-the-average-sepal-width-and-the-sample-size-of-the-entire-iris4-data-frame-and-print-iristab." class="section level5">
-<h5>6. Create the variable irisTab that shows the average sepal length,
-the average sepal width, and the sample size of the entire iris4 data
-frame and print irisTab.</h5>
-<pre class="r"><code>irisTab &lt;- summarize(iris4, mean_sl=mean(Sepal.Length), mean_sw=mean(Sepal.Width), Totaln=n())
-print(irisTab)</code></pre>
-<pre><code>##    mean_sl  mean_sw Totaln
-## 1 6.698214 3.041071     56</code></pre>
-</div>
-<div id="finally-create-iris5-that-calculates-the-average-sepal-length-the-average-sepal-width-and-the-sample-size-for-each-species-of-in-the-iris4-data-frame-and-print-iris5." class="section level5">
-<h5>7. Finally, create iris5 that calculates the average sepal length,
-the average sepal width, and the sample size for each species of in the
-iris4 data frame and print iris5.</h5>
-<pre class="r"><code>iris5 &lt;- group_by(iris4, Species)
-iris5 &lt;- summarize(iris5, mean_sl=mean(Sepal.Length), mean_sw=mean(Sepal.Width), Totaln=n())
-# could have used better column names here
+##################################################
+# FUNCTION: datagen 
+# generates a two column data frame of data.
+# inputs:
+#   c_mean: mean value for normal distribution of control data
+#   c_sd: standard deviation value for normal distribution of control data
+#   t_mean: mean value for normal distribution of treatment data
+#   t_sd: standard deviation value for normal distribution of treatment data
+#   nrows: number of rows of data
+# outputs: 2 column matrix nrows long with half control data and half treatment data
+#------------------------------------------------- 
+datagen &lt;- function(c_mean=10, c_sd=1.5, t_mean=45, t_sd=2, nrows=50){ #nrows as default argument might be better as &quot;n&quot;
+  dFrame &lt;- data.frame(
+    Type = rep(c(&quot;Control&quot;, &quot;Treatment&quot;),each=nrows/2), 
+    Value =  c(control = rnorm(nrows/2, mean=c_mean, sd=c_sd),
+               treatment = rnorm(nrows/2, mean=t_mean, sd=t_sd)
+               )
+    )
+  return(dFrame)
+}
 
-print(iris5)</code></pre>
-<pre><code>## # A tibble: 2 × 4
-##   Species    mean_sl mean_sw Totaln
-##   &lt;fct&gt;        &lt;dbl&gt;   &lt;dbl&gt;  &lt;int&gt;
-## 1 versicolor    6.48    2.99     17
-## 2 virginica     6.79    3.06     39</code></pre>
+# One difference with my code is that I used number of rows as an argument. It might have been better to use the number of samples as this would be an easier number to come up with. Another difference is that my data frame creates the elements Type and Value directly. I&#39;m not sure which is cleaner, but when it comes to troubleshooting, it might have been easier to have the Type and Value definitions outside of the dataframe.
+
+##################################################
+
+data &lt;- datagen() #default values
+data2 &lt;- datagen(5, 3, 90, 4) #change the means and standard deviations
+
+head(data)</code></pre>
+<pre><code>##             Type     Value
+## control1 Control  9.159287
+## control2 Control  9.654734
+## control3 Control 12.338062
+## control4 Control 10.105763
+## control5 Control 10.193932
+## control6 Control 12.572597</code></pre>
+<pre class="r"><code>head(data2) #looks like it works</code></pre>
+<pre><code>##             Type    Value
+## control1 Control 5.759956
+## control2 Control 4.914360
+## control3 Control 4.871389
+## control4 Control 9.105807
+## control5 Control 4.322687
+## control6 Control 9.549412</code></pre>
+<pre class="r"><code>##################################################
+# FUNCTION: psearch
+# returns the pvalue of a given two column dataframe
+# inputs:
+#   df: dataframe to be analyzed
+# outputs: pvalue of two column data frame
+#------------------------------------------------- 
+psearch &lt;- function(df=NULL){
+  if(is.null(df)){
+    df &lt;- datagen()
+  }
+  summary &lt;- summary(aov(data[[2]]~data[[1]], data=df))
+  pvalue &lt;- summary[[1]][[&quot;Pr(&gt;F)&quot;]][[1]] #go into the summary list and find the P value. Only take the first value out of P because P[[2]] is NA 
+  return(pvalue)
+}
+
+# My code is different from the solution because it does the summary and the test in one line. For reproducibility purposes, it might have been better to save the test as a new variable and then make a summary of it on the next line. When it comes to the test, I called the variables by sub-setting the data frame which might be more reproducible than the solutions where they are called by row name. Although it doesn&#39;t really matter as long as the column names don&#39;t change.
+
+# I also added an &quot;if&quot; statement at the beginning which will call the datagen functin to create a dataframe in case the user does not input any data.
+##################################################
+
+psearch(data)</code></pre>
+<pre><code>## [1] 1.183614e-51</code></pre>
 </div>
-<div id="in-these-exercises-you-have-successively-modified-different-versions-of-the-data-frame-iris1-iris2-iris3-iris4-iris5.-at-each-stage-the-output-data-frame-from-one-operation-serves-as-the-input-fro-the-next.-a-more-efficient-way-to-do-this-is-to-use-the-pipe-operator-from-the-tidyr-package.-rework-all-of-your-previous-statements-except-for-iristab-into-an-extended-piping-operation-that-uses-iris-as-the-input-and-generates-irisfinal-as-the-output." class="section level5">
-<h5>8. In these exercises, you have successively modified different
-versions of the data frame iris1 iris2 iris3 iris4 iris5. At each stage,
-the output data frame from one operation serves as the input fro the
-next. A more efficient way to do this is to use the pipe operator %&gt;%
-from the tidyr package. Rework all of your previous statements (except
-for irisTab) into an extended piping operation that uses iris as the
-input and generates irisFinal as the output.</h5>
-<pre class="r"><code>iris_final &lt;- iris %&gt;% 
-  filter(Species==&quot;virginica&quot; | Species==&quot;versicolor&quot; , Sepal.Length&gt;6 , Sepal.Width&gt;2.5) %&gt;%
-  select(Sepal.Length, Sepal.Width, Species) %&gt;%
-  arrange(by=desc(Sepal.Length)) %&gt;%
-  mutate(Sepal.Area = Sepal.Length*Sepal.Width) %&gt;%
-  group_by(Species) %&gt;%
-  summarize(mean_sl=mean(Sepal.Length), mean_sw=mean(Sepal.Width), Totaln=n()) %&gt;%
-  print()</code></pre>
-<pre><code>## # A tibble: 2 × 4
-##   Species    mean_sl mean_sw Totaln
-##   &lt;fct&gt;        &lt;dbl&gt;   &lt;dbl&gt;  &lt;int&gt;
-## 1 versicolor    6.48    2.99     17
-## 2 virginica     6.79    3.06     39</code></pre>
-<pre class="r"><code>#could have re-ordered so that the mutate sepal area actually got printed into the final output.</code></pre>
+<div id="code-reflection-assignment-6" class="section level2">
+<h2>Code Reflection: <a href="Assignments/Assignment6.html">Assignment
+6</a></h2>
+<ul>
+<li>Click link to view annotations</li>
+</ul>
 </div>
 
 

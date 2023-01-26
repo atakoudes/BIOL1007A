@@ -6,15 +6,20 @@ output: html_document
 ---
 
 ##### 1. Examine the structure of the iris data set. How many observations and variables are in the data set?
-```{r}
+```{r, collapse=T}
 library(dplyr)
+```
+
+```{r}
 data(iris)
 #iris has 5 variables with 150 observations each.
 glimpse(iris)
 ```
 ##### 2. Create a new data frame iris1 that contains only the species virginica and versicolor with sepal lengths longer than 6 cm and sepal widths longer than 2.5 cm. How many observations and variables are in the data set?
 ```{r}
-iris1 <- filter(iris, Species=="virginica" | Species=="versicolor" , Sepal.Length>6 , Sepal.Width>2.5)
+iris1 <- filter(iris, Species=="virginica" | Species=="versicolor" , Sepal.Length>6 , Sepal.Width>2.5) 
+#could have used the %in% function for species filtering.
+
 glimpse(iris1) #iris1 now has only 56 observations but still 5 variables
 ```
 ##### 3. Now, create a iris2 data frame from iris1 that contains only the columns for Species, Sepal.Length, and Sepal.Width. How many observations and variables are in the data set?
@@ -45,6 +50,8 @@ print(irisTab)
 ```{r}
 iris5 <- group_by(iris4, Species)
 iris5 <- summarize(iris5, mean_sl=mean(Sepal.Length), mean_sw=mean(Sepal.Width), Totaln=n())
+# could have used better column names here
+
 print(iris5)
 ```
 
@@ -58,4 +65,6 @@ iris_final <- iris %>%
   group_by(Species) %>%
   summarize(mean_sl=mean(Sepal.Length), mean_sw=mean(Sepal.Width), Totaln=n()) %>%
   print()
+
+#could have re-ordered so that the mutate sepal area actually got printed into the final output.
 ```

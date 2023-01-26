@@ -1,0 +1,69 @@
+---
+title: "Assignment 8"
+author: "Alex Takoudes"
+date: "2023-01-26"
+output: html_document
+---
+
+## Code Reflection: [Weekly Assignment 2](WeeklyAssignments/Weekly_assignment2.html)
+
+```{r}
+set.seed(123)
+
+##################################################
+# FUNCTION: datagen 
+# generates a two column data frame of data.
+# inputs:
+#   c_mean: mean value for normal distribution of control data
+#   c_sd: standard deviation value for normal distribution of control data
+#   t_mean: mean value for normal distribution of treatment data
+#   t_sd: standard deviation value for normal distribution of treatment data
+#   nrows: number of rows of data
+# outputs: 2 column matrix nrows long with half control data and half treatment data
+#------------------------------------------------- 
+datagen <- function(c_mean=10, c_sd=1.5, t_mean=45, t_sd=2, nrows=50){ #nrows as default argument might be better as "n"
+  dFrame <- data.frame(
+    Type = rep(c("Control", "Treatment"),each=nrows/2), 
+    Value =  c(control = rnorm(nrows/2, mean=c_mean, sd=c_sd),
+               treatment = rnorm(nrows/2, mean=t_mean, sd=t_sd)
+               )
+    )
+  return(dFrame)
+}
+
+# One difference with my code is that I used number of rows as an argument. It might have been better to use the number of samples as this would be an easier number to come up with. Another difference is that my data frame creates the elements Type and Value directly. I'm not sure which is cleaner, but when it comes to troubleshooting, it might have been easier to have the Type and Value definitions outside of the dataframe.
+
+##################################################
+
+data <- datagen() #default values
+data2 <- datagen(5, 3, 90, 4) #change the means and standard deviations
+
+head(data)
+head(data2) #looks like it works
+
+##################################################
+# FUNCTION: psearch
+# returns the pvalue of a given two column dataframe
+# inputs:
+#   df: dataframe to be analyzed
+# outputs: pvalue of two column data frame
+#------------------------------------------------- 
+psearch <- function(df=NULL){
+  if(is.null(df)){
+    df <- datagen()
+  }
+  summary <- summary(aov(data[[2]]~data[[1]], data=df))
+  pvalue <- summary[[1]][["Pr(>F)"]][[1]] #go into the summary list and find the P value. Only take the first value out of P because P[[2]] is NA 
+  return(pvalue)
+}
+
+# My code is different from the solution because it does the summary and the test in one line. For reproducibility purposes, it might have been better to save the test as a new variable and then make a summary of it on the next line. When it comes to the test, I called the variables by sub-setting the data frame which might be more reproducible than the solutions where they are called by row name. Although it doesn't really matter as long as the column names don't change.
+
+# I also added an "if" statement at the beginning which will call the datagen functin to create a dataframe in case the user does not input any data.
+##################################################
+
+psearch(data)
+```
+
+## Code Reflection: [Assignment 6](Assignments/Assignment6.html)
+* Click link to view annotations
