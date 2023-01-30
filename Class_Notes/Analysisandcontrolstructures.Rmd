@@ -154,11 +154,57 @@ plot
 if(condition){expression1}
 
 if(condition){expression1} else{expression2}
+
+ifelse(condition, yes, no)
 ```
 
 ```{r}
 z <- signif(runif(1), digits=2)
 
-if (z>0.8){cat(z, "is a large number", "\n")}
+if (z>0.8){cat(z, "is a large number", "\n")} else #cat() is the concatenate function
+if (z<0.2){cat(z, "is a small number", "\n")} else
+  {cat(z, "is a number of typical size", "\n")
+    cat("z^2 =", z^2, "\n")
+    }
 ```
+
+#### `ifelse` to fill vectors
+Insect population where the females lay on average `10.2` eggs and follows a Poisson distribution. There is a 35% chance of parasitism where no eggs are laid. Let's make a distribution or 1000 individuals
+```{r}
+tester <- runif(1000)
+eggs <- ifelse(tester>0.35, rpois(n=1000, lambda=10.2), 0)
+hist(eggs)
+```
+
+#### `ifelse` with a vector of p values from a simulation
+We want to create a vector to highlight the significant ones for plotting
+
+```{r}
+p_vals <- runif(1000)
+z <- ifelse(p_vals <= 0.025, "lowerTail", "nonSig")
+z[p_vals>=0.975] <- "upperTail"
+table(z)
+```
+
+## `for` loops
+* Not super popular in r
+  + very slow with certain operations
+  + r has vectorization
+  + family of apply functions
+```{r, eval=F}
+for(var in sequence){
+  body of the for loop
+}
+```
+
+```{r}
+for(i in 1:5){
+  cat("stuck in a loop", i, "\n")
+  cat(3+2, "\n")
+  cat(3+i, "\n")
+}
+```
+
+
+
 
