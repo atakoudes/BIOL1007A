@@ -5,3 +5,104 @@ date: "2023-01-30"
 output: html_document
 ---
 
+##### 1. Using a for loop and an if statement, write a function to calculate the number of zeroes in a numeric vector. Before entering the loop, set up a vector of integers with some zero values. Then, set up a counter variable counter <- 0. Inside the loop, add 1 to counter each time you have a zero in the vector. Finally, use return(counter) for the output.
+
+```{r}
+my_vec <- sample(c(0:5), size=100, replace=T) #initialize a vector to be sampled
+my_vec
+
+zero_counter <- function(vector=my_vec){
+  counter <- 0                        #initialize the counter
+  for(i in my_vec){                   #get a little fancy and just iterate through the actual values of my_vec
+    if(i==0){counter <- counter + 1}  #if that value is 0, add 1 to the counter
+  }
+  return(counter)
+}
+
+zero_counter()
+```
+
+##### 2. Write a function that takes as input two integers representing the number of rows and columns in a matrix. The output is a matrix of these dimensions in which each element is the product of the row number x the column number.
+
+```{r}
+multiply <- function(rows, cols){
+  matrix <- matrix(nrow=rows, ncol=cols)
+  for (i in 1:rows) {
+    for (j in 1:cols) {
+      matrix[i,j] <- i*j
+    } # end of column j loop
+  } # end or row i loop
+  return(matrix)
+}
+
+multiply(2, 2)
+multiply(5, 3)
+```
+
+##### 3. Use a for loop to repeat your previous functions from Weekly Assignment 2 (which simulate a data frame and extract a p-value) 100 times. Store the results in a data frame that has 1 column indicating the replicate number and 1 column for the p-values (a total of 2 columns and 100 rows).
+
+```{r}
+
+##################################################
+# FUNCTION: datagen 
+# generates a two column data frame of data.
+# inputs:
+#   c_mean: mean value for normal distribution of control data
+#   c_sd: standard deviation value for normal distribution of control data
+#   t_mean: mean value for normal distribution of treatment data
+#   t_sd: standard deviation value for normal distribution of treatment data
+#   nrows: number of rows of data
+# outputs: 2 column matrix nrows long with half control data and half treatment data
+#------------------------------------------------- 
+
+datagen <- function(c_mean=10, c_sd=1.5, t_mean=45, t_sd=2, nrows=50){
+  dFrame <- data.frame(
+    Type = rep(c("Control", "Treatment"),each=nrows/2), 
+    Value =  c(control = rnorm(nrows/2, mean=c_mean, sd=c_sd),
+               treatment = rnorm(nrows/2, mean=t_mean, sd=t_sd)
+               )
+    )
+  return(dFrame)
+}
+##################################################
+
+##################################################
+# FUNCTION: psearch
+# returns the pvalue of a given two column data frame
+# inputs:
+#   df: data frame to be analyzed
+# outputs: p value of two column data frame
+#------------------------------------------------- 
+psearch <- function(df=NULL){
+  if(is.null(df)){
+    df <- datagen()
+  }
+  test <- aov(Value ~ Type, data=df)
+  testSummary <- summary(test)
+  pvalue <- testSummary[[1]][["Pr(>F)"]][1]
+  return(pvalue)
+}
+##################################################
+
+##################################################
+# FUNCTION: dataloop
+# generates a data frame containing 100 simulated values for P from datagen() and psearch()
+# inputs:
+#   x: number of iterations
+# outputs: 2x100 dataframe with replicate numbers and p values
+#------------------------------------------------- 
+dataloop <- function(x=100){
+  pvals <- vector("double", x)    #initialize pvals as a 100 item long vector
+  counts <- vector("integer", x)  #initialize counts as a 100 item long vector
+  for(i in 1:100){
+    pvals[i] <- psearch()
+    counts[i] <- i
+  }
+  frame <- data.frame(counts, pvals) #turn the vectors into a data frame
+  return(frame)
+}
+##################################################
+
+answer <- dataloop()
+tail(answer)
+```

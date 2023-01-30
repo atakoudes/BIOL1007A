@@ -74,5 +74,5 @@ psearch <- function(df=NULL){
 }
 ##################################################
 
-psearch(data)
+psearch()
 ```
