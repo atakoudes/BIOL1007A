@@ -3,5 +3,143 @@ title: "Analysis and Control Structures"
 author: "Alex Takoudes"
 date: "2023-01-30"
 output: html_document
+editor_options: 
+  chunk_output_type: console
 ---
 
+#### Setting up
+
+```{r, collapse=T}
+library(tidyverse)
+library(ggthemes)
+library(dplyr)
+```
+
+```{r}
+# Data obtained from Veysey Powell and Babbitt 2016: An experimental test of buffer utility as a technique for managing pool-breeding amphibians https://datadryad.org/stash/dataset/doi:10.5061%2Fdryad.547rp
+
+dryadData <- read.table("/Users/alextakoudes/BIOL1007A/Data/veysey-babbitt_data_amphibians.csv", header=TRUE, sep=",")
+
+glimpse(dryadData)
+```
+
+## Analysis
+#### Experimental designs
+* Independent/explanatory variable vs. dependent/response variable
+* Continuous (range of numbers: height, weight, temp) vs. discrete/categorical(categories: species, treatments, site)
+
+
+x-axis/y-axis | continuous | categorical
+-----------|------------|--------------
+**continuous** | linear regression | logistic regression
+**categorical** | T-test (2 groups) or Anova (2+) | chi-squared (count)
+
+## Basic Linear Regression: Two continuous variables
+#### Is there a relationship between the mean pool hydroperiod and the number of breeding frogs caught
+
+```{r}
+
+# model y (response) ~ x (explanatory)
+regModel <- lm(count.total.adults ~ mean.hydro, data=dryadData)
+summary(regModel)
+
+#histogram looks normal
+hist(regModel$residuals)
+
+#bring out just the r squared value
+summary(regModel)$"r.squared"
+
+#scatterplot
+regPlot <- ggplot(data=dryadData, aes(x=mean.hydro, y=count.total.adults)) +
+  geom_point() +
+  stat_smooth(method=lm, se=0.99) + #add linear regression line with error bars
+  theme_few()
+
+regPlot
+```
+
+## Basic Anova: Continuous vs. Categorical
+#### Was there a statistically significant difference in the number of adults among wetlands?
+
+```{r}
+ANOmodel <- aov(count.total.adults~factor(wetland),data=dryadData) #factor(wetland) groups the numbered wetlands into categorical
+
+summary(ANOmodel)
+
+dryadData %>%
+  group_by(wetland) %>%
+  summarize(avgHydro = mean(count.total.adults, na.rm=T), n=n())
+```
+
+#### Boxplot
+```{r}
+dryadData$wetland <- factor(dryadData$wetland) #overwrite wetland data with factored wetland data
+class(dryadData$wetland)
+
+ANOplot <- ggplot(data=dryadData, aes(x=wetland, y=count.total.adults, fill=species)) +
+  geom_boxplot() +
+  scale_fill_grey()
+
+ANOplot
+# ggsave(file="SpeciesBoxplots.pdf", plot=ANOplot, device="pdf") save plot to pdf
+```
+
+## Logistic Regression: Categorical vs. Continuous
+* gamma probabilities are best for continuous variables that are always positive and have a skewed distribution
+
+```{r}
+x_var <- sort(rgamma(n=200, shape=5, scale=5))
+y_var <- sample(rep(c(1,0), each=100), prob=seq_len(200))
+log_reg_data <- data.frame(x_var, y_var)
+
+log_reg_model <- glm(y_var ~ x_var,      #generalized linear model
+                     data=log_reg_data, 
+                     family=binomial(link=logit)
+                  )
+
+summary(log_reg_model)
+
+log_reg_plot <- ggplot(data=log_reg_data, aes(x=x_var, y=y_var)) +
+  geom_point() +
+  stat_smooth(method="glm", method.args=list(family=binomial))
+
+log_reg_plot
+```
+
+## Contingency Tables (chi-squared): Categorical vs. Categorical
+#### Are there differences in counts of males and females between species?
+
+
+```{r}
+count_data <- dryadData %>%
+  group_by(species) %>%
+  summarize(Males = sum(No.males, na.rm=T), 
+            Females=sum(No.females, na.rm=T)
+            ) %>%
+  select(-species) %>% #get rid of names for the species
+  as.matrix() #convert to matrix
+
+count_data
+
+row.names(count_data) =c("SS", "WF")
+count_data
+
+chisq.test(count_data)$residuals
+
+# mosaic plot
+mosaicplot(x=count_data, col=c("goldenrod", "gray"), shade=F)
+
+# bar plot
+count_data_long <- count_data %>%
+  as_tibble() %>%  #need to make it a tibble in order to pivot longer
+  mutate(Species=c(rownames(count_data))) %>%  #use the matrix to add species names
+  pivot_longer(cols=Males:Females, names_to="Sex", values_to="Count")
+
+count_data_long
+
+plot <- ggplot(data=count_data_long, aes(x=Species, y=Count, fill=Sex)) +
+  geom_bar(stat="identity", position="dodge") +
+  scale_fill_manual(values=c("darkslategrey", "midnightblue"))
+
+plot
+```
