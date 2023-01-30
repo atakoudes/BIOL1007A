@@ -1,7 +1,0 @@
----
-title: "Loading Data"
-author: "Alex Takoudes"
-date: "2023-01-26"
-output: html_document
----
-

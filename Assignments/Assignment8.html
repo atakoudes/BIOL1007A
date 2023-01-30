@@ -438,21 +438,11 @@ psearch(data)</code></pre>
 <div id="code-annotation-practice" class="section level2">
 <h2>Code Annotation Practice</h2>
 <pre class="r"><code>## Set up libraries
-library(tidyverse)</code></pre>
-<pre><code>## ── Attaching packages ─────────────────────────────────────── tidyverse 1.3.2 ──
-## ✔ ggplot2 3.4.0      ✔ purrr   1.0.1 
-## ✔ tibble  3.1.8      ✔ dplyr   1.0.10
-## ✔ tidyr   1.2.1      ✔ stringr 1.5.0 
-## ✔ readr   2.1.3      ✔ forcats 0.5.2 
-## ── Conflicts ────────────────────────────────────────── tidyverse_conflicts() ──
-## ✖ dplyr::filter() masks stats::filter()
-## ✖ dplyr::lag()    masks stats::lag()</code></pre>
-<pre class="r"><code>library(ggthemes)
+library(tidyverse)
+library(ggthemes)</code></pre>
+<pre class="r"><code># Data obtained from Veysey Powell and Babbitt 2016: An experimental test of buffer utility as a technique for managing pool-breeding amphibians https://datadryad.org/stash/dataset/doi:10.5061%2Fdryad.547rp
 
-
-# Data obtained from Veysey Powell and Babbitt 2016: An experimental test of buffer utility as a technique for managing pool-breeding amphibians https://datadryad.org/stash/dataset/doi:10.5061%2Fdryad.547rp
-
-dryadData &lt;- read.table(&quot;/Users/alextakoudes/Desktop/Classes/BIOL1007/doi_10/veysey powell and babbitt_data_buffers and amphibians2.csv&quot;, header=TRUE, sep=&quot;,&quot;, stringsAsFactors = TRUE)
+dryadData &lt;- read.table(&quot;/Users/alextakoudes/BIOL1007A/Data/veysey-babbitt_data_amphibians.csv&quot;, header=TRUE, sep=&quot;,&quot;, stringsAsFactors = TRUE)
 
  glimpse(dryadData)</code></pre>
 <pre><code>## Rows: 132
@@ -489,7 +479,10 @@ dryadData &lt;- read.table(&quot;/Users/alextakoudes/Desktop/Classes/BIOL1007/do
 <pre><code>## 
 ## AMMA RASY 
 ##   66   66</code></pre>
-<pre class="r"><code>dryadData$species&lt;-factor(dryadData$species, labels=c(&quot;Spotted Salamander&quot;, &quot;Wood Frog&quot;)) #creating &#39;labels&#39; to use for the plot
+<pre class="r"><code>dryadData$species&lt;-factor(
+  dryadData$species, 
+  labels=c(&quot;Spotted Salamander&quot;, &quot;Wood Frog&quot;) #creating &#39;labels&#39; to use for the plot
+  )
 
 #class(dryadData$treatment)
 dryadData$treatment &lt;- factor(dryadData$treatment, 
@@ -498,16 +491,24 @@ dryadData$treatment &lt;- factor(dryadData$treatment,
 
 
 p&lt;- ggplot(data=dryadData, 
-       aes(x=interaction(wetland, treatment), 
-           y=count.total.adults, fill=factor(year))) + geom_bar(position=&quot;dodge&quot;, stat=&quot;identity&quot;, color=&quot;black&quot;) +
-  ylab(&quot;Number of breeding adults&quot;) +
-  xlab(&quot;&quot;) +
-  scale_y_continuous(breaks = c(0,100,200,300,400,500)) +
-  scale_x_discrete(labels=c(&quot;30 (Ref)&quot;, &quot;124 (Ref)&quot;, &quot;141 (Ref)&quot;, &quot;25 (100m)&quot;,&quot;39 (100m)&quot;,&quot;55 (100m)&quot;,&quot;129 (100m)&quot;, &quot;7 (30m)&quot;,&quot;19 (30m)&quot;,&quot;20 (30m)&quot;,&quot;59 (30m)&quot;)) +
-  facet_wrap(~species, nrow=2, strip.position=&quot;right&quot;) +
-  theme_few() + scale_fill_grey() + 
-  theme(panel.background = element_rect(fill = &#39;gray94&#39;, color = &#39;black&#39;), legend.position=&quot;top&quot;,  legend.title= element_blank(), axis.title.y = element_text(size=12, face=&quot;bold&quot;, colour = &quot;black&quot;), strip.text.y = element_text(size = 10, face=&quot;bold&quot;, colour = &quot;black&quot;)) + 
-  guides(fill=guide_legend(nrow=1,byrow=TRUE)) 
+       aes(x=interaction(wetland, treatment), #group treatment and wetland into x=axis
+           y=count.total.adults, 
+           fill=factor(year))) + #sets the color to fill the bars with
+  geom_bar(position=&quot;dodge&quot;,     #makes the bars side by side instead of stacked
+           stat=&quot;identity&quot;,      #maps the y values to the y value we entered
+           color=&quot;black&quot;) +
+  ylab(&quot;Number of breeding adults&quot;) + #y label
+  xlab(&quot;&quot;) +                          #x label
+  scale_y_continuous(breaks = c(0,100,200,300,400,500)) + #sets the y-axis scale
+  scale_x_discrete(labels=c(&quot;30 (Ref)&quot;, &quot;124 (Ref)&quot;, &quot;141 (Ref)&quot;, &quot;25 (100m)&quot;,&quot;39 (100m)&quot;,&quot;55 (100m)&quot;,&quot;129 (100m)&quot;, &quot;7 (30m)&quot;,&quot;19 (30m)&quot;,&quot;20 (30m)&quot;,&quot;59 (30m)&quot;)) + #sets the scale for the x-axis
+  facet_wrap(~species, nrow=2, strip.position=&quot;right&quot;) + #turns the graph into a 2-panel figure by species
+  theme_few() + scale_fill_grey() + #theme and bar colors
+  theme(panel.background = element_rect(fill = &#39;gray94&#39;, color = &#39;black&#39;), #sets the background and border colors
+        legend.position=&quot;top&quot;,  #legend position
+        legend.title= element_blank(),  #delete legend title
+        axis.title.y = element_text(size=12, face=&quot;bold&quot;, colour = &quot;black&quot;), #formatting y axis title
+        strip.text.y = element_text(size = 10, face=&quot;bold&quot;, colour = &quot;black&quot;)) + #formatting the labels on the right created by facet_wrap. This area is called the &quot;strip&quot;.
+  guides(fill=guide_legend(nrow=1, byrow=TRUE)) #formats the legend to be a single row
 
 p</code></pre>
 <pre><code>## Warning: Removed 2 rows containing missing values (`geom_bar()`).</code></pre>

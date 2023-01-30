@@ -1,0 +1,95 @@
+---
+title: "Loading Data"
+author: "Alex Takoudes"
+date: "2023-01-26"
+output: html_document
+---
+
+### `read` Functions
+* Best format for data is `.csv`
+* `header=T` if you have column names
+* `sep = ","` seperates data by commans
+
+```{r, eval=F}
+
+#these functions read in datasets
+read.table(file="path/to/data.csv, header=TRUE, sep= ",") #header specifies that columns have names
+read.csv(file="data.csv", header=T)
+```
+
+### `write` Functions
+* Create and save a dataset
+```{r, eval=F}
+write.table(x=varname, file="outputfilename.csv", header=T, sep=",")
+```
+
+#### Use RDS Object when only working in R
+* `saveRDS()`
+* `readRDS()`
+* Make sure to put .RDS at the end
+* Helpful for large datasets
+```{r, eval=F}
+saveRDS(my_data, file="filename.RDS")
+P <- readRDS("filename.RDS")
+```
+
+#### Long vs. Wide Data Formats
+* Wide format contains values that **do not** repeat in the ID column
+* Long format contains values that **do** repeat in the ID column
+```{r, collapse=T}
+library(tidyverse)
+```
+
+***
+#### `pivot_longer()` converts wide to long
+
+```{r}
+head(billboard) #wide
+
+b1 <- billboard %>%
+  pivot_longer(
+    cols = starts_with("wk"), #specify which columns you want to make longer
+    names_to = "Week",        #name of new column
+    values_to = "Rank",       #name of a new column which will contain values
+    values_drop_na = TRUE     #removes any values where the values = NA
+    )
+
+glimpse(b1)
+```
+
+***
+#### `pivot_wider()` convers to wide
+* Best for making occupancy matrix
+
+```{r}
+
+glimpse(fish_encounters)
+
+#we want an occupancy matrix where the fish are the rows and the locations are the columns
+fish_encounters%>%
+  pivot_wider(
+    names_from = station, #which column you want to turn into multiple columns
+    values_from = seen,   #which column contains the values for the new columns
+    values_fill = 0       #all NAs will be 0
+    )
+```
+
+***
+## Loading in Data
+* Dyrad: makes research data freely reusable to everybody
+
+```{r}
+data <- read.table(
+  file="/Users/alextakoudes/BIOL1007A/Data/veysey-babbitt_data_amphibians.csv",
+  header=TRUE,
+  sep=","
+  )
+
+# check how many different species there are!!
+table(data$species) #tells us that there's two species
+
+summary(data$mean.hydro)
+```
+
+#### `factor()`
+* Different type of data

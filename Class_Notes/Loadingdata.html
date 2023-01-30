@@ -357,7 +357,159 @@ display: none;
 </div>
 
 
+<div id="read-functions" class="section level3">
+<h3><code>read</code> Functions</h3>
+<ul>
+<li>Best format for data is <code>.csv</code></li>
+<li><code>header=T</code> if you have column names</li>
+<li><code>sep = &quot;,&quot;</code> seperates data by commans</li>
+</ul>
+<pre class="r"><code>#these functions read in datasets
+read.table(file=&quot;path/to/data.csv, header=TRUE, sep= &quot;,&quot;) #header specifies that columns have names
+read.csv(file=&quot;data.csv&quot;, header=T)</code></pre>
+</div>
+<div id="write-functions" class="section level3">
+<h3><code>write</code> Functions</h3>
+<ul>
+<li>Create and save a dataset</li>
+</ul>
+<pre class="r"><code>write.table(x=varname, file=&quot;outputfilename.csv&quot;, header=T, sep=&quot;,&quot;)</code></pre>
+<div id="use-rds-object-when-only-working-in-r" class="section level4">
+<h4>Use RDS Object when only working in R</h4>
+<ul>
+<li><code>saveRDS()</code></li>
+<li><code>readRDS()</code></li>
+<li>Make sure to put .RDS at the end</li>
+<li>Helpful for large datasets</li>
+</ul>
+<pre class="r"><code>saveRDS(my_data, file=&quot;filename.RDS&quot;)
+P &lt;- readRDS(&quot;filename.RDS&quot;)</code></pre>
+</div>
+<div id="long-vs.-wide-data-formats" class="section level4">
+<h4>Long vs. Wide Data Formats</h4>
+<ul>
+<li>Wide format contains values that <strong>do not</strong> repeat in
+the ID column</li>
+<li>Long format contains values that <strong>do</strong> repeat in the
+ID column</li>
+</ul>
+<pre class="r"><code>library(tidyverse)
+## ── Attaching packages ─────────────────────────────────────── tidyverse 1.3.2 ──
+## ✔ ggplot2 3.4.0      ✔ purrr   1.0.1 
+## ✔ tibble  3.1.8      ✔ dplyr   1.0.10
+## ✔ tidyr   1.2.1      ✔ stringr 1.5.0 
+## ✔ readr   2.1.3      ✔ forcats 0.5.2 
+## ── Conflicts ────────────────────────────────────────── tidyverse_conflicts() ──
+## ✖ dplyr::filter() masks stats::filter()
+## ✖ dplyr::lag()    masks stats::lag()</code></pre>
+<hr />
+</div>
+<div id="pivot_longer-converts-wide-to-long" class="section level4">
+<h4><code>pivot_longer()</code> converts wide to long</h4>
+<pre class="r"><code>head(billboard) #wide</code></pre>
+<pre><code>## # A tibble: 6 × 79
+##   artist  track date.ent…¹   wk1   wk2   wk3   wk4   wk5   wk6   wk7   wk8   wk9
+##   &lt;chr&gt;   &lt;chr&gt; &lt;date&gt;     &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;
+## 1 2 Pac   Baby… 2000-02-26    87    82    72    77    87    94    99    NA    NA
+## 2 2Ge+her The … 2000-09-02    91    87    92    NA    NA    NA    NA    NA    NA
+## 3 3 Door… Kryp… 2000-04-08    81    70    68    67    66    57    54    53    51
+## 4 3 Door… Loser 2000-10-21    76    76    72    69    67    65    55    59    62
+## 5 504 Bo… Wobb… 2000-04-15    57    34    25    17    17    31    36    49    53
+## 6 98^0    Give… 2000-08-19    51    39    34    26    26    19     2     2     3
+## # … with 67 more variables: wk10 &lt;dbl&gt;, wk11 &lt;dbl&gt;, wk12 &lt;dbl&gt;, wk13 &lt;dbl&gt;,
+## #   wk14 &lt;dbl&gt;, wk15 &lt;dbl&gt;, wk16 &lt;dbl&gt;, wk17 &lt;dbl&gt;, wk18 &lt;dbl&gt;, wk19 &lt;dbl&gt;,
+## #   wk20 &lt;dbl&gt;, wk21 &lt;dbl&gt;, wk22 &lt;dbl&gt;, wk23 &lt;dbl&gt;, wk24 &lt;dbl&gt;, wk25 &lt;dbl&gt;,
+## #   wk26 &lt;dbl&gt;, wk27 &lt;dbl&gt;, wk28 &lt;dbl&gt;, wk29 &lt;dbl&gt;, wk30 &lt;dbl&gt;, wk31 &lt;dbl&gt;,
+## #   wk32 &lt;dbl&gt;, wk33 &lt;dbl&gt;, wk34 &lt;dbl&gt;, wk35 &lt;dbl&gt;, wk36 &lt;dbl&gt;, wk37 &lt;dbl&gt;,
+## #   wk38 &lt;dbl&gt;, wk39 &lt;dbl&gt;, wk40 &lt;dbl&gt;, wk41 &lt;dbl&gt;, wk42 &lt;dbl&gt;, wk43 &lt;dbl&gt;,
+## #   wk44 &lt;dbl&gt;, wk45 &lt;dbl&gt;, wk46 &lt;dbl&gt;, wk47 &lt;dbl&gt;, wk48 &lt;dbl&gt;, wk49 &lt;dbl&gt;, …</code></pre>
+<pre class="r"><code>b1 &lt;- billboard %&gt;%
+  pivot_longer(
+    cols = starts_with(&quot;wk&quot;), #specify which columns you want to make longer
+    names_to = &quot;Week&quot;,        #name of new column
+    values_to = &quot;Rank&quot;,       #name of a new column which will contain values
+    values_drop_na = TRUE     #removes any values where the values = NA
+    )
 
+glimpse(b1)</code></pre>
+<pre><code>## Rows: 5,307
+## Columns: 5
+## $ artist       &lt;chr&gt; &quot;2 Pac&quot;, &quot;2 Pac&quot;, &quot;2 Pac&quot;, &quot;2 Pac&quot;, &quot;2 Pac&quot;, &quot;2 Pac&quot;, &quot;2 …
+## $ track        &lt;chr&gt; &quot;Baby Don&#39;t Cry (Keep...&quot;, &quot;Baby Don&#39;t Cry (Keep...&quot;, &quot;Ba…
+## $ date.entered &lt;date&gt; 2000-02-26, 2000-02-26, 2000-02-26, 2000-02-26, 2000-02-…
+## $ Week         &lt;chr&gt; &quot;wk1&quot;, &quot;wk2&quot;, &quot;wk3&quot;, &quot;wk4&quot;, &quot;wk5&quot;, &quot;wk6&quot;, &quot;wk7&quot;, &quot;wk1&quot;, &quot;…
+## $ Rank         &lt;dbl&gt; 87, 82, 72, 77, 87, 94, 99, 91, 87, 92, 81, 70, 68, 67, 6…</code></pre>
+<hr />
+</div>
+<div id="pivot_wider-convers-to-wide" class="section level4">
+<h4><code>pivot_wider()</code> convers to wide</h4>
+<ul>
+<li>Best for making occupancy matrix</li>
+</ul>
+<pre class="r"><code>glimpse(fish_encounters)</code></pre>
+<pre><code>## Rows: 114
+## Columns: 3
+## $ fish    &lt;fct&gt; 4842, 4842, 4842, 4842, 4842, 4842, 4842, 4842, 4842, 4842, 48…
+## $ station &lt;fct&gt; Release, I80_1, Lisbon, Rstr, Base_TD, BCE, BCW, BCE2, BCW2, M…
+## $ seen    &lt;int&gt; 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1,…</code></pre>
+<pre class="r"><code>#we want an occupancy matrix where the fish are the rows and the locations are the columns
+fish_encounters%&gt;%
+  pivot_wider(
+    names_from = station, #which column you want to turn into multiple columns
+    values_from = seen,   #which column contains the values for the new columns
+    values_fill = 0       #all NAs will be 0
+    )</code></pre>
+<pre><code>## # A tibble: 19 × 12
+##    fish  Release I80_1 Lisbon  Rstr Base_TD   BCE   BCW  BCE2  BCW2   MAE   MAW
+##    &lt;fct&gt;   &lt;int&gt; &lt;int&gt;  &lt;int&gt; &lt;int&gt;   &lt;int&gt; &lt;int&gt; &lt;int&gt; &lt;int&gt; &lt;int&gt; &lt;int&gt; &lt;int&gt;
+##  1 4842        1     1      1     1       1     1     1     1     1     1     1
+##  2 4843        1     1      1     1       1     1     1     1     1     1     1
+##  3 4844        1     1      1     1       1     1     1     1     1     1     1
+##  4 4845        1     1      1     1       1     0     0     0     0     0     0
+##  5 4847        1     1      1     0       0     0     0     0     0     0     0
+##  6 4848        1     1      1     1       0     0     0     0     0     0     0
+##  7 4849        1     1      0     0       0     0     0     0     0     0     0
+##  8 4850        1     1      0     1       1     1     1     0     0     0     0
+##  9 4851        1     1      0     0       0     0     0     0     0     0     0
+## 10 4854        1     1      0     0       0     0     0     0     0     0     0
+## 11 4855        1     1      1     1       1     0     0     0     0     0     0
+## 12 4857        1     1      1     1       1     1     1     1     1     0     0
+## 13 4858        1     1      1     1       1     1     1     1     1     1     1
+## 14 4859        1     1      1     1       1     0     0     0     0     0     0
+## 15 4861        1     1      1     1       1     1     1     1     1     1     1
+## 16 4862        1     1      1     1       1     1     1     1     1     0     0
+## 17 4863        1     1      0     0       0     0     0     0     0     0     0
+## 18 4864        1     1      0     0       0     0     0     0     0     0     0
+## 19 4865        1     1      1     0       0     0     0     0     0     0     0</code></pre>
+<hr />
+</div>
+</div>
+<div id="loading-in-data" class="section level2">
+<h2>Loading in Data</h2>
+<ul>
+<li>Dyrad: makes research data freely reusable to everybody</li>
+</ul>
+<pre class="r"><code>data &lt;- read.table(
+  file=&quot;/Users/alextakoudes/BIOL1007A/Data/veysey-babbitt_data_amphibians.csv&quot;,
+  header=TRUE,
+  sep=&quot;,&quot;
+  )
+
+# check how many different species there are!!
+table(data$species) #tells us that there&#39;s two species</code></pre>
+<pre><code>## 
+## AMMA RASY 
+##   66   66</code></pre>
+<pre class="r"><code>summary(data$mean.hydro)</code></pre>
+<pre><code>##    Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
+##   44.83   99.50  116.50  125.96  183.17  197.00</code></pre>
+<div id="factor" class="section level4">
+<h4><code>factor()</code></h4>
+<ul>
+<li>Different type of data</li>
+</ul>
+</div>
+</div>
 
 
 

@@ -70,21 +70,25 @@ psearch(data)
 
 ## Code Annotation Practice
 
-```{r}
+```{r, message=F}
 ## Set up libraries
 library(tidyverse)
 library(ggthemes)
+```
 
-
+```{r}
 # Data obtained from Veysey Powell and Babbitt 2016: An experimental test of buffer utility as a technique for managing pool-breeding amphibians https://datadryad.org/stash/dataset/doi:10.5061%2Fdryad.547rp
 
-dryadData <- read.table("/Users/alextakoudes/Desktop/Classes/BIOL1007/doi_10/veysey powell and babbitt_data_buffers and amphibians2.csv", header=TRUE, sep=",", stringsAsFactors = TRUE)
+dryadData <- read.table("/Users/alextakoudes/BIOL1007A/Data/veysey-babbitt_data_amphibians.csv", header=TRUE, sep=",", stringsAsFactors = TRUE)
 
  glimpse(dryadData)
  head(dryadData)
  table(dryadData$species)
 
-dryadData$species<-factor(dryadData$species, labels=c("Spotted Salamander", "Wood Frog")) #creating 'labels' to use for the plot
+dryadData$species<-factor(
+  dryadData$species, 
+  labels=c("Spotted Salamander", "Wood Frog") #creating 'labels' to use for the plot
+  )
 
 #class(dryadData$treatment)
 dryadData$treatment <- factor(dryadData$treatment, 
@@ -93,16 +97,24 @@ dryadData$treatment <- factor(dryadData$treatment,
 
 
 p<- ggplot(data=dryadData, 
-       aes(x=interaction(wetland, treatment), 
-           y=count.total.adults, fill=factor(year))) + geom_bar(position="dodge", stat="identity", color="black") +
-  ylab("Number of breeding adults") +
-  xlab("") +
-  scale_y_continuous(breaks = c(0,100,200,300,400,500)) +
-  scale_x_discrete(labels=c("30 (Ref)", "124 (Ref)", "141 (Ref)", "25 (100m)","39 (100m)","55 (100m)","129 (100m)", "7 (30m)","19 (30m)","20 (30m)","59 (30m)")) +
-  facet_wrap(~species, nrow=2, strip.position="right") +
-  theme_few() + scale_fill_grey() + 
-  theme(panel.background = element_rect(fill = 'gray94', color = 'black'), legend.position="top",  legend.title= element_blank(), axis.title.y = element_text(size=12, face="bold", colour = "black"), strip.text.y = element_text(size = 10, face="bold", colour = "black")) + 
-  guides(fill=guide_legend(nrow=1,byrow=TRUE)) 
+       aes(x=interaction(wetland, treatment), #group treatment and wetland into x=axis
+           y=count.total.adults, 
+           fill=factor(year))) + #sets the color to fill the bars with
+  geom_bar(position="dodge",     #makes the bars side by side instead of stacked
+           stat="identity",      #maps the y values to the y value we entered
+           color="black") +
+  ylab("Number of breeding adults") + #y label
+  xlab("") +                          #x label
+  scale_y_continuous(breaks = c(0,100,200,300,400,500)) + #sets the y-axis scale
+  scale_x_discrete(labels=c("30 (Ref)", "124 (Ref)", "141 (Ref)", "25 (100m)","39 (100m)","55 (100m)","129 (100m)", "7 (30m)","19 (30m)","20 (30m)","59 (30m)")) + #sets the scale for the x-axis
+  facet_wrap(~species, nrow=2, strip.position="right") + #turns the graph into a 2-panel figure by species
+  theme_few() + scale_fill_grey() + #theme and bar colors
+  theme(panel.background = element_rect(fill = 'gray94', color = 'black'), #sets the background and border colors
+        legend.position="top",  #legend position
+        legend.title= element_blank(),  #delete legend title
+        axis.title.y = element_text(size=12, face="bold", colour = "black"), #formatting y axis title
+        strip.text.y = element_text(size = 10, face="bold", colour = "black")) + #formatting the labels on the right created by facet_wrap. This area is called the "strip".
+  guides(fill=guide_legend(nrow=1, byrow=TRUE)) #formats the legend to be a single row
 
 p
 ```

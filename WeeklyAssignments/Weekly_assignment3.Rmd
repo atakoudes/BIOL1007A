@@ -5,26 +5,30 @@ date: "2023-01-26"
 output: html_document
 ---
 
-```{r setup, include=FALSE}
-knitr::opts_chunk$set(echo = TRUE)
+![](/Users/alextakoudes/BIOL1007A/Data/Screenshot 2023-01-26 at 3.26.01 PM.png)
+
+```{r, message=F}
+library(tidyverse)
+library(ggthemes)
 ```
 
-## R Markdown
 
-This is an R Markdown document. Markdown is a simple formatting syntax for authoring HTML, PDF, and MS Word documents. For more details on using R Markdown see <http://rmarkdown.rstudio.com>.
+```{r}
+#    /Users/alextakoudes/BIOL1007A/Data/bison_data.csv
 
-When you click the **Knit** button a document will be generated that includes both content as well as the output of any embedded R code chunks within the document. You can embed an R code chunk like this:
+bison_data <- read.table("/Users/alextakoudes/BIOL1007A/Data/bison_data.csv", header=TRUE, sep=",", stringsAsFactors = TRUE)
 
-```{r cars}
-summary(cars)
+glimpse(bison_data)
+
+plot <- ggplot(data=bison_data, 
+               aes(x=Month, y=Forb)) +
+        geom_bar(stat="identity")
+
+specie <- c(rep("sorgho" , 3) , rep("poacee" , 3) , rep("banana" , 3) , rep("triticum" , 3) )
+condition <- rep(c("normal" , "stress" , "Nitrogen") , 4)
+value <- abs(rnorm(12 , 0 , 15))
+data <- data.frame(specie,condition,value)
+
+plot
+
 ```
-
-## Including Plots
-
-You can also embed plots, for example:
-
-```{r pressure, echo=FALSE}
-plot(pressure)
-```
-
-Note that the `echo = FALSE` parameter was added to the code chunk to prevent printing of the R code that generated the plot.
