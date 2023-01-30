@@ -143,3 +143,22 @@ plot <- ggplot(data=count_data_long, aes(x=Species, y=Count, fill=Sex)) +
 
 plot
 ```
+***
+# `if` Statements and `for` Loops
+***
+## `if` and `ifelse` statements
+* Any final unspecified `else` captures the rest of the conditions
+* `else` must appear on the same line as the expression
+* Used for single values only
+```{r, eval=F}
+if(condition){expression1}
+
+if(condition){expression1} else{expression2}
+```
+
+```{r}
+z <- signif(runif(1), digits=2)
+
+if (z>0.8){cat(z, "is a large number", "\n")}
+```
+
