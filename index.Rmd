@@ -39,6 +39,8 @@ These notes will be a great reference point for me when working with R in future
 
 [Assignment 8](Assignments/Assignment8.html)
 
+[Assignment 9](Assignments/Assignment9.html)
+
 ## <span style="color:#F75D59">Weekly Assignments</span>
 
 [Weekly Assignment 1](WeeklyAssignments/Weekly_assignment1.html)
@@ -46,6 +48,8 @@ These notes will be a great reference point for me when working with R in future
 [Weekly Assignment 2](WeeklyAssignments/Weekly_assignment2.html)
 
 [Weekly Assignment 3](WeeklyAssignments/Weekly_assignment3.html)
+
+[Weekly Assignment 4](WeeklyAssignments/Weekly_assignment4.html)
 
 ## <span style="color:#F75D59">Class Notes</span>
 
@@ -64,3 +68,5 @@ These notes will be a great reference point for me when working with R in future
 [1-24-2023| `ggplot`](Class_Notes/ggplot.html)
 
 [1-26-2023| Loading Data](Class_Notes/Loadingdata.html)
+
+[1-30-2023| Analysis and Control Structures](Class_Notes/Analysisandcontrolstructures.html)

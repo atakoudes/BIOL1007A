@@ -5,48 +5,66 @@ date: "2023-01-26"
 output: html_document
 ---
 
-![](/Users/alextakoudes/BIOL1007A/Data/Screenshot 2023-01-26 at 3.26.01 PM.png)
+
 
 ```{r, message=F}
 library(tidyverse)
 library(ggthemes)
+library(viridis)
 ```
 
 
 ```{r}
-#    /Users/alextakoudes/BIOL1007A/Data/bison_data.csv
-
 bison_data <- read.table("/Users/alextakoudes/BIOL1007A/Data/bison_data.csv", header=TRUE, sep=",", stringsAsFactors = TRUE)
 
 glimpse(bison_data)
+```
+#### Data looks good. I'll need to work with the data from the last 5 columns. Looks like the numbers are decimals which can be converted to percents. Will need to `pivot` data from `wide` to `long`.
 
-
-
+***
+```{r}
 long_bison <- bison_data %>%
   rename(Legume=Leg, WarmGrass=C4G, CoolGrass=C3G) %>%  #renaming certain columns to their common name
   pivot_longer(
     cols = c("WarmGrass", "Forb", "Legume", "CoolGrass", "Woody"), #specify which columns you want to make longer
-    names_to = "FunctionalGroup",        #name of new column
-    values_to = "Percent_in_diet",       #name of a new column which will contain values
-    values_drop_na = TRUE     #removes any values where the values = NA
-  )
+    names_to = "FunctionalGroup",   #name of new column
+    values_to = "Percent_in_diet",  #name of a new column which will contain values
+    values_drop_na = TRUE           #removes any values where the values = NA
+  ) %>%
+  filter(MonthNum != 10)            #filter out October since that was not graphed. (Maybe due to lack of obs)
 
-long_bison <- long_bison %>%
-  filter(MonthNum != 10)
-
-long_bison
+glimpse(long_bison)
 ```
 
-```{r}
+#### Looks like we successfully created a new column with grass types (`FunctionalGroup`) and the `Percent_in_diet` next to it.
+***
 
-plot <- ggplot(data=long_bison, 
+```{r}
+plot <- ggplot(data=long_bison,             #data
             aes(x=reorder(Month, MonthNum), #put the months in order
-                y= Percent_in_diet, 
-                fill = FunctionalGroup)) +
-  geom_bar(position="fill", stat="identity") +
+                y= Percent_in_diet,         #use the percent in diet for y axis
+                fill = FunctionalGroup)) +  #group data by FunctionalGroup and give it color
+  geom_bar(position="fill", stat="identity") +  #position ="fill" makes the bars stack and stretch to top
   xlab("Month") +
   ylab("Percent in Diet") +
-  scale_y_continuous(labels = scales::percent)
+  scale_y_continuous(labels = scales::percent) + #convert y axis to percents
+  theme(aspect.ratio=3/2) #make the graph longer
   
+plot
+```
+
+
+### [Graph from Craine & Ventures (2019)](https://datadryad.org/stash/dataset/doi:10.5061/dryad.k3j9kd56m)
+* Looks like they used R and didn't play with the design of the figure too much
+* Below this is how I would have customized the figure
+![](/Users/alextakoudes/BIOL1007A/Data/Screenshot 2023-01-26 at 3.26.01 PM.png)
+
+```{r}
+cols <- viridis(5)
+
+plot <- plot +
+  theme_bw() +
+  scale_fill_manual(values=cols)
+
 plot
 ```
