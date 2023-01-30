@@ -59,7 +59,7 @@ glimpse(starwars_clean)
 anyNA(starwars_clean)
 ```
 
-#### `Filter()` Picks/subsets observations(*rows*) by their values
+#### `filter()` Picks/subsets observations(*rows*) by their values
 
 ```{r}
 filter(starwars_clean, gender=="masculine" & height<180 & height>100) #can filter by several conditions

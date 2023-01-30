@@ -20,15 +20,33 @@ bison_data <- read.table("/Users/alextakoudes/BIOL1007A/Data/bison_data.csv", he
 
 glimpse(bison_data)
 
-plot <- ggplot(data=bison_data, 
-               aes(x=Month, y=Forb)) +
-        geom_bar(stat="identity")
 
-specie <- c(rep("sorgho" , 3) , rep("poacee" , 3) , rep("banana" , 3) , rep("triticum" , 3) )
-condition <- rep(c("normal" , "stress" , "Nitrogen") , 4)
-value <- abs(rnorm(12 , 0 , 15))
-data <- data.frame(specie,condition,value)
 
+long_bison <- bison_data %>%
+  rename(Legume=Leg, WarmGrass=C4G, CoolGrass=C3G) %>%  #renaming certain columns to their common name
+  pivot_longer(
+    cols = c("WarmGrass", "Forb", "Legume", "CoolGrass", "Woody"), #specify which columns you want to make longer
+    names_to = "FunctionalGroup",        #name of new column
+    values_to = "Percent_in_diet",       #name of a new column which will contain values
+    values_drop_na = TRUE     #removes any values where the values = NA
+  )
+
+long_bison <- long_bison %>%
+  filter(MonthNum != 10)
+
+long_bison
+```
+
+```{r}
+
+plot <- ggplot(data=long_bison, 
+            aes(x=reorder(Month, MonthNum), #put the months in order
+                y= Percent_in_diet, 
+                fill = FunctionalGroup)) +
+  geom_bar(position="fill", stat="identity") +
+  xlab("Month") +
+  ylab("Percent in Diet") +
+  scale_y_continuous(labels = scales::percent)
+  
 plot
-
 ```
