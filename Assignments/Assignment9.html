@@ -366,10 +366,18 @@ time you have a zero in the vector. Finally, use return(counter) for the
 output.</h5>
 <pre class="r"><code>my_vec &lt;- sample(c(0:5), size=100, replace=T) #initialize a vector to be sampled
 my_vec</code></pre>
-<pre><code>##   [1] 5 5 1 3 0 5 3 5 4 2 3 0 0 4 5 4 3 5 0 1 0 4 4 1 4 5 1 5 4 0 5 3 2 1 3 0 4
-##  [38] 2 4 1 0 0 3 4 2 3 5 1 3 1 2 3 2 0 2 5 5 0 4 4 2 5 3 1 3 5 4 5 2 3 1 1 2 5
-##  [75] 2 3 0 0 1 2 3 3 2 0 3 0 1 2 3 4 0 2 4 3 2 3 5 3 0 4</code></pre>
-<pre class="r"><code>zero_counter &lt;- function(vector=my_vec){
+<pre><code>##   [1] 0 3 2 1 2 0 4 5 0 3 2 5 0 4 1 2 5 2 0 0 5 4 5 3 0 1 3 4 5 2 4 4 3 4 4 3 1
+##  [38] 2 4 3 5 4 3 2 2 3 5 5 4 0 1 4 1 3 5 2 1 2 5 2 4 2 0 3 0 2 1 4 1 2 4 0 3 3
+##  [75] 2 4 0 3 3 1 1 0 1 4 5 2 5 3 1 1 0 2 4 2 4 1 0 5 3 1</code></pre>
+<pre class="r"><code>##################################################
+# FUNCTION: zero_counter 
+# Counts the number of 0s in a numeric vector
+# inputs:
+#   vector: vector to be counted
+# outputs: the number of 0s in a numeric vector
+#------------------------------------------------- 
+
+zero_counter &lt;- function(vector=my_vec){
   counter &lt;- 0                        #initialize the counter
   for(i in my_vec){                   #get a little fancy and just iterate through the actual values of my_vec
     if(i==0){counter &lt;- counter + 1}  #if that value is 0, add 1 to the counter
@@ -377,15 +385,26 @@ my_vec</code></pre>
   return(counter)
 }
 
+##################################################
+
 zero_counter()</code></pre>
-<pre><code>## [1] 17</code></pre>
+<pre><code>## [1] 15</code></pre>
 </div>
 <div id="write-a-function-that-takes-as-input-two-integers-representing-the-number-of-rows-and-columns-in-a-matrix.-the-output-is-a-matrix-of-these-dimensions-in-which-each-element-is-the-product-of-the-row-number-x-the-column-number." class="section level5">
 <h5>2. Write a function that takes as input two integers representing
 the number of rows and columns in a matrix. The output is a matrix of
 these dimensions in which each element is the product of the row number
 x the column number.</h5>
-<pre class="r"><code>multiply &lt;- function(rows, cols){
+<pre class="r"><code>##################################################
+# FUNCTION: multiply 
+# Generates a matrix in which each element is the product of the row number x the column number
+# inputs:
+#   rows: number of rows
+#   cols: number of columns
+# outputs: a matrix of these dimensions in which each element is the product of the row number x the column number
+#------------------------------------------------- 
+
+multiply &lt;- function(rows, cols){
   matrix &lt;- matrix(nrow=rows, ncol=cols)
   for (i in 1:rows) {
     for (j in 1:cols) {
@@ -394,6 +413,8 @@ x the column number.</h5>
   } # end or row i loop
   return(matrix)
 }
+
+##################################################
 
 multiply(2, 2)</code></pre>
 <pre><code>##      [,1] [,2]
@@ -415,7 +436,7 @@ the replicate number and 1 column for the p-values (a total of 2 columns
 and 100 rows).</h5>
 <pre class="r"><code>##################################################
 # FUNCTION: datagen 
-# generates a two column data frame of data.
+# Generates a two column data frame of data.
 # inputs:
 #   c_mean: mean value for normal distribution of control data
 #   c_sd: standard deviation value for normal distribution of control data
@@ -434,15 +455,17 @@ datagen &lt;- function(c_mean=10, c_sd=1.5, t_mean=45, t_sd=2, nrows=50){
     )
   return(dFrame)
 }
+
 ##################################################
 
 ##################################################
 # FUNCTION: psearch
-# returns the pvalue of a given two column data frame
+# Returns the pvalue of a given two column data frame
 # inputs:
 #   df: data frame to be analyzed
 # outputs: p value of two column data frame
 #------------------------------------------------- 
+
 psearch &lt;- function(df=NULL){
   if(is.null(df)){
     df &lt;- datagen()
@@ -452,15 +475,17 @@ psearch &lt;- function(df=NULL){
   pvalue &lt;- testSummary[[1]][[&quot;Pr(&gt;F)&quot;]][1]
   return(pvalue)
 }
+
 ##################################################
 
 ##################################################
 # FUNCTION: dataloop
-# generates a data frame containing 100 simulated values for P from datagen() and psearch()
+# Generates a data frame containing 100 simulated values for P from datagen() and psearch()
 # inputs:
 #   x: number of iterations
-# outputs: 2x100 dataframe with replicate numbers and p values
+# outputs: 2x100 data frame with replicate numbers and p values
 #------------------------------------------------- 
+
 dataloop &lt;- function(x=100){
   pvals &lt;- vector(&quot;double&quot;, x)    #initialize pvals as a 100 item long vector
   counts &lt;- vector(&quot;integer&quot;, x)  #initialize counts as a 100 item long vector
@@ -471,17 +496,18 @@ dataloop &lt;- function(x=100){
   frame &lt;- data.frame(counts, pvals) #turn the vectors into a data frame
   return(frame)
 }
+
 ##################################################
 
 answer &lt;- dataloop()
 tail(answer)</code></pre>
 <pre><code>##     counts        pvals
-## 95      95 1.702493e-48
-## 96      96 3.631009e-51
-## 97      97 6.027956e-49
-## 98      98 1.910642e-52
-## 99      99 4.500042e-51
-## 100    100 3.913769e-52</code></pre>
+## 95      95 4.483163e-53
+## 96      96 5.096855e-49
+## 97      97 3.511195e-49
+## 98      98 2.052002e-50
+## 99      99 6.950695e-53
+## 100    100 2.429482e-53</code></pre>
 </div>
 
 
