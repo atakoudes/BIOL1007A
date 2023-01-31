@@ -21,6 +21,8 @@ for Winter of 2023. This is my first time coding with R but I have prior experie
 These notes will be a great reference point for me when working with R in future classes.
 </span>
 
+## <span style="color:#F75D59"> Final Project [(link)](final_project.html) </span>
+
 ## <span style="color:#F75D59">Daily Assignments</span>
 
 [Assignment 1](Assignments/Assignment1.html)

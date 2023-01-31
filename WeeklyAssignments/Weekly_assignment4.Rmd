@@ -1,0 +1,43 @@
+---
+title: "Weekly Assignment 4"
+author: "Alex Takoudes"
+date: "2023-01-31"
+output: html_document
+---
+
+#### I will be simulating a continuous vs. categorical dataset and conducting a box plot analysis.
+
+```{r, collapse=T}
+library(tidyverse)
+library(ggthemes)
+```
+
+```{r}
+set.seed(105)
+
+data <- data.frame(
+  states = sample(c("MA", "VT", "NY"), 450, replace=T),
+  temps = c(rnorm(450, mean=50, sd=15)),
+  season = sample(c("Summer", "Spring", "Fall", "Winter"), 450, replace = T)
+)
+```
+
+```{r}
+data %>%
+  group_by(states) %>%
+  summarize(mean_temp = (mean(temps, na.rm=T)), n=n())
+```
+
+#### Looks like Massachusetts is the coldest state.
+
+```{r}
+temp_plot <- ggplot(data=data, aes(x=states, y=temps, fill=season)) +
+  geom_boxplot() +
+  ylab("Temperature (ºF)") +
+  xlab("State") +
+  theme_bw()
+
+temp_plot
+```
+
+#### It appears that on average New York is the coldest in the Spring. Vermont has the most variability in temperatures in the fall. Maybe this simulated data has some truth to it?

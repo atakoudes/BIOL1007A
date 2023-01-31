@@ -1,0 +1,14 @@
+---
+title: "Final Project"
+author: "Alex Takoudes"
+date: "2023-01-31"
+output: html_document
+---
+
+```{r}
+library(shiny)
+```
+
+```{r}
+runApp("App-1", display.mode = "showcase")
+```
