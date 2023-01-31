@@ -10,5 +10,5 @@ library(shiny)
 ```
 
 ```{r}
-runApp("App-1", display.mode = "showcase")
+
 ```
