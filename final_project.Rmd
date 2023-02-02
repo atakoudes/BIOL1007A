@@ -7,8 +7,65 @@ output: html_document
 
 ```{r}
 library(shiny)
+library(knitr)
+
+knitr::include_app("https://atakoudes.shinyapps.io/app-1/", height ="600px")
 ```
 
-```{r}
+```{r, echo=FALSE}
+# sliderInput("bins", "Number of bins:", 30, min = 1, max = 50)
+# 
+# renderPlot({
+#   x    = faithful[, 2]  # Old Faithful Geyser data
+#   bins = seq(min(x), max(x), length.out = input$bins + 1)
+# 
+#   # draw the histogram with the specified number of bins
+#   hist(x, breaks = bins, col = 'darkgray', border = 'white')
+# })
+```
 
+```{r, echo=FALSE}
+
+# 
+# data(mpg)
+# mpg <- mpg
+# 
+# selectInput("x_axis",
+#       label = "Select a variable to group by",
+#       choices = c("Make", "Drive", "Class", "Fuel"),
+#       selected = "Class"
+#           )
+# 
+# selectInput("y_axis",
+#       label = "Select a variable to display",
+#           choices = c("Highway",
+#                       "City",
+#                       "Displacement",
+#                       "Cylinders"),
+#           selected = "Highway"
+#                   )
+# 
+# 
+# renderPlot({
+#     yvar <- switch(input$y_axis,
+#                     "Highway" = mpg$hwy,
+#                     "City" = mpg$cty,
+#                     "Displacement" = mpg$displ,
+#                     "Cylinders" = mpg$cyl)
+# 
+#     xvar <- switch(input$x_axis,
+#                     "Make" = mpg$manufacturer,
+#                     "Drive" = mpg$drv,
+#                     "Class" = mpg$class,
+#                     "Fuel" = mpg$fl)
+# 
+#     ggplot(mpg, aes(x=xvar, y=yvar, fill=xvar)) +
+#       geom_boxplot(show.legend=F) +
+#       coord_flip() +
+#       xlab(input$x_axis) +
+#       ylab(input$y_axis) +
+#       theme_classic()
+# 
+# 
+# })
 ```

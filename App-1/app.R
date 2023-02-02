@@ -1,62 +1,66 @@
 library(shiny)
-library(maps)
-library(mapproj)
-source("/Users/alextakoudes/BIOL1007A/App-1/helpers.R")
-counties <- readRDS("/Users/alextakoudes/BIOL1007A/App-1/data/counties.rds")
-head(counties)
+library(tidyverse)
 
-percent_map(counties$white, "darkgreen", "% White")
-
-
-
+data(mpg)
+mpg_data <- mpg
 
 # Define UI ----
 ui <- fluidPage(
-  titlePanel("censusVis"),
+  titlePanel("By Group Bar Chart"),
   
   sidebarLayout(
     sidebarPanel(
-      helpText("Create demographic maps with 
-        information from the 2010 US Census."),
       
-      selectInput("var", 
-                  label = "Choose a variable to display",
-                  choices = c("Percent White", "Percent Black",
-                              "Percent Hispanic", "Percent Asian"),
-                  selected = "Percent White"),
-      
-      sliderInput("range", 
-                  label = "Range of interest:",
-                  min = 0, max = 100, value = c(0, 100))
-    ),
+      selectInput("x_axis", 
+                  label = "Select a variable to group by",
+                  choices = c("Make", "Drive", "Class", "Fuel"),
+                  selected = "Class"),
     
-    mainPanel(plotOutput("map"))
+      selectInput("y_axis", 
+                  label = "Select a variable to display",
+                  choices = c("Highway", 
+                              "City", 
+                              "Displacement", 
+                              "Cylinders"),
+                  selected = "Highway"
+                  ),
+      p("This Shiny App allows the user to select certain inputs which will change the figure in real time.
+        You can also add images and any sort of HTML customization to the user interface."),
+    ),
+
+    
+    mainPanel(
+      plotOutput("chart"),
+      
+    )
   )
 )
 
 # Server logic ----
 server <- function(input, output) {
-  output$map <- renderPlot({
-    data <- switch(input$var, 
-                   "Percent White" = counties$white,
-                   "Percent Black" = counties$black,
-                   "Percent Hispanic" = counties$hispanic,
-                   "Percent Asian" = counties$asian)
+  output$chart <- renderPlot({
+    yvar <- switch(input$y_axis, 
+                    "Highway" = mpg$hwy, 
+                    "City" = mpg$cty, 
+                    "Displacement" = mpg$displ, 
+                    "Cylinders" = mpg$cyl)
     
-    color <- switch(input$var, 
-                    "Percent White" = "darkgreen",
-                    "Percent Black" = "black",
-                    "Percent Hispanic" = "darkorange",
-                    "Percent Asian" = "darkviolet")
+    xvar <- switch(input$x_axis, 
+                    "Make" = mpg$manufacturer, 
+                    "Drive" = mpg$drv, 
+                    "Class" = mpg$class, 
+                    "Fuel" = mpg$fl)
     
-    legend <- switch(input$var, 
-                     "Percent White" = "% White",
-                     "Percent Black" = "% Black",
-                     "Percent Hispanic" = "% Hispanic",
-                     "Percent Asian" = "% Asian")
-    
-    percent_map(data, color, legend, input$range[1], input$range[2])
+    ggplot(mpg_data, aes(x=xvar, y=yvar, fill=xvar)) + 
+      geom_boxplot(show.legend=F) +
+      coord_flip() +
+      xlab(input$x_axis) +
+      ylab(input$y_axis) +
+      theme_classic()
+
+  
   })
+  
 }
 
 # Run app ----
