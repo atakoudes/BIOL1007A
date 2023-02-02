@@ -10,8 +10,8 @@ ui <- fluidPage(
   
   sidebarLayout(
     sidebarPanel(
-      p("This is the sidebar panel"),
-      selectInput("x_axis", 
+      p("This is the sidebar panel"),   #this is some text on the page
+      selectInput("x_axis",             #this is a button for the user to change inputs
                   label = "Select a variable to group by",
                   choices = c("Make", "Drive", "Class", "Fuel"),
                   selected = "Class"),
@@ -30,8 +30,8 @@ ui <- fluidPage(
 
     
     mainPanel(
-      p("This is the main panel"),
-      plotOutput("chart"),
+      p("This is the main panel"), #this is also some text in the main panel section
+      plotOutput("chart"),         #this is where the graph actually gets printed out
       
     )
   )
@@ -40,8 +40,8 @@ ui <- fluidPage(
 # Server logic ----
 server <- function(input, output) {
   output$chart <- renderPlot({
-    yvar <- switch(input$y_axis, 
-                    "Highway" = mpg$hwy, 
+    yvar <- switch(input$y_axis,         #this takes the user input from the "y_axis" button and assigns it to yvar
+                    "Highway" = mpg$hwy, #each possible input gets assigned to the appropriate list from the dataframe
                     "City" = mpg$cty, 
                     "Displacement" = mpg$displ, 
                     "Cylinders" = mpg$cyl)

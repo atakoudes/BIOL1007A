@@ -5,7 +5,7 @@ account: atakoudes
 server: shinyapps.io
 hostUrl: https://api.shinyapps.io/v1
 appId: 8204862
-bundleId: 6802876
+bundleId: 6803124
 url: https://atakoudes.shinyapps.io/app-1/
-when: 1675356823.2204
-lastSyncTime: 1675356823.22042
+when: 1675360823.61074
+lastSyncTime: 1675360823.61076
