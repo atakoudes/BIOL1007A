@@ -8,6 +8,7 @@ output: html_document
 #### For my final project, I decided to use create a Shiny App which uses the built in `mpg` dataset. Shiny apps allow you to create interactive web applications. See the [gallery](https://shiny.rstudio.com/gallery/) for some examples
 ***
 
+For a fully functional version of this Shiny app, click [here](https://atakoudes.shinyapps.io/app-1/)
 ```{r}
 library(knitr)
 
