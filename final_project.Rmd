@@ -4,68 +4,55 @@ author: "Alex Takoudes"
 date: "2023-01-31"
 output: html_document
 ---
+***
+#### For my final project, I decided to use create a Shiny App which uses the built in `mpg` dataset. Shiny apps allow you to create interactive web applications. See the [gallery](https://shiny.rstudio.com/gallery/) for some examples
+***
 
 ```{r}
-library(shiny)
 library(knitr)
 
-knitr::include_app("https://atakoudes.shinyapps.io/app-1/", height ="600px")
+include_app("https://atakoudes.shinyapps.io/app-1/", height="600px")
 ```
 
-```{r, echo=FALSE}
-# sliderInput("bins", "Number of bins:", 30, min = 1, max = 50)
-# 
-# renderPlot({
-#   x    = faithful[, 2]  # Old Faithful Geyser data
-#   bins = seq(min(x), max(x), length.out = input$bins + 1)
-# 
-#   # draw the histogram with the specified number of bins
-#   hist(x, breaks = bins, col = 'darkgray', border = 'white')
-# })
+***
+#### There are two main components to a Shiny App
+* The `ui` is what the user interacts with. This contains the buttons, options for the buttons etc.
+* The `server` is what happens behind the scenes. This renders the figures and changes them based on user inputs.
+
+```{r, eval=F}
+ui <- fluidPage(
+  titlePanel("Interactive Bar Chart"),
+  
+  sidebarLayout(       #this activates a sidebar layout mode as you can see in the example
+    sidebarPanel(      #this is where you customize the sidebar panel
+      p("This is the sidebar panel"),
+      selectInput("x_axis", 
+                  label = "Select a variable to group by",
+                  choices = c("Make", "Drive", "Class", "Fuel"),
+                  selected = "Class"),
 ```
 
-```{r, echo=FALSE}
+#### While a lot of this code looks unfamiliar, there are some recognizable parts.
+* The output uses a ggplot which we we have become familiar with this semester.
+* The `$` is used by the server to reference inputs from the user in the same way we use it to reference parts of a data frame.
 
-# 
-# data(mpg)
-# mpg <- mpg
-# 
-# selectInput("x_axis",
-#       label = "Select a variable to group by",
-#       choices = c("Make", "Drive", "Class", "Fuel"),
-#       selected = "Class"
-#           )
-# 
-# selectInput("y_axis",
-#       label = "Select a variable to display",
-#           choices = c("Highway",
-#                       "City",
-#                       "Displacement",
-#                       "Cylinders"),
-#           selected = "Highway"
-#                   )
-# 
-# 
-# renderPlot({
-#     yvar <- switch(input$y_axis,
-#                     "Highway" = mpg$hwy,
-#                     "City" = mpg$cty,
-#                     "Displacement" = mpg$displ,
-#                     "Cylinders" = mpg$cyl)
-# 
-#     xvar <- switch(input$x_axis,
-#                     "Make" = mpg$manufacturer,
-#                     "Drive" = mpg$drv,
-#                     "Class" = mpg$class,
-#                     "Fuel" = mpg$fl)
-# 
-#     ggplot(mpg, aes(x=xvar, y=yvar, fill=xvar)) +
-#       geom_boxplot(show.legend=F) +
-#       coord_flip() +
-#       xlab(input$x_axis) +
-#       ylab(input$y_axis) +
-#       theme_classic()
-# 
-# 
-# })
+#### When typing text into a Shiny App, you must use the `html` language
+![](/Users/alextakoudes/BIOL1007A/Images/Screenshot 2023-02-02 at 11.55.08 AM.png)
+
+##### Images take an argument `src` which is the path to the image
+
+```{r, eval=F}
+img(src = "my_image.png", height = 72, width = 72)
+```
+
+#### There are a lot of different options for interactive buttons
+![](/Users/alextakoudes/BIOL1007A/Images/Screenshot 2023-02-02 at 12.00.50 PM.png)
+##### Shiny will store inputs from the user meaning you can use the `$` to reference a specific button's input
+
+```{r, eval=F}
+yvar <- switch(input$y_axis, 
+                    "Highway" = mpg$hwy, 
+                    "City" = mpg$cty, 
+                    "Displacement" = mpg$displ, 
+                    "Cylinders" = mpg$cyl)
 ```

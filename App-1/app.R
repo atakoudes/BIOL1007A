@@ -6,11 +6,11 @@ mpg_data <- mpg
 
 # Define UI ----
 ui <- fluidPage(
-  titlePanel("By Group Bar Chart"),
+  titlePanel("Interactive Bar Chart"),
   
   sidebarLayout(
     sidebarPanel(
-      
+      p("This is the sidebar panel"),
       selectInput("x_axis", 
                   label = "Select a variable to group by",
                   choices = c("Make", "Drive", "Class", "Fuel"),
@@ -30,6 +30,7 @@ ui <- fluidPage(
 
     
     mainPanel(
+      p("This is the main panel"),
       plotOutput("chart"),
       
     )
@@ -51,7 +52,7 @@ server <- function(input, output) {
                     "Class" = mpg$class, 
                     "Fuel" = mpg$fl)
     
-    ggplot(mpg_data, aes(x=xvar, y=yvar, fill=xvar)) + 
+    ggplot(mpg_data, aes(x=reorder(xvar, yvar), y=yvar, fill=reorder(xvar,yvar))) + 
       geom_boxplot(show.legend=F) +
       coord_flip() +
       xlab(input$x_axis) +
@@ -64,4 +65,4 @@ server <- function(input, output) {
 }
 
 # Run app ----
-shinyApp(ui, server)
+shinyApp(ui, server, options = list(display.mode = 'showcase'))
